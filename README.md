@@ -1,73 +1,49 @@
-# Welcome to your Lovable project
 
-## Project info
+# MedicMindAssist
 
-**URL**: https://lovable.dev/projects/41dffc7b-fb1c-4f65-8e9b-c2ba9c3b0bf5
+MedicMindAssist is a powerful mobile application designed specifically for medical professionals to assist in their daily clinical practice. The app provides essential tools for drug interactions, medical calculations, and clinical decision support in an elegant, intuitive interface.
 
-## How can I edit this code?
+## Features
 
-There are several ways of editing your application.
+- **Quick Reference Tools**: Drug interactions checker, medical calculators, and procedure checklists
+- **Clinical Decision Support**: Symptom analyzer with differential diagnosis suggestions and evidence-based treatment guidelines
+- **Workflow Optimization**: Patient notes templates, medical dictation, and task prioritization
+- **Offline Access**: Critical reference information available without internet connection
 
-**Use Lovable**
+## Project Structure
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/41dffc7b-fb1c-4f65-8e9b-c2ba9c3b0bf5) and start prompting.
+This project is built with React, TypeScript, Vite, and Tailwind CSS using the Lovable development platform.
 
-Changes made via Lovable will be committed automatically to this repo.
+### Special Project Files
 
-**Use your preferred IDE**
+This project includes special markdown files for development and planning purposes:
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+- **`project-plan/TASKS.md`**: Contains all current and completed tasks for the project with priority levels and completion timestamps
+- **`project-plan/LOGS.md`**: Documents errors encountered during development, their causes, and resolutions
+- **`project-plan/DESIGN.md`**: Outlines the design system including color palette, typography, and UI components
+- **`project-plan/ARCHITECTURE.md`**: Details the technical architecture of the application
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
+Developers working on this project should regularly update these files to maintain project documentation.
 
-Follow these steps:
+## Development
+
+### Quick Start
 
 ```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
-
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
-
-# Step 3: Install the necessary dependencies.
+# Install dependencies
 npm i
 
-# Step 4: Start the development server with auto-reloading and an instant preview.
+# Start development server
 npm run dev
 ```
 
-**Edit a file directly in GitHub**
+### Key Development Notes
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+1. Follow the established design system in `project-plan/DESIGN.md`
+2. Update the `TASKS.md` file when starting or completing tasks
+3. Document any errors and their resolutions in `LOGS.md`
+4. Maintain the architectural principles outlined in `ARCHITECTURE.md`
 
-**Use GitHub Codespaces**
+## Contact
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
-
-## What technologies are used for this project?
-
-This project is built with:
-
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
-
-## How can I deploy this project?
-
-Simply open [Lovable](https://lovable.dev/projects/41dffc7b-fb1c-4f65-8e9b-c2ba9c3b0bf5) and click on Share -> Publish.
-
-## Can I connect a custom domain to my Lovable project?
-
-Yes, you can!
-
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
-
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/tips-tricks/custom-domain#step-by-step-guide)
+For questions or support, please contact the development team.
