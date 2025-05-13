@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { Capsules, CheckCircle, Pills, Search, X } from "lucide-react";
+import { Pill, CheckCircle, Capsule, Search, X } from "lucide-react";
 
 const Drugs = () => {
   return (
@@ -102,12 +102,12 @@ const Drugs = () => {
         <TabsContent value="reference">
           <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
             {[
-              { name: "Metoprolol", category: "Beta blocker", icon: Pills },
-              { name: "Lisinopril", category: "ACE inhibitor", icon: Capsules },
-              { name: "Atorvastatin", category: "Statin", icon: Pills },
-              { name: "Metformin", category: "Antidiabetic", icon: Pills },
-              { name: "Amlodipine", category: "Calcium channel blocker", icon: Capsules },
-              { name: "Gabapentin", category: "Anticonvulsant", icon: Capsules },
+              { name: "Metoprolol", category: "Beta blocker", icon: Pill },
+              { name: "Lisinopril", category: "ACE inhibitor", icon: Capsule },
+              { name: "Atorvastatin", category: "Statin", icon: Pill },
+              { name: "Metformin", category: "Antidiabetic", icon: Pill },
+              { name: "Amlodipine", category: "Calcium channel blocker", icon: Capsule },
+              { name: "Gabapentin", category: "Anticonvulsant", icon: Capsule },
             ].map((drug, i) => (
               <Card key={i} className="overflow-hidden">
                 <CardContent className="p-0">
@@ -133,7 +133,7 @@ const Drugs = () => {
         
         <TabsContent value="favorites">
           <div className="flex flex-col items-center justify-center py-12 text-center">
-            <Pills className="h-12 w-12 text-muted-foreground mb-4" />
+            <Pill className="h-12 w-12 text-muted-foreground mb-4" />
             <h3 className="text-xl font-medium mb-2">No favorites yet</h3>
             <p className="text-muted-foreground mb-6 max-w-md">
               Save frequently referenced medications here for quick access

@@ -1,5 +1,4 @@
-
-import { Stethoscope, Pill, Calculator, FileCheck, Heart, BedPulse, CircleHelp } from "lucide-react";
+import { Stethoscope, Pill, Calculator, FileCheck, Heart, Bed, CircleHelp } from "lucide-react";
 import { NavLink } from "react-router-dom";
 import { cn } from "@/lib/utils";
 
@@ -50,7 +49,7 @@ export const NavLinks = () => {
         <h3 className="px-3 text-xs font-medium uppercase text-muted-foreground tracking-wider">
           Patient Care
         </h3>
-        <NavItem to="/notes" icon={BedPulse} label="Patient Notes" />
+        <NavItem to="/notes" icon={Bed} label="Patient Notes" />
         <NavItem to="/help" icon={CircleHelp} label="Help & Resources" />
       </div>
     </div>
