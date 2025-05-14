@@ -5,6 +5,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Calculator, Heart, Scale, Brain, Droplets } from "lucide-react";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { BMICalculator } from '@/components/calculators/BMICalculator';
+import IdealBodyWeightCalculator from '@/components/calculators/IdealBodyWeightCalculator';
 
 const calculatorCategories = [
   {
@@ -114,6 +115,7 @@ const calculatorCategories = [
       { name: "BMI", description: "Body mass index calculator" },
       { name: "BSA", description: "Body surface area calculations" },
       { name: "IBW & ABW", description: "Ideal and adjusted body weight" },
+      { name: "Ideal Body Weight", description: "Ideal Body Weight calculator" },
       { name: "Pregnancy Calculator", description: "EDC and gestational age calculation" },
     ],
   },
@@ -138,6 +140,18 @@ const Calculators = () => {
            <Button variant="outline" onClick={handleCloseCalculator}>Back to Calculators</Button>
         </div>
         <BMICalculator />
+      </AppLayout>
+    );
+  }
+
+  if (openCalculator === 'Ideal Body Weight') {
+    return (
+      <AppLayout>
+        <div className="mb-6 flex items-center justify-between">
+           <h1 className="text-2xl font-bold tracking-tight">Ideal Body Weight Calculator</h1>
+           <Button variant="outline" onClick={handleCloseCalculator}>Back to Calculators</Button>
+        </div>
+        <IdealBodyWeightCalculator />
       </AppLayout>
     );
   }
