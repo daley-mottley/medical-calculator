@@ -21,3 +21,8 @@ This section will track errors encountered during development.
 - **Cause**: What caused the error
 - **Resolution**: How it was fixed
 ```
+
+## 2025-05-14
+### Implemented BMI Calculator
+- **Issue**: Integrate a functional BMI calculator into the application.
+- **Resolution**: Created a new `BMICalculator` component and integrated it into the `Calculators` page, allowing users to calculate BMI.

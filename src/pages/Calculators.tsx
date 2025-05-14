@@ -1,12 +1,62 @@
+import { useState } from 'react';
 import { AppLayout } from "@/components/layout/AppLayout";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Calculator, Heart, Scale, Brain, Droplets } from "lucide-react";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { BMICalculator } from '@/components/calculators/BMICalculator';
 
 const calculatorCategories = [
   {
     id: "cardio",
+    name: "Cardiovascular",
+    icon: Heart,
+    color: "text-red-500",
+    bg: "bg-red-100",
+    calculators: [
+      { name: "ASCVD Risk", description: "Atherosclerotic cardiovascular disease risk calculator" },
+      { name: "QTc Interval", description: "Corrected QT interval using different formulas" },
+      { name: "HAS-BLED Score", description: "Bleeding risk in atrial fibrillation" },
+      { name: "CHA₂DS₂-VASc", description: "Stroke risk assessment in atrial fibrillation" },
+    ],
+  },
+  {
+    id: "renal",
+    name: "Renal",
+    icon: Droplets,
+    color: "text-blue-500",
+    bg: "bg-blue-100",
+    calculators: [
+      { name: "eGFR", description: "Estimated glomerular filtration rate" },
+      { name: "Creatinine Clearance", description: "Using Cockcroft-Gault equation" },
+      { name: "Fractional Excretion of Sodium", description: "For acute kidney injury assessment" },
+    ],
+  },
+  {
+    id: "neuro",
+    name: "Neurology",
+    icon: Brain,
+    color: "text-purple-500",
+    bg: "bg-purple-100",
+    calculators: [
+      { name: "NIH Stroke Scale", description: "Assessment of stroke severity" },
+      { name: "Glasgow Coma Scale", description: "Objective assessment of consciousness" },
+      { name: "FOUR Score", description: "Full Outline of UnResponsiveness score" },
+    ],
+  },
+  {
+    id: "pulmonary",
+    name: "Pulmonary",
+    icon: Droplets, // Changed from LungsIcon to Droplets as a placeholder
+    color: "text-green-500",
+    bg: "bg-green-100",
+    calculators: [
+      { name: "CURB-65", description: "Pneumonia severity assessment" },
+      { name: "Wells Score", description: "Pulmonary embolism risk assessment" },
+      { name: "A-a Gradient", description: "Alveolar-arterial oxygen gradient" },
+    ],
+  },
+  {
     name: "Cardiovascular",
     icon: Heart,
     color: "text-red-500",
@@ -70,6 +120,29 @@ const calculatorCategories = [
 ];
 
 const Calculators = () => {
+  const [openCalculator, setOpenCalculator] = useState<string | null>(null);
+
+  const handleOpenCalculator = (calculatorName: string) => {
+    setOpenCalculator(calculatorName);
+  };
+
+  const handleCloseCalculator = () => {
+    setOpenCalculator(null);
+  };
+
+  if (openCalculator === 'BMI') {
+    return (
+      <AppLayout>
+        <div className="mb-6 flex items-center justify-between">
+           <h1 className="text-2xl font-bold tracking-tight">BMI Calculator</h1>
+           <Button variant="outline" onClick={handleCloseCalculator}>Back to Calculators</Button>
+        </div>
+        <BMICalculator />
+      </AppLayout>
+    );
+  }
+
+
   return (
     <AppLayout>
       <div className="mb-6">
@@ -111,7 +184,10 @@ const Calculators = () => {
                         <CardDescription>{calculator.description}</CardDescription>
                       </CardHeader>
                       <CardContent className="pt-0">
-                        <Button className="w-full bg-medical-primary hover:bg-medical-secondary">
+                        <Button
+                           className="w-full bg-medical-primary hover:bg-medical-secondary"
+                           onClick={() => handleOpenCalculator(calculator.name)}
+                        >
                           Open Calculator
                         </Button>
                       </CardContent>
@@ -159,9 +235,12 @@ const Calculators = () => {
                     <CardDescription>{calculator.description}</CardDescription>
                   </CardHeader>
                   <CardContent className="pt-0">
-                    <Button className="w-full bg-medical-primary hover:bg-medical-secondary">
-                      Open Calculator
-                    </Button>
+                        <Button
+                           className="w-full bg-medical-primary hover:bg-medical-secondary"
+                           onClick={() => handleOpenCalculator(calculator.name)}
+                        >
+                          Open Calculator
+                        </Button>
                   </CardContent>
                 </Card>
               ))}
