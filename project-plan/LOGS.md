@@ -26,3 +26,11 @@ This section will track errors encountered during development.
 ### Implemented BMI Calculator
 - **Issue**: Integrate a functional BMI calculator into the application.
 - **Resolution**: Created a new `BMICalculator` component and integrated it into the `Calculators` page, allowing users to calculate BMI.
+
+### Implemented Ideal Body Weight Calculator
+- **Issue**: Integrate a functional Ideal Body Weight calculator into the application.
+- **Resolution**: Created a new `IdealBodyWeightCalculator` component and integrated it into the `Calculators` page, allowing users to calculate Ideal Body Weight.
+
+### Started Patient Note Templates System
+- **Issue**: Begin implementation of the patient note templates system.
+- **Resolution**: Created a new branch `feature/patient-note-templates` and started planning the component structure.

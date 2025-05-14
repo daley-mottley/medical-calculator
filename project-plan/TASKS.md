@@ -5,8 +5,8 @@
 
 ### Priority 1 (Critical)
 - [x] Implement drug interaction checker API integration
-- [x] Create comprehensive medical calculators suite - In Progress (BMI Calculator Integrated)
-- [ ] Implement patient note templates system
+- [x] Create comprehensive medical calculators suite - In Progress (BMI and Ideal Body Weight Calculators Integrated)
+- [x] Implement patient note templates system - In Progress
 - [ ] Set up secure authentication for medical professionals
 - [ ] Create offline access capabilities for critical references
 
