@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { Pill, CheckCircle, Capsule, Search, X } from "lucide-react";
+import { Pill, CheckCircle, Search, X } from "lucide-react";
 
 const Drugs = () => {
   return (
@@ -103,11 +103,11 @@ const Drugs = () => {
           <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
             {[
               { name: "Metoprolol", category: "Beta blocker", icon: Pill },
-              { name: "Lisinopril", category: "ACE inhibitor", icon: Capsule },
+              { name: "Lisinopril", category: "ACE inhibitor", icon: Pill },
               { name: "Atorvastatin", category: "Statin", icon: Pill },
               { name: "Metformin", category: "Antidiabetic", icon: Pill },
-              { name: "Amlodipine", category: "Calcium channel blocker", icon: Capsule },
-              { name: "Gabapentin", category: "Anticonvulsant", icon: Capsule },
+              { name: "Amlodipine", category: "Calcium channel blocker", icon: Pill },
+              { name: "Gabapentin", category: "Anticonvulsant", icon: Pill },
             ].map((drug, i) => (
               <Card key={i} className="overflow-hidden">
                 <CardContent className="p-0">

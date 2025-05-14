@@ -1,7 +1,7 @@
 import { AppLayout } from "@/components/layout/AppLayout";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { Calculator, Heart, Scale, Brain, Droplets, Lungs as LungsIcon } from "lucide-react";
+import { Calculator, Heart, Scale, Brain, Droplets } from "lucide-react";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
 const calculatorCategories = [
@@ -45,7 +45,7 @@ const calculatorCategories = [
   {
     id: "pulmonary",
     name: "Pulmonary",
-    icon: LungsIcon,
+    icon: Droplets, // Changed from LungsIcon to Droplets as a placeholder
     color: "text-green-500",
     bg: "bg-green-100",
     calculators: [
