@@ -4,6 +4,7 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
 import { Search } from 'lucide-react';
+import { checkDrugInteractions } from '@/lib/apiClient';
 
 interface RecentDrug {
   id: string;
@@ -39,11 +40,14 @@ export function DrugInteractions() {
   };
 
   const handleCheckInteractions = async () => {
-    // Placeholder for API call
-    console.log('Checking interactions for:', drugs);
-    // Simulate API call
-    await new Promise(resolve => setTimeout(resolve, 1000));
-    setInteractions({ message: 'Interactions checked (simulated)' }); // Simulate results
+    try {
+      console.log('Checking interactions for:', drugs);
+      const result = await checkDrugInteractions(drugs);
+      setInteractions(result);
+    } catch (error) {
+      console.error('Failed to check drug interactions:', error);
+      setInteractions({ error: 'Failed to fetch interactions' });
+    }
   };
 
   return (

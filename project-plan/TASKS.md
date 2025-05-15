@@ -4,11 +4,11 @@
 ## Uncompleted Tasks
 
 ### Priority 1 (Critical)
-- [x] Implement drug interaction checker API integration - In Progress (UI implemented)
-- [x] Create comprehensive medical calculators suite - In Progress (BMI Calculator Integrated)
-- [x] Implement patient note templates system - In Progress (Added Use Template functionality)
-- [ ] Set up secure authentication for medical professionals
-- [ ] Create offline access capabilities for critical references
+- [x] Implement drug interaction checker API integration - In Progress (Integrated with simulated API)
+- [x] Create comprehensive medical calculators suite - In Progress (BMI, BSA, IBW & ABW, Pregnancy, and ASCVD Risk Calculators Integrated)
+- [x] Implement patient note templates system - In Progress (Added Use, Edit, and Delete functionality)
+- [x] Set up secure authentication for medical professionals - Fake Auth Implemented
+- [x] Create offline access capabilities for critical references - In Progress
 
 ### Priority 2 (High)
 - [ ] Develop treatment guidelines database
