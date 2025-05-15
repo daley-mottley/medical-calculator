@@ -45,6 +45,13 @@ const PatientNoteTemplates: React.FC = () => {
     }
   };
 
+  const handleUseTemplate = (template: Template) => {
+    // TODO: Implement logic to apply the template content to a note-taking area
+    console.log('Using template:', template.name);
+    console.log('Template content:', template.content);
+    alert(`Using template "${template.name}":\n\n${template.content}`);
+  };
+
   return (
     <div className="container mx-auto py-8">
       <div className="flex justify-between items-center mb-6">
@@ -107,7 +114,15 @@ const PatientNoteTemplates: React.FC = () => {
             <div key={template.id} className="border rounded-md p-4">
               <h3 className="text-lg font-semibold">{template.name}</h3>
               <p className="text-muted-foreground line-clamp-2">{template.content}</p>
-              {/* Add buttons for using/editing/deleting templates later */}
+              <div className="mt-4 flex justify-end space-x-2">
+                <button
+                  className="bg-blue-500 text-white px-4 py-2 rounded-md"
+                  onClick={() => handleUseTemplate(template)}
+                >
+                  Use Template
+                </button>
+                {/* Add buttons for editing/deleting templates later */}
+              </div>
             </div>
           ))
         )}
