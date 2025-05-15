@@ -9,6 +9,9 @@ import Drugs from "./pages/Drugs";
 import Calculators from "./pages/Calculators";
 import NotFound from "./pages/NotFound";
 import PatientNotesPage from "./pages/PatientNotes";
+import Login from "./components/auth/Login";
+import Registration from "./components/auth/Registration";
+import Profile from "./components/auth/Profile";
 
 const queryClient = new QueryClient();
 
@@ -22,6 +25,9 @@ const App = () => (
           <Route path="/" element={<Index />} />
           <Route path="/drugs" element={<Drugs />} />
           <Route path="/calculators" element={<Calculators />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/register" element={<Registration />} />
+          <Route path="/profile" element={<Profile />} />
           {/* The following routes will be implemented in future iterations */}
           <Route path="/diagnoses" element={<NotFound />} />
           <Route path="/guidelines" element={<NotFound />} />

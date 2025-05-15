@@ -46,3 +46,7 @@ This section will track errors encountered during development.
 ### Added Placeholder Profile Content
 - **Issue**: Add basic structure and placeholder content to the Profile component.
 - **Resolution**: Added placeholder user information and settings sections to `Profile.tsx`.
+
+### Integrated Authentication Components into Routing
+- **Issue**: Add routes for authentication components.
+- **Resolution**: Added routes for `/login`, `/register`, and `/profile` in `src/App.tsx`.
