@@ -1,4 +1,3 @@
-
 # Development Logs
 
 ## 2025-05-13
@@ -34,3 +33,12 @@ This section will track errors encountered during development.
 ### Started Patient Note Templates System
 - **Issue**: Begin implementation of the patient note templates system.
 - **Resolution**: Created a new branch `feature/patient-note-templates` and started planning the component structure.
+
+## 2025-05-15
+### Started Authentication Feature
+- **Issue**: Begin implementation of the secure authentication feature.
+- **Resolution**: Created a new branch `feature/authentication` and updated project plan files.
+
+### Created Initial Authentication Components
+- **Issue**: Create placeholder components for authentication.
+- **Resolution**: Created `Login.tsx`, `Registration.tsx`, and `Profile.tsx` in `src/components/auth`.
