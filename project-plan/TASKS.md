@@ -5,7 +5,7 @@
 
 ### Priority 1 (Critical)
 - [x] Implement drug interaction checker API integration - In Progress (Integrated with simulated API)
-- [x] Create comprehensive medical calculators suite - In Progress (BMI, BSA, IBW & ABW, Pregnancy, and ASCVD Risk Calculators Integrated)
+- [x] Create comprehensive medical calculators suite - In Progress (BMI, BSA (UI Improved), IBW & ABW (UI Improved), Pregnancy (UI Improved), and ASCVD Risk Calculators Integrated (UI Improved))
 - [x] Implement patient note templates system - In Progress (Added Use, Edit, and Delete functionality)
 - [x] Set up secure authentication for medical professionals - Fake Auth Implemented (Guest Login Added)
 - [x] Create offline access capabilities for critical references - In Progress
