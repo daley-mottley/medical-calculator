@@ -6,58 +6,14 @@ import { Calculator, Heart, Scale, Brain, Droplets } from "lucide-react";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { BMICalculator } from '@/components/calculators/BMICalculator';
 import IdealBodyWeightCalculator from '@/components/calculators/IdealBodyWeightCalculator';
+import { BSACalculator } from '@/components/calculators/BSACalculator';
+import { IBWCalculator } from '@/components/calculators/IBWCalculator';
+import { PregnancyCalculator } from '@/components/calculators/PregnancyCalculator';
+import { ASCVDCalculator } from '@/components/calculators/ASCVDCalculator';
 
 const calculatorCategories = [
   {
     id: "cardio",
-    name: "Cardiovascular",
-    icon: Heart,
-    color: "text-red-500",
-    bg: "bg-red-100",
-    calculators: [
-      { name: "ASCVD Risk", description: "Atherosclerotic cardiovascular disease risk calculator" },
-      { name: "QTc Interval", description: "Corrected QT interval using different formulas" },
-      { name: "HAS-BLED Score", description: "Bleeding risk in atrial fibrillation" },
-      { name: "CHA₂DS₂-VASc", description: "Stroke risk assessment in atrial fibrillation" },
-    ],
-  },
-  {
-    id: "renal",
-    name: "Renal",
-    icon: Droplets,
-    color: "text-blue-500",
-    bg: "bg-blue-100",
-    calculators: [
-      { name: "eGFR", description: "Estimated glomerular filtration rate" },
-      { name: "Creatinine Clearance", description: "Using Cockcroft-Gault equation" },
-      { name: "Fractional Excretion of Sodium", description: "For acute kidney injury assessment" },
-    ],
-  },
-  {
-    id: "neuro",
-    name: "Neurology",
-    icon: Brain,
-    color: "text-purple-500",
-    bg: "bg-purple-100",
-    calculators: [
-      { name: "NIH Stroke Scale", description: "Assessment of stroke severity" },
-      { name: "Glasgow Coma Scale", description: "Objective assessment of consciousness" },
-      { name: "FOUR Score", description: "Full Outline of UnResponsiveness score" },
-    ],
-  },
-  {
-    id: "pulmonary",
-    name: "Pulmonary",
-    icon: Droplets, // Changed from LungsIcon to Droplets as a placeholder
-    color: "text-green-500",
-    bg: "bg-green-100",
-    calculators: [
-      { name: "CURB-65", description: "Pneumonia severity assessment" },
-      { name: "Wells Score", description: "Pulmonary embolism risk assessment" },
-      { name: "A-a Gradient", description: "Alveolar-arterial oxygen gradient" },
-    ],
-  },
-  {
     name: "Cardiovascular",
     icon: Heart,
     color: "text-red-500",
@@ -125,6 +81,7 @@ const Calculators = () => {
   const [openCalculator, setOpenCalculator] = useState<string | null>(null);
 
   const handleOpenCalculator = (calculatorName: string) => {
+    console.log('Attempting to open calculator:', calculatorName);
     setOpenCalculator(calculatorName);
   };
 
@@ -152,6 +109,54 @@ const Calculators = () => {
            <Button variant="outline" onClick={handleCloseCalculator}>Back to Calculators</Button>
         </div>
         <IdealBodyWeightCalculator />
+      </AppLayout>
+    );
+  }
+
+  if (openCalculator === 'BSA') {
+    return (
+      <AppLayout>
+        <div className="mb-6 flex items-center justify-between">
+           <h1 className="text-2xl font-bold tracking-tight">Body Surface Area (BSA) Calculator</h1>
+           <Button variant="outline" onClick={handleCloseCalculator}>Back to Calculators</Button>
+        </div>
+        <BSACalculator />
+      </AppLayout>
+    );
+  }
+
+  if (openCalculator === 'IBW & ABW') {
+    return (
+      <AppLayout>
+        <div className="mb-6 flex items-center justify-between">
+           <h1 className="text-2xl font-bold tracking-tight">Ideal and Adjusted Body Weight (IBW & ABW) Calculator</h1>
+           <Button variant="outline" onClick={handleCloseCalculator}>Back to Calculators</Button>
+        </div>
+        <IBWCalculator />
+      </AppLayout>
+    );
+  }
+
+  if (openCalculator === 'Pregnancy Calculator') {
+    return (
+      <AppLayout>
+        <div className="mb-6 flex items-center justify-between">
+           <h1 className="text-2xl font-bold tracking-tight">Pregnancy Calculator</h1>
+           <Button variant="outline" onClick={handleCloseCalculator}>Back to Calculators</Button>
+        </div>
+        <PregnancyCalculator />
+      </AppLayout>
+    );
+  }
+
+  if (openCalculator === 'ASCVD Risk') {
+    return (
+      <AppLayout>
+        <div className="mb-6 flex items-center justify-between">
+           <h1 className="text-2xl font-bold tracking-tight">ASCVD Risk Calculator</h1>
+           <Button variant="outline" onClick={handleCloseCalculator}>Back to Calculators</Button>
+        </div>
+        <ASCVDCalculator />
       </AppLayout>
     );
   }

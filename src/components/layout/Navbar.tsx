@@ -1,12 +1,17 @@
 
 import { Menu, Search, Bell } from "lucide-react";
 import { Input } from "@/components/ui/input";
+import { Link } from "react-router-dom"; // Import Link
+import { useAuth } from "../../context/AuthContext"; // Import useAuth
+import { Button } from "@/components/ui/button"; // Import Button
 
 interface NavbarProps {
   toggleSidebar: () => void;
 }
 
 export const Navbar = ({ toggleSidebar }: NavbarProps) => {
+  const { user, logout } = useAuth(); // Use the useAuth hook
+
   return (
     <header className="sticky top-0 z-30 flex h-16 items-center bg-card border-b border-border shadow-sm">
       <div className="container flex items-center justify-between px-4 md:px-6">
@@ -39,10 +44,20 @@ export const Navbar = ({ toggleSidebar }: NavbarProps) => {
             <Bell className="h-5 w-5" />
             <span className="absolute top-0 right-0 w-2 h-2 bg-medical-alert rounded-full"></span>
           </button>
-          <button className="rounded-full bg-medical-primary text-primary-foreground w-8 h-8 flex items-center justify-center">
-            <span className="sr-only">User account</span>
-            <span className="text-sm font-medium">DR</span>
-          </button>
+          {user ? ( // Conditionally render based on authentication state
+            <>
+              <Link to="/profile" className="rounded-full bg-medical-primary text-primary-foreground w-8 h-8 flex items-center justify-center">
+                <span className="sr-only">User account</span>
+                <span className="text-sm font-medium">{user.name.split(' ').map(n => n[0]).join('').toUpperCase()}</span> {/* Display user initials */}
+              </Link>
+              <Button onClick={logout} variant="outline" size="sm">Logout</Button> {/* Logout button */}
+            </>
+          ) : (
+            <>
+              <Link to="/login" className="text-sm font-medium hover:underline">Login</Link> {/* Login link */}
+              <Link to="/register" className="text-sm font-medium hover:underline">Register</Link> {/* Register link */}
+            </>
+          )}
         </div>
       </div>
     </header>

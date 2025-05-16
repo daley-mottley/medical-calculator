@@ -3,9 +3,9 @@ import React, { createContext, useContext, useState, ReactNode } from 'react';
 interface AuthContextType {
   user: { name: string; email: string } | null;
   login: (email: string, password: string) => Promise<void>;
-  register: (email: string, password: string) => Promise<void>; // Added register function
+  register: (email: string, password: string) => Promise<void>;
   logout: () => void;
-  loginAsGuest: () => Promise<void>; // Added loginAsGuest function
+  loginAsGuest: () => Promise<void>;
 }
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
@@ -17,7 +17,7 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
   });
 
   const fakeUser = { name: 'Dr. Fake User', email: 'fakeuser@example.com' };
-  const guestUser = { name: 'Guest User', email: 'guest@example.com' }; // Define guest user
+  const guestUser = { name: 'Guest User', email: 'guest@example.com' };
 
   const login = async (email: string, password: string) => {
     console.log('Attempting to log in with:', { email, password });
@@ -50,7 +50,7 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
   };
 
   return (
-    <AuthContext.Provider value={{ user, login, register, logout, loginAsGuest }}> {/* Added loginAsGuest to value */}
+    <AuthContext.Provider value={{ user, login, register, logout, loginAsGuest }}>
       {children}
     </AuthContext.Provider>
   );

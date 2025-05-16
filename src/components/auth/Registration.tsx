@@ -16,10 +16,16 @@ const formSchema = z.object({
   password: z.string().min(6, {
     message: "Password must be at least 6 characters.",
   }),
+  confirmPassword: z.string().min(6, {
+    message: "Password must be at least 6 characters.",
+  }),
+}).refine((data) => data.password === data.confirmPassword, {
+  message: "Passwords don't match.",
+  path: ["confirmPassword"],
 });
 
-const Login: React.FC = () => {
-  const { login, loginAsGuest } = useAuth(); // Use the login and loginAsGuest functions from AuthContext
+const Registration: React.FC = () => {
+  const { register } = useAuth(); // Use the register function from AuthContext
   const navigate = useNavigate(); // Use navigate for redirection
 
   const form = useForm<z.infer<typeof formSchema>>({
@@ -27,27 +33,19 @@ const Login: React.FC = () => {
     defaultValues: {
       email: "",
       password: "",
+      confirmPassword: "",
     },
   });
 
   const onSubmit = async (values: z.infer<typeof formSchema>) => {
     try {
-      await login(values.email, values.password);
-      // Redirect to dashboard or home page after successful login
+      // TODO: Implement actual API call for registration
+      console.log('Registration attempt with:', values);
+      await register(values.email, values.password);
+      // Redirect to dashboard or home page after successful registration/login (handled in AuthContext placeholder)
       navigate('/');
     } catch (error) {
-      console.error('Login failed:', error);
-      // TODO: Show error message to the user
-    }
-  };
-
-  const handleGuestLogin = async () => {
-    try {
-      await loginAsGuest();
-      // Redirect to dashboard or home page after successful guest login
-      navigate('/');
-    } catch (error) {
-      console.error('Guest login failed:', error);
+      console.error('Registration failed:', error);
       // TODO: Show error message to the user
     }
   };
@@ -56,8 +54,8 @@ const Login: React.FC = () => {
     <div className="flex items-center justify-center min-h-screen bg-gray-100">
       <Card className="w-[350px]">
         <CardHeader>
-          <CardTitle>Login</CardTitle>
-          <CardDescription>Access your MedicMindAssist account</CardDescription>
+          <CardTitle>Register</CardTitle>
+          <CardDescription>Create a new MedicMindAssist account</CardDescription>
         </CardHeader>
         <CardContent>
           <Form {...form}>
@@ -80,7 +78,7 @@ const Login: React.FC = () => {
                 name="password"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Password</Label>
+                    <FormLabel>Password</FormLabel>
                     <FormControl>
                       <Input type="password" placeholder="********" {...field} />
                     </FormControl>
@@ -88,21 +86,26 @@ const Login: React.FC = () => {
                   </FormItem>
                 )}
               />
-              <Button type="submit" className="w-full bg-medical-primary hover:bg-medical-secondary">Login</Button>
+              <FormField
+                control={form.control}
+                name="confirmPassword"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Confirm Password</FormLabel>
+                    <FormControl>
+                      <Input type="password" placeholder="********" {...field} />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+              <Button type="submit" className="w-full bg-medical-primary hover:bg-medical-secondary">Register</Button>
             </form>
           </Form>
-          <div className="mt-4 text-center text-sm text-muted-foreground">
-            <p>Fake credentials for demonstration:</p>
-            <p>Email: test@example.com</p>
-            <p>Password: password123</p>
-          </div>
-          <div className="mt-4">
-            <Button onClick={handleGuestLogin} className="w-full" variant="outline">Login as Guest</Button>
-          </div>
         </CardContent>
       </Card>
     </div>
   );
 };
 
-export default Login;
+export default Registration;
