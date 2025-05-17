@@ -70,3 +70,8 @@ This section will track errors encountered during development.
 ### Implemented Fake Authentication
 - **Issue**: Implement fake authentication logic for testing and development.
 - **Resolution**: Modified `src/context/AuthContext.tsx` to simulate login/registration/logout and persist user state in local storage.
+
+## 2025-05-16
+### Started HAS-BLED Calculator Feature
+- **Issue**: Begin implementation of the HAS-BLED calculator as per project plan.
+- **Resolution**: Created a new branch `feature/has-bled-calculator` and updated project plan files.

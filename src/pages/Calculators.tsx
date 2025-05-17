@@ -10,6 +10,7 @@ import { BSACalculator } from '@/components/calculators/BSACalculator';
 import { IBWCalculator } from '@/components/calculators/IBWCalculator';
 import { PregnancyCalculator } from '@/components/calculators/PregnancyCalculator';
 import { ASCVDCalculator } from '@/components/calculators/ASCVDCalculator';
+import HASBLEDCalculator from '@/components/calculators/HASBLEDCalculator';
 
 const calculatorCategories = [
   {
@@ -161,6 +162,17 @@ const Calculators = () => {
     );
   }
 
+  if (openCalculator === 'HAS-BLED Score') {
+    return (
+      <AppLayout>
+        <div className="mb-6 flex items-center justify-between">
+           <h1 className="text-2xl font-bold tracking-tight">HAS-BLED Score Calculator</h1>
+           <Button variant="outline" onClick={handleCloseCalculator}>Back to Calculators</Button>
+        </div>
+        <HASBLEDCalculator />
+      </AppLayout>
+    );
+  }
 
   return (
     <AppLayout>
