@@ -38,4 +38,38 @@ export const checkDrugInteractions = async (drugNames: string[]): Promise<any> =
   }
 };
 
-// Add other API client functions here as needed
+// Placeholder API client for saving and fetching calculations
+// TODO: Replace with actual backend API client implementation
+export const apiClient = {
+  get: async (url: string) => {
+    console.log(`Simulating GET request to: ${url}`);
+    await new Promise(resolve => setTimeout(resolve, 500)); // Simulate delay
+
+    if (url === '/api/saved-calculations') {
+      // Simulate fetching saved calculations from local storage or a mock data source
+      const mockSavedCalculations = JSON.parse(localStorage.getItem('mockSavedCalculations') || '[]');
+      return { data: mockSavedCalculations };
+    }
+
+    // Default response for other GET requests
+    return { data: [] };
+  },
+  post: async (url: string, data: any) => {
+    console.log(`Simulating POST request to: ${url} with data:`, data);
+    await new Promise(resolve => setTimeout(resolve, 500)); // Simulate delay
+
+    if (url === '/api/saved-calculations') {
+      // Simulate saving calculation to local storage
+      const mockSavedCalculations = JSON.parse(localStorage.getItem('mockSavedCalculations') || '[]');
+      const newCalculation = { ...data, id: Date.now().toString(), timestamp: new Date().toISOString() };
+      mockSavedCalculations.push(newCalculation);
+      localStorage.setItem('mockSavedCalculations', JSON.stringify(mockSavedCalculations));
+      console.log('Calculation saved (simulated):', newCalculation);
+      return { data: newCalculation };
+    }
+
+    // Default response for other POST requests
+    return { data: {} };
+  },
+  // Add other HTTP methods (put, patch, delete) as needed
+};

@@ -1,4 +1,4 @@
-import { Stethoscope, Pill, Calculator, FileCheck, Heart, Bed, CircleHelp } from "lucide-react";
+import { Calculator, Save } from "lucide-react"; // Import Save icon
 import { NavLink } from "react-router-dom";
 import { cn } from "@/lib/utils";
 
@@ -30,28 +30,12 @@ export const NavLinks = () => {
     <div className="space-y-6">
       <div className="space-y-1">
         <h3 className="px-3 text-xs font-medium uppercase text-muted-foreground tracking-wider">
-          Reference Tools
+          Calculators
         </h3>
-        <NavItem to="/drugs" icon={Pill} label="Drug Information" />
         <NavItem to="/calculators" icon={Calculator} label="Medical Calculators" />
+        <NavItem to="/saved-calculations" icon={Save} label="Saved Calculations" /> {/* Add link for Saved Calculations */}
       </div>
-
-      <div className="space-y-1">
-        <h3 className="px-3 text-xs font-medium uppercase text-muted-foreground tracking-wider">
-          Clinical Support
-        </h3>
-        <NavItem to="/diagnoses" icon={Stethoscope} label="Differential Diagnoses" />
-        <NavItem to="/guidelines" icon={FileCheck} label="Treatment Guidelines" />
-        <NavItem to="/vitals" icon={Heart} label="Vital References" />
-      </div>
-
-      <div className="space-y-1">
-        <h3 className="px-3 text-xs font-medium uppercase text-muted-foreground tracking-wider">
-          Patient Care
-        </h3>
-        <NavItem to="/notes" icon={Bed} label="Patient Notes" />
-        <NavItem to="/help" icon={CircleHelp} label="Help & Resources" />
-      </div>
+      {/* Removed other sections */}
     </div>
   );
 };

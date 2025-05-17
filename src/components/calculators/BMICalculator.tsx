@@ -60,13 +60,21 @@ export function BMICalculator() {
         </div>
         <Button onClick={calculateBMI} className="w-full">Calculate BMI</Button>
         {bmi !== null && (
-          <div className="mt-4">
+          <div className="mt-4 space-y-2">
             <h3 className="text-lg font-medium">Result:</h3>
             <p>BMI: {bmi.toFixed(2)}</p>
             <p>Category: {category}</p>
+            <Button onClick={handleSaveCalculation} className="w-full">Save Calculation</Button>
           </div>
         )}
       </CardContent>
     </Card>
   );
 }
+
+// Placeholder function for saving calculation
+const handleSaveCalculation = () => {
+  console.log('Save calculation functionality to be implemented');
+  // TODO: Implement actual saving logic using apiClient or similar
+  // This would involve sending weight, height, bmi, category, etc. to a backend endpoint.
+};
