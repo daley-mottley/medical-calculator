@@ -11,6 +11,16 @@ import { IBWCalculator } from '@/components/calculators/IBWCalculator';
 import { PregnancyCalculator } from '@/components/calculators/PregnancyCalculator';
 import { ASCVDCalculator } from '@/components/calculators/ASCVDCalculator';
 import HASBLEDCalculator from '@/components/calculators/HASBLEDCalculator';
+import QTcIntervalCalculator from '@/components/calculators/QTcIntervalCalculator';
+import CHA2DS2VASCCalculator from '@/components/calculators/CHA2DS2VASCCalculator';
+import EGFRCreatinineCalculator from '@/components/calculators/eGFRCreatinineCalculator';
+import CreatinineClearanceCalculator from '@/components/calculators/CreatinineClearanceCalculator';
+import FractionalExcretionSodiumCalculator from '@/components/calculators/FractionalExcretionSodiumCalculator';
+import NIHStrokeScaleCalculator from '@/components/calculators/NIHStrokeScaleCalculator';
+import GlasgowComaScaleCalculator from '@/components/calculators/GlasgowComaScaleCalculator';
+import FOURScoreCalculator from '@/components/calculators/FOURScoreCalculator';
+import CURB65Calculator from '@/components/calculators/CURB65Calculator';
+import WellsScoreCalculator from '@/components/calculators/WellsScoreCalculator';
 
 const calculatorCategories = [
   {
@@ -170,6 +180,126 @@ const Calculators = () => {
            <Button variant="outline" onClick={handleCloseCalculator}>Back to Calculators</Button>
         </div>
         <HASBLEDCalculator />
+      </AppLayout>
+    );
+  }
+
+  if (openCalculator === 'QTc Interval') {
+    return (
+      <AppLayout>
+        <div className="mb-6 flex items-center justify-between">
+           <h1 className="text-2xl font-bold tracking-tight">QTc Interval Calculator</h1>
+           <Button variant="outline" onClick={handleCloseCalculator}>Back to Calculators</Button>
+        </div>
+        <QTcIntervalCalculator />
+      </AppLayout>
+    );
+  }
+
+  if (openCalculator === 'CHA₂DS₂-VASc') {
+    return (
+      <AppLayout>
+        <div className="mb-6 flex items-center justify-between">
+           <h1 className="text-2xl font-bold tracking-tight">CHA₂DS₂-VASc Calculator</h1>
+           <Button variant="outline" onClick={handleCloseCalculator}>Back to Calculators</Button>
+        </div>
+        <CHA2DS2VASCCalculator />
+      </AppLayout>
+    );
+  }
+
+  if (openCalculator === 'eGFR') {
+    return (
+      <AppLayout>
+        <div className="mb-6 flex items-center justify-between">
+           <h1 className="text-2xl font-bold tracking-tight">eGFR Calculator</h1>
+           <Button variant="outline" onClick={handleCloseCalculator}>Back to Calculators</Button>
+        </div>
+        <EGFRCreatinineCalculator />
+      </AppLayout>
+    );
+  }
+
+  if (openCalculator === 'Creatinine Clearance') {
+    return (
+      <AppLayout>
+        <div className="mb-6 flex items-center justify-between">
+           <h1 className="text-2xl font-bold tracking-tight">Creatinine Clearance Calculator</h1>
+           <Button variant="outline" onClick={handleCloseCalculator}>Back to Calculators</Button>
+        </div>
+        <CreatinineClearanceCalculator />
+      </AppLayout>
+    );
+  }
+
+  if (openCalculator === 'Fractional Excretion of Sodium') {
+    return (
+      <AppLayout>
+        <div className="mb-6 flex items-center justify-between">
+           <h1 className="text-2xl font-bold tracking-tight">Fractional Excretion of Sodium Calculator</h1>
+           <Button variant="outline" onClick={handleCloseCalculator}>Back to Calculators</Button>
+        </div>
+        <FractionalExcretionSodiumCalculator />
+      </AppLayout>
+    );
+  }
+
+  if (openCalculator === 'NIH Stroke Scale') {
+    return (
+      <AppLayout>
+        <div className="mb-6 flex items-center justify-between">
+           <h1 className="text-2xl font-bold tracking-tight">NIH Stroke Scale Calculator</h1>
+           <Button variant="outline" onClick={handleCloseCalculator}>Back to Calculators</Button>
+        </div>
+        <NIHStrokeScaleCalculator />
+      </AppLayout>
+    );
+  }
+
+  if (openCalculator === 'Glasgow Coma Scale') {
+    return (
+      <AppLayout>
+        <div className="mb-6 flex items-center justify-between">
+           <h1 className="text-2xl font-bold tracking-tight">Glasgow Coma Scale Calculator</h1>
+           <Button variant="outline" onClick={handleCloseCalculator}>Back to Calculators</Button>
+        </div>
+        <GlasgowComaScaleCalculator />
+      </AppLayout>
+    );
+  }
+
+  if (openCalculator === 'FOUR Score') {
+    return (
+      <AppLayout>
+        <div className="mb-6 flex items-center justify-between">
+           <h1 className="text-2xl font-bold tracking-tight">FOUR Score Calculator</h1>
+           <Button variant="outline" onClick={handleCloseCalculator}>Back to Calculators</Button>
+        </div>
+        <FOURScoreCalculator />
+      </AppLayout>
+    );
+  }
+
+  if (openCalculator === 'CURB-65') {
+    return (
+      <AppLayout>
+        <div className="mb-6 flex items-center justify-between">
+           <h1 className="text-2xl font-bold tracking-tight">CURB-65 Calculator</h1>
+           <Button variant="outline" onClick={handleCloseCalculator}>Back to Calculators</Button>
+        </div>
+        <CURB65Calculator />
+      </AppLayout>
+    );
+  }
+
+  if (openCalculator === 'Wells Score') {
+    return (
+      <AppLayout>
+        <div className="mb-6 flex items-center justify-between">
+           <h1 className="text-2xl font-bold tracking-tight">Wells Score Calculator</h1>
+           <Button variant="outline" onClick={handleCloseCalculator}>Back to Calculators</Button>
+        </div>
+        <WellsScoreCalculator />
       </AppLayout>
     );
   }

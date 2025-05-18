@@ -3,12 +3,15 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Button } from '@/components/ui/button';
+import { apiClient } from '@/lib/apiClient';
+import { useToast } from '@/components/ui/use-toast';
 
 export function BMICalculator() {
   const [weight, setWeight] = useState('');
   const [height, setHeight] = useState('');
   const [bmi, setBmi] = useState<number | null>(null);
   const [category, setCategory] = useState<string | null>(null);
+  const { toast } = useToast ? useToast() : { toast: () => {} };
 
   const calculateBMI = () => {
     const weightKg = parseFloat(weight);
@@ -31,6 +34,21 @@ export function BMICalculator() {
       setCategory('Overweight');
     } else {
       setCategory('Obesity');
+    }
+  };
+
+  const handleSaveCalculation = async () => {
+    if (bmi === null || !weight || !height) return;
+    const calculationData = {
+      calculatorType: 'BMI',
+      inputs: { weight, height },
+      results: { bmi, category },
+    };
+    try {
+      await apiClient.post('/api/saved-calculations', calculationData);
+      if (toast) toast({ title: 'Calculation Saved', description: 'Your BMI calculation was saved.' });
+    } catch (err) {
+      if (toast) toast({ title: 'Error', description: 'Failed to save calculation.', variant: 'destructive' });
     }
   };
 
@@ -71,10 +89,3 @@ export function BMICalculator() {
     </Card>
   );
 }
-
-// Placeholder function for saving calculation
-const handleSaveCalculation = () => {
-  console.log('Save calculation functionality to be implemented');
-  // TODO: Implement actual saving logic using apiClient or similar
-  // This would involve sending weight, height, bmi, category, etc. to a backend endpoint.
-};

@@ -75,3 +75,53 @@ This section will track errors encountered during development.
 ### Started HAS-BLED Calculator Feature
 - **Issue**: Begin implementation of the HAS-BLED calculator as per project plan.
 - **Resolution**: Created a new branch `feature/has-bled-calculator` and updated project plan files.
+
+## 2025-05-17
+### Started Save Calculation Feature
+- **Issue**: Implement save calculation functionality so users can store and view their calculation results.
+- **Resolution**: Created branch `feature/save-calculation`. Implemented save calculation logic in the BMI calculator using the mock API client and localStorage. Added user feedback for successful/failed saves.
+
+## 2025-05-18
+### Started QTc Interval Calculator Feature
+- **Issue**: Implement QTc Interval Calculator as per project plan.
+- **Resolution**: Created/used branch `feature/qtc-interval-calculator`. Implemented `QTcIntervalCalculator` component with Bazett and Fridericia formulas. Integrated into Calculators page UI.
+
+### Started CHA₂DS₂-VASc Calculator Feature
+- **Issue**: Implement CHA₂DS₂-VASc Calculator as per project plan.
+- **Resolution**: Created branch `feature/cha2ds2-vasc-calculator`. Planning implementation and UI integration.
+
+### Started eGFR Calculator Feature
+- **Issue**: Implement eGFR Calculator as per project plan.
+- **Resolution**: Created branch `feature/egfr-calculator`. Planning implementation and UI integration.
+
+### Started Creatinine Clearance Calculator Feature
+- **Issue**: Implement Creatinine Clearance Calculator as per project plan.
+- **Resolution**: Using branch `feature/creatinine-clearance-calculator`. Reviewed and preparing to integrate existing component into the UI.
+
+### Started Fractional Excretion of Sodium Calculator Feature
+- **Issue**: Implement Fractional Excretion of Sodium Calculator as per project plan.
+- **Resolution**: Created branch `feature/fractional-excretion-sodium-calculator`. Planning implementation and UI integration.
+
+### Started NIH Stroke Scale Calculator Feature
+- **Issue**: Implement NIH Stroke Scale Calculator as per project plan.
+- **Resolution**: Created branch `feature/nih-stroke-scale-calculator`. Planning implementation and UI integration.
+
+### Started Glasgow Coma Scale Calculator Feature
+- **Issue**: Implement Glasgow Coma Scale Calculator as per project plan.
+- **Resolution**: Created branch `feature/glasgow-coma-scale-calculator`. Planning implementation and UI integration.
+
+### Started FOUR Score Calculator Feature
+- **Issue**: Implement FOUR Score Calculator as per project plan.
+- **Resolution**: Created branch `feature/four-score-calculator`. Planning implementation and UI integration.
+
+### Started CURB-65 Calculator Feature
+- **Issue**: Implement CURB-65 Calculator as per project plan.
+- **Resolution**: Created branch `feature/curb-65-calculator`. Planning implementation and UI integration.
+
+### Started Wells Score Calculator Feature
+- **Issue**: Implement Wells Score Calculator as per project plan.
+- **Resolution**: Created branch `feature/wells-score-calculator`. Planning implementation and UI integration.
+
+### Started A-a Gradient Calculator Feature
+- **Issue**: Implement A-a Gradient Calculator as per project plan.
+- **Resolution**: Created branch `feature/a-a-gradient-calculator`. Planning implementation and UI integration.
