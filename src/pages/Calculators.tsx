@@ -23,6 +23,7 @@ import CURB65Calculator from '@/components/calculators/CURB65Calculator';
 import WellsScoreCalculator from '@/components/calculators/WellsScoreCalculator';
 import AaGradientCalculator from '@/components/calculators/AaGradientCalculator';
 import { useParams, useNavigate } from 'react-router-dom';
+import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 
 const calculatorCategories = [
   {
@@ -179,6 +180,21 @@ const Calculators = () => {
           Evidence-based tools to support clinical decision-making
         </p>
       </div>
+
+      <Dialog open={!!openCalculator} onOpenChange={setOpenCalculator}>
+        <DialogContent className="max-w-2xl">
+          {openCalculator && (
+            <>
+              <DialogHeader>
+                <DialogTitle>{openCalculator} Calculator</DialogTitle>
+              </DialogHeader>
+              {calculatorComponentMap[openCalculator] || (
+                <div className="text-center text-red-500">Calculator not found.</div>
+              )}
+            </>
+          )}
+        </DialogContent>
+      </Dialog>
 
       <Tabs defaultValue="all" className="w-full space-y-6">
         <div className="overflow-auto scrollbar-hidden">

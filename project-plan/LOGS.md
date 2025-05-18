@@ -152,3 +152,12 @@ This section will track errors encountered during development.
 ### Improved Calculator Input Field Outlines
 - **Issue**: Some calculator input fields did not have a visible outline, reducing user-friendliness and accessibility.
 - **Resolution**: Updated the shared Input component to use a more visible border and focus state with the medical primary color, improving clarity and accessibility across all calculator forms. This change enhances the user experience for medical professionals using the calculators.
+
+## 2025-06-11
+### Started Open Calculators Modal Feature
+- **Issue**: Users should be able to open any calculator in a modal overlay directly from the main calculators page for a seamless experience.
+- **Resolution**: Created branch `feature/open-calculator-modal`. Integrated the Dialog component to display calculators in a modal overlay. Updated project plan files (TASKS.md, LOGS.md).
+
+### Sidebar Label Update
+- **Issue**: The sidebar label at the top was 'Menu' and did not link to the dashboard.
+- **Resolution**: Changed the label to 'Dashboard' and made it a clickable link to '/calculators' (the dashboard page), as per project instructions.

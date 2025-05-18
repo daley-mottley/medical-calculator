@@ -3,6 +3,7 @@
 ## Uncompleted Tasks
 
 ### Priority 1 (Critical)
+- [ ] Implement Open Calculators Modal (in progress, see branch feature/open-calculator-modal) - Add modal overlay to display calculators directly from the main page
 - [ ] Implement Save Calculation Functionality for BMI Calculator (Frontend & mock backend complete)
 - [ ] Implement Save Calculation Functionality for other calculators (Backend needed)
 - [ ] Add remaining calculators (e.g., QTc Interval, HAS-BLED (in progress, see branch feature/has-bled-calculator), CHA₂DS₂-VASc, eGFR, Creatinine Clearance, etc.)
@@ -33,3 +34,4 @@
 - [x] Add calculator categories to the side menu (feature/sidebar-calculator-categories) - 2024-06-09
 - [x] Improved sidebar animation and accessibility (smoother transitions, responsive width, ARIA/focus features) - 2025-05-18
 - [x] Improved calculator input field outlines and user-friendliness (2025-06-10) - Updated Input component for visible border and focus state using medical primary color for clarity and accessibility
+- [x] Change sidebar top label from Menu to Dashboard and link to dashboard ('/calculators') - 2025-06-11

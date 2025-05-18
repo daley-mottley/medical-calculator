@@ -37,7 +37,7 @@ export const Sidebar = ({ isOpen, setIsOpen }: SidebarProps) => {
       >
         <div className="flex h-16 items-center justify-between px-4 border-b border-border md:h-[65px] bg-card rounded-tr-2xl">
           <div className="flex items-center">
-            <span className="text-lg font-semibold">Menu</span>
+            <a href="/calculators" className="text-lg font-semibold hover:text-medical-primary transition-colors">Dashboard</a>
           </div>
           <button
             onClick={() => setIsOpen(false)}
