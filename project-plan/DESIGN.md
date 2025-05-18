@@ -1,4 +1,3 @@
-
 # MedicMindAssist Design Document
 
 ## Color Palette
@@ -41,6 +40,7 @@
 - Bottom tab bar for primary navigation
 - Side drawer for additional features
 - Clear iconography with labels
+- **Update 2024-06-09:** Sidebar now visually groups calculators by category, matching the main calculator page for consistency and usability.
 
 ## Design Principles
 
@@ -56,3 +56,11 @@ Main user flows will be added as the application development progresses.
 ## Mockups
 
 Wireframes and high-fidelity mockups will be included as they are developed.
+
+---
+
+## Suggestion Box Widget
+- A floating button on the bottom right of the app, styled with the primary purple (#9b87f5).
+- Opens a modal for users to submit suggestions.
+- Submissions are sent to the admin email (daley.mottley@hotmail.com).
+- Should match the app's modern, professional medical UI.

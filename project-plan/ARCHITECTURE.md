@@ -1,4 +1,3 @@
-
 # MedicMindAssist Architecture
 
 ## Architecture Overview
@@ -16,6 +15,7 @@ MedicMindAssist follows a modular architecture to ensure maintainability, scalab
 - Provides quick access to medical reference information
 - Implements drug interaction checker and medical calculators
 - Components: DrugInteractions, MedicalCalculators, LabReferences
+- **Update 2024-06-09:** Sidebar now includes organized calculator categories for faster access, reflecting the main calculator page structure.
 
 ### 3. Clinical Decision Support Module
 - Assists in clinical decision-making based on symptoms and conditions
@@ -31,6 +31,7 @@ MedicMindAssist follows a modular architecture to ensure maintainability, scalab
 - Provides shared functionality across the application
 - Handles state management, API communication, and common utilities
 - Components: APIClient, StateManagement, LocalStorage
+- Includes Suggestion Box widget for user feedback, which sends suggestions to the admin email (daley.mottley@hotmail.com)
 
 ## Data Flow
 

@@ -68,6 +68,12 @@ export const apiClient = {
       return { data: newCalculation };
     }
 
+    if (url === '/api/send-suggestion') {
+      // Simulate sending suggestion to admin email
+      console.log(`Suggestion sent to admin (${data.to}):`, data.suggestion);
+      return { data: { success: true } };
+    }
+
     // Default response for other POST requests
     return { data: {} };
   },

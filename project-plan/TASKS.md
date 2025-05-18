@@ -18,6 +18,8 @@
 - [ ] Implement CURB-65 Calculator (in progress)
 - [ ] Implement Wells Score Calculator (in progress)
 - [ ] Implement A-a Gradient Calculator (in progress)
+- [ ] Implement Suggestion Box widget (in progress, see branch feature/suggestion-box-widget)
+- [ ] Improve Suggestion Box UI to be more user friendly (in progress, see branch feature/suggestion-box-ui-improvement)
 
 ### Priority 2 (High)
 - [ ] Implement unit tests for all calculator components (Some tests exist, need comprehensive coverag
@@ -27,4 +29,4 @@
 - [x] Set up project structure - 2025-05-13
 - [x] Create initial UI design system - 2025-05-13
 - [x] Implement navigation framework - 2025-05-13
-e)
+- [x] Add calculator categories to the side menu (feature/sidebar-calculator-categories) - 2024-06-09

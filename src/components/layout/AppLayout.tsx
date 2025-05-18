@@ -1,8 +1,8 @@
-
 import { ReactNode } from "react";
 import { Navbar } from "./Navbar";
 import { Sidebar } from "./Sidebar";
 import { useState } from "react";
+import { SuggestionBox } from "../ui/SuggestionBox";
 
 interface AppLayoutProps {
   children: ReactNode;
@@ -24,6 +24,7 @@ export const AppLayout = ({ children }: AppLayoutProps) => {
           {children}
         </main>
       </div>
+      <SuggestionBox />
     </div>
   );
 };

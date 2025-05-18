@@ -125,3 +125,16 @@ This section will track errors encountered during development.
 ### Started A-a Gradient Calculator Feature
 - **Issue**: Implement A-a Gradient Calculator as per project plan.
 - **Resolution**: Created branch `feature/a-a-gradient-calculator`. Planning implementation and UI integration.
+
+### Started Suggestion Box Widget Feature
+- **Issue**: Implement a suggestion box widget that allows users to send suggestions to the admin email (daley.mottley@hotmail.com).
+- **Resolution**: Created branch `feature/suggestion-box-widget`. Updated project plan files (TASKS.md, LOGS.md) to reflect new feature. Planning UI and email sending logic.
+
+### Started Suggestion Box UI Improvement Feature
+- **Issue**: Improve the user interface of the Suggestion Box to be more user friendly and visually appealing, following the design system and modern UX best practices.
+- **Resolution**: Created branch `feature/suggestion-box-ui-improvement`. Planning to enhance the modal layout, add better feedback, improve accessibility, and polish the floating button and form interactions.
+
+## 2024-06-09
+- Added calculator categories to the side menu in the Sidebar/NavLinks component.
+- Created feature branch 'feature/sidebar-calculator-categories' for this update.
+- Updated project plan files as per instructions.
