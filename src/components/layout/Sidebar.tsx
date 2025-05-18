@@ -51,7 +51,7 @@ export const Sidebar = ({ isOpen, setIsOpen }: SidebarProps) => {
         <div className="border-b border-border" />
         <ScrollArea className="h-[calc(100vh-65px)] custom-scrollbar">
           <div className="p-4">
-            <NavLinks />
+            <NavLinks setIsOpen={setIsOpen} />
           </div>
         </ScrollArea>
       </aside>

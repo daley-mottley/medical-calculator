@@ -142,3 +142,8 @@ This section will track errors encountered during development.
 - Added calculator categories to the side menu in the Sidebar/NavLinks component.
 - Created feature branch 'feature/sidebar-calculator-categories' for this update.
 - Updated project plan files as per instructions.
+
+## 2024-06-10
+### Started Sidebar Mobile Close-on-Navigation Feature
+- **Issue**: Sidebar should close automatically on mobile when a navigation option is chosen for better UX.
+- **Resolution**: Created branch `feature/sidebar-mobile-close-on-nav`. Updated Sidebar and NavLinks components to close the sidebar on navigation. Updated project plan files (TASKS.md, LOGS.md).

@@ -6,9 +6,10 @@ interface NavItemProps {
   to: string;
   icon: React.ComponentType<{ className?: string }>;
   label: string;
+  setIsOpen?: (open: boolean) => void;
 }
 
-const NavItem = ({ to, icon: Icon, label }: NavItemProps) => (
+const NavItem = ({ to, icon: Icon, label, setIsOpen }: NavItemProps) => (
   <NavLink
     to={to}
     className={({ isActive }) =>
@@ -19,6 +20,7 @@ const NavItem = ({ to, icon: Icon, label }: NavItemProps) => (
           : "text-foreground hover:bg-accent"
       )
     }
+    onClick={() => setIsOpen && setIsOpen(false)}
   >
     <Icon className="h-5 w-5" />
     {label}
@@ -102,15 +104,15 @@ const calculatorCategories = [
   },
 ];
 
-export const NavLinks = () => {
+export const NavLinks = ({ setIsOpen }: { setIsOpen?: (open: boolean) => void }) => {
   return (
     <div className="space-y-6">
       <div className="space-y-1">
         <h3 className="px-3 text-xs font-medium uppercase text-muted-foreground tracking-wider">
           Calculators
         </h3>
-        <NavItem to="/calculators" icon={Calculator} label="All Calculators" />
-        <NavItem to="/saved-calculations" icon={Save} label="Saved Calculations" />
+        <NavItem to="/calculators" icon={Calculator} label="All Calculators" setIsOpen={setIsOpen} />
+        <NavItem to="/saved-calculations" icon={Save} label="Saved Calculations" setIsOpen={setIsOpen} />
       </div>
       <div className="my-4 border-t border-border" />
       {calculatorCategories.map((cat) => (
@@ -138,6 +140,7 @@ export const NavLinks = () => {
                       : "text-foreground hover:bg-medical-primary/10 hover:text-medical-primary"
                   )
                 }
+                onClick={() => setIsOpen && setIsOpen(false)}
               >
                 <Calculator className="h-4 w-4" />
                 {calc.name}

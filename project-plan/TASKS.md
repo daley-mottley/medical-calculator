@@ -7,6 +7,7 @@
 - [ ] Implement Save Calculation Functionality for other calculators (Backend needed)
 - [ ] Add remaining calculators (e.g., QTc Interval, HAS-BLED (in progress, see branch feature/has-bled-calculator), CHA₂DS₂-VASc, eGFR, Creatinine Clearance, etc.)
 - [ ] Refine existing calculators based on user feedback
+- [ ] Improve sidebar mobile UX: close sidebar when a navigation option is chosen
 - [ ] Implement QTc Interval Calculator (in progress)
 - [ ] Implement CHA₂DS₂-VASc Calculator (in progress)
 - [ ] Implement eGFR Calculator (in progress)
