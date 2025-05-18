@@ -30,3 +30,4 @@
 - [x] Create initial UI design system - 2025-05-13
 - [x] Implement navigation framework - 2025-05-13
 - [x] Add calculator categories to the side menu (feature/sidebar-calculator-categories) - 2024-06-09
+- [x] Improved sidebar animation and accessibility (smoother transitions, responsive width, ARIA/focus features) - 2025-05-18

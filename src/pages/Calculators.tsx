@@ -21,6 +21,8 @@ import GlasgowComaScaleCalculator from '@/components/calculators/GlasgowComaScal
 import FOURScoreCalculator from '@/components/calculators/FOURScoreCalculator';
 import CURB65Calculator from '@/components/calculators/CURB65Calculator';
 import WellsScoreCalculator from '@/components/calculators/WellsScoreCalculator';
+import AaGradientCalculator from '@/components/calculators/AaGradientCalculator';
+import { useParams, useNavigate } from 'react-router-dom';
 
 const calculatorCategories = [
   {
@@ -88,7 +90,51 @@ const calculatorCategories = [
   },
 ];
 
+const calculatorRouteMap: Record<string, string> = {
+  'bmi': 'BMI',
+  'bsa': 'BSA',
+  'ibw-abw': 'IBW & ABW',
+  'ideal-body-weight': 'Ideal Body Weight',
+  'pregnancy': 'Pregnancy Calculator',
+  'ascvd-risk': 'ASCVD Risk',
+  'has-bled': 'HAS-BLED Score',
+  'qtc-interval': 'QTc Interval',
+  'cha2ds2-vasc': 'CHA₂DS₂-VASc',
+  'egfr': 'eGFR',
+  'creatinine-clearance': 'Creatinine Clearance',
+  'fractional-excretion-sodium': 'Fractional Excretion of Sodium',
+  'nih-stroke-scale': 'NIH Stroke Scale',
+  'glasgow-coma-scale': 'Glasgow Coma Scale',
+  'four-score': 'FOUR Score',
+  'curb-65': 'CURB-65',
+  'wells-score': 'Wells Score',
+  'a-a-gradient': 'A-a Gradient',
+};
+
+const calculatorComponentMap: Record<string, JSX.Element> = {
+  'BMI': <BMICalculator />,
+  'BSA': <BSACalculator />,
+  'IBW & ABW': <IBWCalculator />,
+  'Ideal Body Weight': <IdealBodyWeightCalculator />,
+  'Pregnancy Calculator': <PregnancyCalculator />,
+  'ASCVD Risk': <ASCVDCalculator />,
+  'HAS-BLED Score': <HASBLEDCalculator />,
+  'QTc Interval': <QTcIntervalCalculator />,
+  'CHA₂DS₂-VASc': <CHA2DS2VASCCalculator />,
+  'eGFR': <EGFRCreatinineCalculator />,
+  'Creatinine Clearance': <CreatinineClearanceCalculator />,
+  'Fractional Excretion of Sodium': <FractionalExcretionSodiumCalculator />,
+  'NIH Stroke Scale': <NIHStrokeScaleCalculator />,
+  'Glasgow Coma Scale': <GlasgowComaScaleCalculator />,
+  'FOUR Score': <FOURScoreCalculator />,
+  'CURB-65': <CURB65Calculator />,
+  'Wells Score': <WellsScoreCalculator />,
+  'A-a Gradient': <AaGradientCalculator />,
+};
+
 const Calculators = () => {
+  const { calculatorId } = useParams<{ calculatorId?: string }>();
+  const navigate = useNavigate();
   const [openCalculator, setOpenCalculator] = useState<string | null>(null);
 
   const handleOpenCalculator = (calculatorName: string) => {
@@ -100,208 +146,29 @@ const Calculators = () => {
     setOpenCalculator(null);
   };
 
-  if (openCalculator === 'BMI') {
-    return (
-      <AppLayout>
-        <div className="mb-6 flex items-center justify-between">
-           <h1 className="text-2xl font-bold tracking-tight">BMI Calculator</h1>
-           <Button variant="outline" onClick={handleCloseCalculator}>Back to Calculators</Button>
-        </div>
-        <BMICalculator />
-      </AppLayout>
-    );
-  }
-
-  if (openCalculator === 'Ideal Body Weight') {
-    return (
-      <AppLayout>
-        <div className="mb-6 flex items-center justify-between">
-           <h1 className="text-2xl font-bold tracking-tight">Ideal Body Weight Calculator</h1>
-           <Button variant="outline" onClick={handleCloseCalculator}>Back to Calculators</Button>
-        </div>
-        <IdealBodyWeightCalculator />
-      </AppLayout>
-    );
-  }
-
-  if (openCalculator === 'BSA') {
-    return (
-      <AppLayout>
-        <div className="mb-6 flex items-center justify-between">
-           <h1 className="text-2xl font-bold tracking-tight">Body Surface Area (BSA) Calculator</h1>
-           <Button variant="outline" onClick={handleCloseCalculator}>Back to Calculators</Button>
-        </div>
-        <BSACalculator />
-      </AppLayout>
-    );
-  }
-
-  if (openCalculator === 'IBW & ABW') {
-    return (
-      <AppLayout>
-        <div className="mb-6 flex items-center justify-between">
-           <h1 className="text-2xl font-bold tracking-tight">Ideal and Adjusted Body Weight (IBW & ABW) Calculator</h1>
-           <Button variant="outline" onClick={handleCloseCalculator}>Back to Calculators</Button>
-        </div>
-        <IBWCalculator />
-      </AppLayout>
-    );
-  }
-
-  if (openCalculator === 'Pregnancy Calculator') {
-    return (
-      <AppLayout>
-        <div className="mb-6 flex items-center justify-between">
-           <h1 className="text-2xl font-bold tracking-tight">Pregnancy Calculator</h1>
-           <Button variant="outline" onClick={handleCloseCalculator}>Back to Calculators</Button>
-        </div>
-        <PregnancyCalculator />
-      </AppLayout>
-    );
-  }
-
-  if (openCalculator === 'ASCVD Risk') {
-    return (
-      <AppLayout>
-        <div className="mb-6 flex items-center justify-between">
-           <h1 className="text-2xl font-bold tracking-tight">ASCVD Risk Calculator</h1>
-           <Button variant="outline" onClick={handleCloseCalculator}>Back to Calculators</Button>
-        </div>
-        <ASCVDCalculator />
-      </AppLayout>
-    );
-  }
-
-  if (openCalculator === 'HAS-BLED Score') {
-    return (
-      <AppLayout>
-        <div className="mb-6 flex items-center justify-between">
-           <h1 className="text-2xl font-bold tracking-tight">HAS-BLED Score Calculator</h1>
-           <Button variant="outline" onClick={handleCloseCalculator}>Back to Calculators</Button>
-        </div>
-        <HASBLEDCalculator />
-      </AppLayout>
-    );
-  }
-
-  if (openCalculator === 'QTc Interval') {
-    return (
-      <AppLayout>
-        <div className="mb-6 flex items-center justify-between">
-           <h1 className="text-2xl font-bold tracking-tight">QTc Interval Calculator</h1>
-           <Button variant="outline" onClick={handleCloseCalculator}>Back to Calculators</Button>
-        </div>
-        <QTcIntervalCalculator />
-      </AppLayout>
-    );
-  }
-
-  if (openCalculator === 'CHA₂DS₂-VASc') {
-    return (
-      <AppLayout>
-        <div className="mb-6 flex items-center justify-between">
-           <h1 className="text-2xl font-bold tracking-tight">CHA₂DS₂-VASc Calculator</h1>
-           <Button variant="outline" onClick={handleCloseCalculator}>Back to Calculators</Button>
-        </div>
-        <CHA2DS2VASCCalculator />
-      </AppLayout>
-    );
-  }
-
-  if (openCalculator === 'eGFR') {
-    return (
-      <AppLayout>
-        <div className="mb-6 flex items-center justify-between">
-           <h1 className="text-2xl font-bold tracking-tight">eGFR Calculator</h1>
-           <Button variant="outline" onClick={handleCloseCalculator}>Back to Calculators</Button>
-        </div>
-        <EGFRCreatinineCalculator />
-      </AppLayout>
-    );
-  }
-
-  if (openCalculator === 'Creatinine Clearance') {
-    return (
-      <AppLayout>
-        <div className="mb-6 flex items-center justify-between">
-           <h1 className="text-2xl font-bold tracking-tight">Creatinine Clearance Calculator</h1>
-           <Button variant="outline" onClick={handleCloseCalculator}>Back to Calculators</Button>
-        </div>
-        <CreatinineClearanceCalculator />
-      </AppLayout>
-    );
-  }
-
-  if (openCalculator === 'Fractional Excretion of Sodium') {
-    return (
-      <AppLayout>
-        <div className="mb-6 flex items-center justify-between">
-           <h1 className="text-2xl font-bold tracking-tight">Fractional Excretion of Sodium Calculator</h1>
-           <Button variant="outline" onClick={handleCloseCalculator}>Back to Calculators</Button>
-        </div>
-        <FractionalExcretionSodiumCalculator />
-      </AppLayout>
-    );
-  }
-
-  if (openCalculator === 'NIH Stroke Scale') {
-    return (
-      <AppLayout>
-        <div className="mb-6 flex items-center justify-between">
-           <h1 className="text-2xl font-bold tracking-tight">NIH Stroke Scale Calculator</h1>
-           <Button variant="outline" onClick={handleCloseCalculator}>Back to Calculators</Button>
-        </div>
-        <NIHStrokeScaleCalculator />
-      </AppLayout>
-    );
-  }
-
-  if (openCalculator === 'Glasgow Coma Scale') {
-    return (
-      <AppLayout>
-        <div className="mb-6 flex items-center justify-between">
-           <h1 className="text-2xl font-bold tracking-tight">Glasgow Coma Scale Calculator</h1>
-           <Button variant="outline" onClick={handleCloseCalculator}>Back to Calculators</Button>
-        </div>
-        <GlasgowComaScaleCalculator />
-      </AppLayout>
-    );
-  }
-
-  if (openCalculator === 'FOUR Score') {
-    return (
-      <AppLayout>
-        <div className="mb-6 flex items-center justify-between">
-           <h1 className="text-2xl font-bold tracking-tight">FOUR Score Calculator</h1>
-           <Button variant="outline" onClick={handleCloseCalculator}>Back to Calculators</Button>
-        </div>
-        <FOURScoreCalculator />
-      </AppLayout>
-    );
-  }
-
-  if (openCalculator === 'CURB-65') {
-    return (
-      <AppLayout>
-        <div className="mb-6 flex items-center justify-between">
-           <h1 className="text-2xl font-bold tracking-tight">CURB-65 Calculator</h1>
-           <Button variant="outline" onClick={handleCloseCalculator}>Back to Calculators</Button>
-        </div>
-        <CURB65Calculator />
-      </AppLayout>
-    );
-  }
-
-  if (openCalculator === 'Wells Score') {
-    return (
-      <AppLayout>
-        <div className="mb-6 flex items-center justify-between">
-           <h1 className="text-2xl font-bold tracking-tight">Wells Score Calculator</h1>
-           <Button variant="outline" onClick={handleCloseCalculator}>Back to Calculators</Button>
-        </div>
-        <WellsScoreCalculator />
-      </AppLayout>
-    );
+  if (calculatorId) {
+    const calcName = calculatorRouteMap[calculatorId];
+    if (calcName && calculatorComponentMap[calcName]) {
+      return (
+        <AppLayout>
+          <div className="mb-6 flex items-center justify-between">
+            <h1 className="text-2xl font-bold tracking-tight">{calcName} Calculator</h1>
+            <Button variant="outline" onClick={() => navigate('/calculators')}>Back to Calculators</Button>
+          </div>
+          {calculatorComponentMap[calcName]}
+        </AppLayout>
+      );
+    } else {
+      // Invalid calculatorId
+      return (
+        <AppLayout>
+          <div className="mb-6 flex items-center justify-between">
+            <h1 className="text-2xl font-bold tracking-tight">Calculator Not Found</h1>
+            <Button variant="outline" onClick={() => navigate('/calculators')}>Back to Calculators</Button>
+          </div>
+        </AppLayout>
+      );
+    }
   }
 
   return (

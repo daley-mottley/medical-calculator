@@ -134,6 +134,10 @@ This section will track errors encountered during development.
 - **Issue**: Improve the user interface of the Suggestion Box to be more user friendly and visually appealing, following the design system and modern UX best practices.
 - **Resolution**: Created branch `feature/suggestion-box-ui-improvement`. Planning to enhance the modal layout, add better feedback, improve accessibility, and polish the floating button and form interactions.
 
+### Improved Sidebar Animation and Accessibility
+- **Issue**: Sidebar animation was not as smooth as desired and lacked accessibility features.
+- **Resolution**: Enhanced sidebar with Tailwind's 'duration-300' and 'ease-in-out' for smoother sliding. Made sidebar width responsive (w-64 on mobile, w-72 on md+). Added ARIA attributes, focus management, and Escape key support for accessibility. Added test id for easier automated testing.
+
 ## 2024-06-09
 - Added calculator categories to the side menu in the Sidebar/NavLinks component.
 - Created feature branch 'feature/sidebar-calculator-categories' for this update.

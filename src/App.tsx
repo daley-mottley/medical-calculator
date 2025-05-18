@@ -2,7 +2,7 @@ import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Navigate, useParams } from "react-router-dom";
 import Calculators from "./pages/Calculators";
 import SavedCalculationsPage from "./pages/SavedCalculationsPage";
 import Login from "./components/auth/Login";
@@ -28,6 +28,7 @@ const App = () => (
             {/* Set the root path to Calculators */}
             <Route path="/" element={<Navigate to="/calculators" replace />} />
             <Route path="/calculators" element={<Calculators />} />
+            <Route path="/calculators/:calculatorId" element={<Calculators />} />
             <Route path="/saved-calculations" element={<SavedCalculationsPage />} /> {/* Add route for SavedCalculationsPage */}
             <Route path="/profile" element={<Profile />} />
           </Route>
