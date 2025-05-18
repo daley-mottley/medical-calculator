@@ -32,3 +32,4 @@
 - [x] Implement navigation framework - 2025-05-13
 - [x] Add calculator categories to the side menu (feature/sidebar-calculator-categories) - 2024-06-09
 - [x] Improved sidebar animation and accessibility (smoother transitions, responsive width, ARIA/focus features) - 2025-05-18
+- [x] Improved calculator input field outlines and user-friendliness (2025-06-10) - Updated Input component for visible border and focus state using medical primary color for clarity and accessibility

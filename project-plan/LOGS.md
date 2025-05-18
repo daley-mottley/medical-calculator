@@ -147,3 +147,8 @@ This section will track errors encountered during development.
 ### Started Sidebar Mobile Close-on-Navigation Feature
 - **Issue**: Sidebar should close automatically on mobile when a navigation option is chosen for better UX.
 - **Resolution**: Created branch `feature/sidebar-mobile-close-on-nav`. Updated Sidebar and NavLinks components to close the sidebar on navigation. Updated project plan files (TASKS.md, LOGS.md).
+
+## 2025-06-10
+### Improved Calculator Input Field Outlines
+- **Issue**: Some calculator input fields did not have a visible outline, reducing user-friendliness and accessibility.
+- **Resolution**: Updated the shared Input component to use a more visible border and focus state with the medical primary color, improving clarity and accessibility across all calculator forms. This change enhances the user experience for medical professionals using the calculators.
