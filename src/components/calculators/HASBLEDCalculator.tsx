@@ -1,4 +1,7 @@
 import React, { useState } from "react";
+import { apiClient } from '@/lib/apiClient';
+import { useToast } from '@/components/ui/use-toast';
+import { Button } from '@/components/ui/button';
 
 interface HASBLEDInputs {
   hypertension: boolean;
@@ -41,6 +44,7 @@ function calculateHASBLED(inputs: HASBLEDInputs): number {
 const HASBLEDCalculator: React.FC = () => {
   const [inputs, setInputs] = useState<HASBLEDInputs>(initialInputs);
   const [score, setScore] = useState<number | null>(null);
+  const { toast } = useToast ? useToast() : { toast: () => {} };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, checked } = e.target;
@@ -50,6 +54,21 @@ const HASBLEDCalculator: React.FC = () => {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     setScore(calculateHASBLED(inputs));
+  };
+
+  const handleSaveCalculation = async () => {
+    if (score === null) return;
+    const calculationData = {
+      calculatorType: 'HAS-BLED',
+      inputs,
+      results: { score },
+    };
+    try {
+      await apiClient.post('/api/saved-calculations', calculationData);
+      if (toast) toast({ title: 'Calculation Saved', description: 'Your HAS-BLED calculation was saved.' });
+    } catch (err) {
+      if (toast) toast({ title: 'Error', description: 'Failed to save calculation.', variant: 'destructive' });
+    }
   };
 
   return (
@@ -98,6 +117,7 @@ const HASBLEDCalculator: React.FC = () => {
         <div className="mt-4 p-3 bg-gray-100 rounded">
           <span className="font-semibold">HAS-BLED Score: </span>
           <span className="text-lg">{score}</span>
+          <Button onClick={handleSaveCalculation} className="w-full mt-3">Save Calculation</Button>
         </div>
       )}
     </div>

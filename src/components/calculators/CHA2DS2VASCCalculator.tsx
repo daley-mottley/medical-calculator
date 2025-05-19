@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { Card, CardHeader, CardTitle, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
+import { apiClient } from '@/lib/apiClient';
+import { useToast } from '@/components/ui/use-toast';
 
 const riskFactors = [
   { key: 'chf', label: 'Congestive Heart Failure', points: 1 },
@@ -45,6 +47,7 @@ function getStrokeRisk(score: number): string {
 export const CHA2DS2VASCCalculator: React.FC = () => {
   const [selected, setSelected] = useState<Record<string, boolean>>({});
   const [result, setResult] = useState<{ score: number; risk: string } | null>(null);
+  const { toast } = useToast ? useToast() : { toast: () => {} };
 
   const handleChange = (key: string) => {
     setSelected(prev => ({ ...prev, [key]: !prev[key] }));
@@ -54,6 +57,21 @@ export const CHA2DS2VASCCalculator: React.FC = () => {
     e.preventDefault();
     const score = calculateScore(selected);
     setResult({ score, risk: getStrokeRisk(score) });
+  };
+
+  const handleSaveCalculation = async () => {
+    if (!result) return;
+    const calculationData = {
+      calculatorType: 'CHA2DS2-VASc',
+      inputs: selected,
+      results: result,
+    };
+    try {
+      await apiClient.post('/api/saved-calculations', calculationData);
+      if (toast) toast({ title: 'Calculation Saved', description: 'Your CHA₂DS₂-VASc calculation was saved.' });
+    } catch (err) {
+      if (toast) toast({ title: 'Error', description: 'Failed to save calculation.', variant: 'destructive' });
+    }
   };
 
   return (
@@ -87,6 +105,7 @@ export const CHA2DS2VASCCalculator: React.FC = () => {
             <div className="font-medium">Results:</div>
             <div>Total Score: <span className="font-mono">{result.score}</span></div>
             <div>Estimated Stroke Risk: <span className="font-mono">{result.risk}</span></div>
+            <Button onClick={handleSaveCalculation} className="w-full mt-3">Save Calculation</Button>
           </div>
         )}
       </CardContent>

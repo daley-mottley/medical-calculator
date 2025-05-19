@@ -35,3 +35,4 @@
 - [x] Improved sidebar animation and accessibility (smoother transitions, responsive width, ARIA/focus features) - 2025-05-18
 - [x] Improved calculator input field outlines and user-friendliness (2025-06-10) - Updated Input component for visible border and focus state using medical primary color for clarity and accessibility
 - [x] Change sidebar top label from Menu to Dashboard and link to dashboard ('/calculators') - 2025-06-11
+- [x] Implement real ASCVD Risk Calculator (feature/ascvd-risk-calculator, 2024-06-13)

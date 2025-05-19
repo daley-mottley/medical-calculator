@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { Card, CardHeader, CardTitle, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
+import { apiClient } from '@/lib/apiClient';
+import { useToast } from '@/components/ui/use-toast';
 
 function calculateEGFR({
   creatinine,
@@ -40,6 +42,7 @@ export const EGFRCreatinineCalculator: React.FC = () => {
   const [isBlack, setIsBlack] = useState(false);
   const [result, setResult] = useState<{ egfr: number; interpretation: string } | null>(null);
   const [error, setError] = useState('');
+  const { toast } = useToast ? useToast() : { toast: () => {} };
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -53,6 +56,21 @@ export const EGFRCreatinineCalculator: React.FC = () => {
     }
     const egfr = calculateEGFR({ creatinine: creat, age: ageNum, sex, isBlack });
     setResult({ egfr, interpretation: getInterpretation(egfr) });
+  };
+
+  const handleSaveCalculation = async () => {
+    if (!result) return;
+    const calculationData = {
+      calculatorType: 'eGFR',
+      inputs: { creatinine, age, sex, isBlack },
+      results: result,
+    };
+    try {
+      await apiClient.post('/api/saved-calculations', calculationData);
+      if (toast) toast({ title: 'Calculation Saved', description: 'Your eGFR calculation was saved.' });
+    } catch (err) {
+      if (toast) toast({ title: 'Error', description: 'Failed to save calculation.', variant: 'destructive' });
+    }
   };
 
   return (
@@ -130,6 +148,7 @@ export const EGFRCreatinineCalculator: React.FC = () => {
             <div className="font-medium">Results:</div>
             <div>eGFR: <span className="font-mono">{result.egfr.toFixed(1)} mL/min/1.73m²</span></div>
             <div>Interpretation: <span className="font-mono">{result.interpretation}</span></div>
+            <Button onClick={handleSaveCalculation} className="w-full mt-3">Save Calculation</Button>
           </div>
         )}
       </CardContent>

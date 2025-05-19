@@ -21,35 +21,151 @@ export const ASCVDCalculator: React.FC = () => {
   const [ascvdRisk, setAscvdRisk] = useState<string | null>(null);
 
   const calculateASCVD = () => {
-    // Placeholder for complex ASCVD risk calculation logic
-    // This calculation involves multiple variables, coefficients, and potentially different formulas based on race/sex.
-    // Implementing the full, accurate calculation here is complex and requires specific lookup tables/formulas.
-    // For demonstration, we'll provide a simplified placeholder result.
+    // Real ASCVD 10-year risk calculation using 2013 ACC/AHA Pooled Cohort Equations
+    // Reference: https://tools.acc.org/ASCVD-Risk-Estimator-Plus/#!/calculate/estimate/
+    // Variables: age, sex, race, total cholesterol, HDL, systolic BP, BP meds, diabetes, smoker
+    // Only valid for ages 40-79
 
     const a = parseFloat(age);
     const tc = parseFloat(totalCholesterol);
     const hdl = parseFloat(hdlCholesterol);
     const sbp = parseFloat(systolicBP);
 
-    if (isNaN(a) || a <= 0 || isNaN(tc) || tc <= 0 || isNaN(hdl) || hdl <= 0 || isNaN(sbp) || sbp <= 0 || sex === '' || race === '') {
-       setAscvdRisk('Invalid input. Please fill all required fields.');
-       return;
+    if (
+      isNaN(a) || a < 40 || a > 79 ||
+      isNaN(tc) || tc <= 0 ||
+      isNaN(hdl) || hdl <= 0 ||
+      isNaN(sbp) || sbp <= 0 ||
+      sex === '' || race === ''
+    ) {
+      setAscvdRisk('Invalid input. Please fill all required fields. Age must be 40-79.');
+      return;
     }
 
-    // Simulate a risk calculation based on a few factors
-    let riskScore = 0;
-    if (a > 60) riskScore += 5;
-    if (tc > 200) riskScore += 3;
-    if (hdl < 40) riskScore += 4;
-    if (sbp > 140) riskScore += 3;
-    if (smoker) riskScore += 5;
-    if (diabetes) riskScore += 4;
-    if (sex === 'female') riskScore -= 2; // Females generally lower risk
+    // Natural log of variables
+    const lnAge = Math.log(a);
+    const lnTC = Math.log(tc);
+    const lnHDL = Math.log(hdl);
+    const lnSBP = Math.log(sbp);
 
-    // This is a very rough simulation and NOT medically accurate.
-    // A real implementation would use published risk equations.
+    // Coefficients for each group
+    // Source: https://www.mdcalc.com/calc/10061/ascvd-atherosclerotic-cardiovascular-disease-2013-risk-calculator-aha-acc
+    let coeffs: any = null;
+    let mean: number;
+    let baselineSurvival: number;
 
-    setAscvdRisk(`Simulated Risk Score: ${riskScore}% (Note: This is a placeholder calculation)`);
+    if (sex === 'male' && race === 'white') {
+      coeffs = {
+        lnAge: 12.344,
+        lnTC: 11.853,
+        lnAge_lnTC: -2.664,
+        lnHDL: -7.990,
+        lnAge_lnHDL: 1.769,
+        lnSBP_Treated: 1.797,
+        lnSBP_Untreated: 1.764,
+        smoker: 7.837,
+        lnAge_smoker: -1.795,
+        diabetes: 0.658
+      };
+      mean = 61.18;
+      baselineSurvival = 0.9144;
+    } else if (sex === 'male' && race === 'black') {
+      coeffs = {
+        lnAge: 2.469,
+        lnTC: 0.302,
+        lnAge_lnTC: 0,
+        lnHDL: -0.307,
+        lnAge_lnHDL: 0,
+        lnSBP_Treated: 1.916,
+        lnSBP_Untreated: 1.809,
+        smoker: 0.549,
+        lnAge_smoker: 0,
+        diabetes: 0.645
+      };
+      mean = 19.54;
+      baselineSurvival = 0.8954;
+    } else if (sex === 'female' && race === 'white') {
+      coeffs = {
+        lnAge: -29.799,
+        lnTC: 4.884,
+        lnAge_lnTC: -2.019,
+        lnHDL: -13.540,
+        lnAge_lnHDL: 3.149,
+        lnSBP_Treated: 2.019,
+        lnSBP_Untreated: 1.957,
+        smoker: 7.574,
+        lnAge_smoker: -1.665,
+        diabetes: 0.661
+      };
+      mean = -29.18;
+      baselineSurvival = 0.9665;
+    } else if (sex === 'female' && race === 'black') {
+      coeffs = {
+        lnAge: 17.114,
+        lnTC: 0.940,
+        lnAge_lnTC: 0,
+        lnHDL: -18.920,
+        lnAge_lnHDL: 4.475,
+        lnSBP_Treated: 29.291,
+        lnSBP_Untreated: 27.820,
+        smoker: 0.691,
+        lnAge_smoker: 0,
+        diabetes: 0.874
+      };
+      mean = 86.61;
+      baselineSurvival = 0.9533;
+    } else {
+      // For "other" race, use white coefficients as recommended
+      if (sex === 'male') {
+        coeffs = {
+          lnAge: 12.344,
+          lnTC: 11.853,
+          lnAge_lnTC: -2.664,
+          lnHDL: -7.990,
+          lnAge_lnHDL: 1.769,
+          lnSBP_Treated: 1.797,
+          lnSBP_Untreated: 1.764,
+          smoker: 7.837,
+          lnAge_smoker: -1.795,
+          diabetes: 0.658
+        };
+        mean = 61.18;
+        baselineSurvival = 0.9144;
+      } else {
+        coeffs = {
+          lnAge: -29.799,
+          lnTC: 4.884,
+          lnAge_lnTC: -2.019,
+          lnHDL: -13.540,
+          lnAge_lnHDL: 3.149,
+          lnSBP_Treated: 2.019,
+          lnSBP_Untreated: 1.957,
+          smoker: 7.574,
+          lnAge_smoker: -1.665,
+          diabetes: 0.661
+        };
+        mean = -29.18;
+        baselineSurvival = 0.9665;
+      }
+    }
+
+    // Calculate risk score
+    const treated = onBPmeds;
+    const riskScore =
+      coeffs.lnAge * lnAge +
+      coeffs.lnTC * lnTC +
+      (coeffs.lnAge_lnTC || 0) * lnAge * lnTC +
+      coeffs.lnHDL * lnHDL +
+      (coeffs.lnAge_lnHDL || 0) * lnAge * lnHDL +
+      (treated ? coeffs.lnSBP_Treated : coeffs.lnSBP_Untreated) * lnSBP +
+      coeffs.smoker * (smoker ? 1 : 0) +
+      (coeffs.lnAge_smoker || 0) * lnAge * (smoker ? 1 : 0) +
+      coeffs.diabetes * (diabetes ? 1 : 0);
+
+    // Calculate risk
+    const risk = 1 - Math.pow(baselineSurvival, Math.exp(riskScore - mean));
+    const percent = (risk * 100).toFixed(1);
+    setAscvdRisk(`${percent}% 10-year ASCVD risk`);
   };
 
   return (

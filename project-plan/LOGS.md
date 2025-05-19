@@ -166,3 +166,8 @@ This section will track errors encountered during development.
 ### Calculator Navigation Update
 - **Issue**: 'Open Calculator' buttons opened calculators in a modal. Requirement changed to navigate to dedicated calculator pages and auto-scroll to top on navigation.
 - **Resolution**: Updated all 'Open Calculator' buttons to use react-router navigation to the respective calculator page using a route segment map. Removed modal logic. Added useEffect to auto-scroll to top when navigating to a calculator page. Changes made on branch 'feature/calculator-navigation'.
+
+## 2024-06-13
+### Started and Completed Real ASCVD Risk Calculator Feature
+- **Issue**: The ASCVD calculator used a placeholder formula and did not provide real 10-year risk estimates.
+- **Resolution**: Created branch `feature/ascvd-risk-calculator`. Implemented the real 2013 ACC/AHA Pooled Cohort Equations in the ASCVD calculator component. Updated UI to show accurate 10-year risk. Updated project plan files as per instructions.

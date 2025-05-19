@@ -4,6 +4,8 @@ import { Input } from '../ui/input';
 import { Label } from '../ui/label';
 import { Button } from '../ui/button';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '../ui/select';
+import { apiClient } from '@/lib/apiClient';
+import { useToast } from '@/components/ui/use-toast';
 
 const CreatinineClearanceCalculator: React.FC = () => {
   const [serumCreatinine, setSerumCreatinine] = useState<string>('');
@@ -11,6 +13,7 @@ const CreatinineClearanceCalculator: React.FC = () => {
   const [weight, setWeight] = useState<string>('');
   const [sex, setSex] = useState<string>('male');
   const [creatinineClearance, setCreatinineClearance] = useState<number | null>(null);
+  const { toast } = useToast ? useToast() : { toast: () => {} };
 
   const calculateCreatinineClearance = () => {
     const Scr = parseFloat(serumCreatinine);
@@ -37,6 +40,21 @@ const CreatinineClearanceCalculator: React.FC = () => {
     setWeight('');
     setSex('male');
     setCreatinineClearance(null);
+  };
+
+  const handleSaveCalculation = async () => {
+    if (creatinineClearance === null) return;
+    const calculationData = {
+      calculatorType: 'Creatinine Clearance',
+      inputs: { serumCreatinine, age, weight, sex },
+      results: { creatinineClearance },
+    };
+    try {
+      await apiClient.post('/api/saved-calculations', calculationData);
+      if (toast) toast({ title: 'Calculation Saved', description: 'Your Creatinine Clearance calculation was saved.' });
+    } catch (err) {
+      if (toast) toast({ title: 'Error', description: 'Failed to save calculation.', variant: 'destructive' });
+    }
   };
 
   return (
@@ -96,6 +114,7 @@ const CreatinineClearanceCalculator: React.FC = () => {
             <div className="grid gap-2">
               <Label>Creatinine Clearance</Label>
               <div className="text-2xl font-bold">{creatinineClearance.toFixed(2)} mL/min</div>
+              <Button onClick={handleSaveCalculation} className="w-full mt-3">Save Calculation</Button>
             </div>
           )}
         </div>
