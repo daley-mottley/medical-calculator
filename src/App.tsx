@@ -9,6 +9,7 @@ import Login from "./components/auth/Login";
 import Registration from "./components/auth/Registration";
 import Profile from "./components/auth/Profile";
 import ProtectedRoute from "./components/auth/ProtectedRoute";
+import Landing from "./pages/Landing";
 
 const queryClient = new QueryClient();
 
@@ -20,6 +21,7 @@ const App = () => (
       <BrowserRouter>
         <Routes>
           {/* Public Routes */}
+          <Route path="/" element={<Landing />} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Registration />} />
 
@@ -33,8 +35,8 @@ const App = () => (
             <Route path="/profile" element={<Profile />} />
           </Route>
 
-          {/* Catch-all Route - Redirect to calculators */}
-          <Route path="*" element={<Navigate to="/calculators" replace />} />
+          {/* Catch-all Route - Redirect to landing page */}
+          <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
       </BrowserRouter>
     </TooltipProvider>

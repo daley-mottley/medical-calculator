@@ -4,6 +4,8 @@ import { NavLinks } from "./NavLinks";
 import { cn } from "@/lib/utils";
 import { Dispatch, SetStateAction } from "react";
 import { Link } from "react-router-dom";
+import { useAuth } from "../../context/AuthContext";
+import { Button } from "@/components/ui/button";
 
 interface SidebarProps {
   isOpen: boolean;
@@ -11,6 +13,7 @@ interface SidebarProps {
 }
 
 export const Sidebar = ({ isOpen, setIsOpen }: SidebarProps) => {
+  const { user, logout } = useAuth();
   return (
     <>
       {/* Overlay */}
@@ -50,11 +53,23 @@ export const Sidebar = ({ isOpen, setIsOpen }: SidebarProps) => {
           </button>
         </div>
         <div className="border-b border-border" />
-        <ScrollArea className="h-[calc(100vh-65px)] custom-scrollbar">
+        <ScrollArea className="h-[calc(100vh-65px-80px)] custom-scrollbar">
           <div className="p-4">
             <NavLinks setIsOpen={setIsOpen} />
           </div>
         </ScrollArea>
+        <div className="p-4 border-t border-border flex flex-col gap-2">
+          {user ? (
+            <Button onClick={logout} variant="outline" size="sm">Logout</Button>
+          ) : (
+            <>
+              <Link to="/login" className="text-sm font-medium hover:underline mb-2">Login</Link>
+              <Link to="/register">
+                <Button className="bg-medical-primary hover:bg-medical-secondary text-white w-full mt-2">Sign Up</Button>
+              </Link>
+            </>
+          )}
+        </div>
       </aside>
     </>
   );

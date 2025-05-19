@@ -40,3 +40,5 @@
 - [x] Change sidebar top label from Menu to Dashboard and link to dashboard ('/calculators') - 2025-06-11
 - [x] Implement real ASCVD Risk Calculator (feature/ascvd-risk-calculator, 2024-06-13)
 - [x] Remove notification bell from Navbar (feature/remove-notification-bell, 2024-06-14)
+- [x] Implement landing page matching the appeal app, with sign up button and menu login/sign up (feature/landing-page-auth-ui, 2024-06-15)
+- [x] Update 'Login as Guest' button to redirect to dashboard (feature/landing-page-auth-ui, 2024-06-15)

@@ -194,3 +194,12 @@ This section will track errors encountered during development.
 ### Removed Notification Bell from Navbar
 - **Issue**: The notification bell in the Navbar was not required and needed to be removed for a cleaner UI.
 - **Resolution**: Removed the notification bell button and its icon import from the Navbar component. Updated project plan files. Changes made on branch 'feature/remove-notification-bell'.
+
+## 2024-06-15
+### Implemented New Landing Page and Menu Auth UI
+- **Issue**: Needed a modern, appealing landing page matching the app's design, with a prominent sign up button and login/sign up in the menu for unauthenticated users.
+- **Resolution**: Created `Landing.tsx` as the new landing page, updated routing, and added login/sign up buttons to Navbar and Sidebar. Menu now matches design system and is consistent for unauthenticated users.
+
+### Fixed 'Login as Guest' Button Redirect
+- **Issue**: 'Login as Guest' button did not redirect to the user dashboard after login.
+- **Resolution**: Updated guest login logic to redirect to `/calculators` (dashboard) after successful guest login.

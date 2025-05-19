@@ -44,8 +44,8 @@ const Login: React.FC = () => {
   const handleGuestLogin = async () => {
     try {
       await loginAsGuest();
-      // Redirect to dashboard or home page after successful guest login
-      navigate('/');
+      // Redirect to dashboard after successful guest login
+      navigate('/calculators');
     } catch (error) {
       console.error('Guest login failed:', error);
       // TODO: Show error message to the user
