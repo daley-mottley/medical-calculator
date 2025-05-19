@@ -23,6 +23,8 @@
 - [ ] Implement Suggestion Box widget (in progress, see branch feature/suggestion-box-widget)
 - [ ] Improve Suggestion Box UI to be more user friendly (in progress, see branch feature/suggestion-box-ui-improvement)
 - [ ] Improve Saved Calculations page UI for better appeal and user-friendliness (feature/saved-calculations-ui-improvement, 2024-06-13)
+- [ ] Replace Suggestion Box widget icon with a more appropriate icon (BallotBox or Vote) (feature/suggestion-box-icon-update, 2025-06-12)
+- [ ] Remove the "Settings" and "Theme" section from the profile page. Add a profile image at the top with the option to change the profile image. Allow the user to change the user name as well. (in progress)
 
 ### Priority 2 (High)
 - [ ] Implement unit tests for all calculator components (Some tests exist, need comprehensive coverag

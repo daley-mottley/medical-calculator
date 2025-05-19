@@ -167,6 +167,10 @@ This section will track errors encountered during development.
 - **Issue**: 'Open Calculator' buttons opened calculators in a modal. Requirement changed to navigate to dedicated calculator pages and auto-scroll to top on navigation.
 - **Resolution**: Updated all 'Open Calculator' buttons to use react-router navigation to the respective calculator page using a route segment map. Removed modal logic. Added useEffect to auto-scroll to top when navigating to a calculator page. Changes made on branch 'feature/calculator-navigation'.
 
+### Started Suggestion Box Icon Update Feature
+- **Issue**: Replace the Suggestion Box widget icon with a more appropriate icon (BallotBox or Vote) for better clarity and professionalism.
+- **Resolution**: Created branch `feature/suggestion-box-icon-update`. Planning to update the icon in the SuggestionBox component and test the UI for consistency.
+
 ## 2024-06-13
 ### Started and Completed Real ASCVD Risk Calculator Feature
 - **Issue**: The ASCVD calculator used a placeholder formula and did not provide real 10-year risk estimates.
@@ -174,6 +178,12 @@ This section will track errors encountered during development.
 
 ### Started feature branch 'feature/saved-calculations-ui-improvement' to improve the Saved Calculations page UI.
 - Planned improvements: more visually appealing cards, use of icons and badges, clearer display of calculation type, inputs, and results, quick action buttons (view, delete), and improved empty state with navigation.
+
+### Removed the "Settings" and "Theme" section from the profile page.
+- Added a profile image at the top of the profile page with upload/change functionality using the Avatar component.
+- Made the username editable with inline editing and save/cancel options.
+- Updated AuthContext to support updating username and profile image, persisting changes in localStorage.
+- Updated TASKS.md to reflect this work (feature/profile-image-editable-username).
 
 ## 2025-05-19
 ### Completed BMI Save Calculation Functionality

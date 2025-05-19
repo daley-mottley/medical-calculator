@@ -50,6 +50,18 @@
 - Improved empty state with icon and navigation button
 - Follows color palette and design principles for clarity and professionalism
 
+## Profile Page Redesign (2024-06-13)
+- The Settings and Theme section has been removed from the profile page.
+- A profile image is now displayed at the top of the profile card, using the Avatar component.
+- Users can upload or change their profile image by clicking the 'Change Profile Image' button, which opens a file picker. The selected image is displayed immediately and persisted in localStorage.
+- The username is now editable inline. Clicking 'Edit' next to the name field allows the user to change their name, with 'Save' and 'Cancel' options. The new name is saved to localStorage and reflected throughout the app.
+
+### User Flow
+1. User navigates to the profile page.
+2. User sees their profile image (or initials if no image) at the top, with a button to change it.
+3. User can click 'Edit' next to their name to update it, then save or cancel changes.
+4. All changes are persisted locally and reflected immediately in the UI.
+
 ## Design Principles
 
 1. **Clarity**: All information must be immediately understandable to busy medical professionals
@@ -72,3 +84,4 @@ Wireframes and high-fidelity mockups will be included as they are developed.
 - Opens a modal for users to submit suggestions.
 - Submissions are sent to the admin email (daley.mottley@hotmail.com).
 - Should match the app's modern, professional medical UI.
+- The widget icon should use a ballot box or vote icon (not a chat bubble) to clearly represent suggestions/feedback.

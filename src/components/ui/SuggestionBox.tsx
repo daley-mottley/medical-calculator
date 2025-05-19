@@ -11,7 +11,7 @@ import { Button } from "./button";
 import { Textarea } from "./textarea";
 import { toast } from "./use-toast";
 import { apiClient } from "@/lib/apiClient";
-import { Info, Send, MessageCircle } from "lucide-react";
+import { Info, Send, Vote } from "lucide-react";
 
 export const SuggestionBox = () => {
   const [open, setOpen] = useState(false);
@@ -79,7 +79,7 @@ export const SuggestionBox = () => {
           aria-label="Open suggestion box"
           tabIndex={0}
         >
-          <MessageCircle className="w-7 h-7" />
+          <Vote className="w-7 h-7" />
         </button>
       </div>
       {/* Modal Dialog */}
@@ -87,7 +87,7 @@ export const SuggestionBox = () => {
         <DialogContent className="p-0 bg-white rounded-2xl shadow-2xl w-full max-w-md mx-auto border-0">
           <DialogHeader className="px-6 pt-6 pb-2 flex flex-row items-center justify-between border-b border-[#E5DEFF]">
             <div className="flex items-center gap-2">
-              <MessageCircle className="text-[#9b87f5] w-6 h-6" />
+              <Vote className="text-[#9b87f5] w-6 h-6" />
               <DialogTitle className="text-[#6E59A5] text-lg font-bold">Suggestion Box</DialogTitle>
             </div>
             <DialogClose asChild>
