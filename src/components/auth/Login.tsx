@@ -21,7 +21,7 @@ const formSchema = z.object({
 });
 
 const Login: React.FC = () => {
-  const { login, loginAsGuest } = useAuth(); // Use the login and loginAsGuest functions from AuthContext
+  const { loginAsGuest } = useAuth(); // Only use loginAsGuest
   const navigate = useNavigate(); // Use navigate for redirection
   const [showDisclaimer, setShowDisclaimer] = useState(false);
   const [agreed, setAgreed] = useState(false);
@@ -34,18 +34,7 @@ const Login: React.FC = () => {
     },
   });
 
-  const onSubmit = async (values: z.infer<typeof formSchema>) => {
-    try {
-      await login(values.email, values.password);
-      setShowDisclaimer(true);
-      setAgreed(false);
-    } catch (error) {
-      console.error('Login failed:', error);
-      // TODO: Show error message to the user
-    }
-  };
-
-  const handleGuestLogin = async () => {
+  const onSubmit = async () => {
     try {
       await loginAsGuest();
       setShowDisclaimer(true);
@@ -105,7 +94,7 @@ const Login: React.FC = () => {
             <p>Password: password123</p>
           </div>
           <div className="mt-4">
-            <Button onClick={handleGuestLogin} className="w-full bg-medical-primary hover:bg-medical-secondary text-white font-bold rounded-lg" variant="outline">Login as Guest</Button>
+            <Button onClick={onSubmit} className="w-full bg-medical-primary hover:bg-medical-secondary text-white font-bold rounded-lg" variant="outline">Login as Guest</Button>
           </div>
         </CardContent>
       </Card>

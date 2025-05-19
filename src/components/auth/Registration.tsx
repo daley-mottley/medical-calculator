@@ -27,7 +27,7 @@ const formSchema = z.object({
 });
 
 const Registration: React.FC = () => {
-  const { register } = useAuth(); // Use the register function from AuthContext
+  const { loginAsGuest } = useAuth(); // Only use loginAsGuest
   const navigate = useNavigate(); // Use navigate for redirection
   const [showDisclaimer, setShowDisclaimer] = useState(false);
   const [agreed, setAgreed] = useState(false);
@@ -41,23 +41,13 @@ const Registration: React.FC = () => {
     },
   });
 
-  const onSubmit = async (values: z.infer<typeof formSchema>) => {
+  const onSubmit = async () => {
     try {
-      await register(values.email, values.password);
+      await loginAsGuest();
       setShowDisclaimer(true);
       setAgreed(false);
     } catch (error) {
-      console.error('Registration failed:', error);
-    }
-  };
-
-  const handleGuestSignUp = async () => {
-    try {
-      await register('guest@example.com', 'guestpassword');
-      setShowDisclaimer(true);
-      setAgreed(false);
-    } catch (error) {
-      console.error('Guest sign up failed:', error);
+      console.error('Guest registration failed:', error);
     }
   };
 
@@ -74,7 +64,7 @@ const Registration: React.FC = () => {
         </CardHeader>
         <CardContent>
           <Form {...form}>
-            <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
+            <form onSubmit={e => { e.preventDefault(); onSubmit(); }} className="space-y-4">
               <FormField
                 control={form.control}
                 name="email"
@@ -118,7 +108,7 @@ const Registration: React.FC = () => {
             </form>
           </Form>
           <div className="mt-4">
-            <Button onClick={handleGuestSignUp} className="w-full bg-medical-primary hover:bg-medical-secondary text-white font-bold rounded-lg" variant="outline">Sign Up as Guest</Button>
+            <Button onClick={onSubmit} className="w-full bg-medical-primary hover:bg-medical-secondary text-white font-bold rounded-lg" variant="outline">Sign Up as Guest</Button>
           </div>
         </CardContent>
       </Card>

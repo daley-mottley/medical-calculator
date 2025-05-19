@@ -18,7 +18,7 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
     return storedUser ? JSON.parse(storedUser) : null;
   });
 
-  const fakeUser = { name: 'Dr. Fake User', email: 'fakeuser@example.com', profileImage: undefined };
+  const fakeUser = { name: 'Guest User', email: 'guest@example.com', profileImage: undefined };
   const guestUser = { name: 'Guest User', email: 'guest@example.com', profileImage: undefined };
 
   const login = async (email: string, password: string) => {
