@@ -3,7 +3,7 @@
 ## Uncompleted Tasks
 
 ### Priority 1 (Critical)
-- [ ] Implement Open Calculators Modal (in progress, see branch feature/open-calculator-modal) - Add modal overlay to display calculators directly from the main page
+- [x] Update: Open Calculator buttons now navigate to the respective calculator page and auto-scroll to top (feature/calculator-navigation, 2025-06-12)
 - [ ] Implement Save Calculation Functionality for BMI Calculator (Frontend & mock backend complete)
 - [ ] Implement Save Calculation Functionality for other calculators (Backend needed)
 - [ ] Add remaining calculators (e.g., QTc Interval, HAS-BLED (in progress, see branch feature/has-bled-calculator), CHA₂DS₂-VASc, eGFR, Creatinine Clearance, etc.)

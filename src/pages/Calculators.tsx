@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { AppLayout } from "@/components/layout/AppLayout";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
@@ -23,7 +23,6 @@ import CURB65Calculator from '@/components/calculators/CURB65Calculator';
 import WellsScoreCalculator from '@/components/calculators/WellsScoreCalculator';
 import AaGradientCalculator from '@/components/calculators/AaGradientCalculator';
 import { useParams, useNavigate } from 'react-router-dom';
-import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 
 const calculatorCategories = [
   {
@@ -112,6 +111,27 @@ const calculatorRouteMap: Record<string, string> = {
   'a-a-gradient': 'A-a Gradient',
 };
 
+const calculatorRouteSegment: Record<string, string> = {
+  'BMI': 'bmi',
+  'BSA': 'bsa',
+  'IBW & ABW': 'ibw-abw',
+  'Ideal Body Weight': 'ideal-body-weight',
+  'Pregnancy Calculator': 'pregnancy',
+  'ASCVD Risk': 'ascvd-risk',
+  'HAS-BLED Score': 'has-bled',
+  'QTc Interval': 'qtc-interval',
+  'CHA₂DS₂-VASc': 'cha2ds2-vasc',
+  'eGFR': 'egfr',
+  'Creatinine Clearance': 'creatinine-clearance',
+  'Fractional Excretion of Sodium': 'fractional-excretion-sodium',
+  'NIH Stroke Scale': 'nih-stroke-scale',
+  'Glasgow Coma Scale': 'glasgow-coma-scale',
+  'FOUR Score': 'four-score',
+  'CURB-65': 'curb-65',
+  'Wells Score': 'wells-score',
+  'A-a Gradient': 'a-a-gradient',
+};
+
 const calculatorComponentMap: Record<string, JSX.Element> = {
   'BMI': <BMICalculator />,
   'BSA': <BSACalculator />,
@@ -136,16 +156,13 @@ const calculatorComponentMap: Record<string, JSX.Element> = {
 const Calculators = () => {
   const { calculatorId } = useParams<{ calculatorId?: string }>();
   const navigate = useNavigate();
-  const [openCalculator, setOpenCalculator] = useState<string | null>(null);
 
-  const handleOpenCalculator = (calculatorName: string) => {
-    console.log('Attempting to open calculator:', calculatorName);
-    setOpenCalculator(calculatorName);
-  };
-
-  const handleCloseCalculator = () => {
-    setOpenCalculator(null);
-  };
+  // Scroll to top when navigating to a calculator page
+  useEffect(() => {
+    if (calculatorId) {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+  }, [calculatorId]);
 
   if (calculatorId) {
     const calcName = calculatorRouteMap[calculatorId];
@@ -181,21 +198,6 @@ const Calculators = () => {
         </p>
       </div>
 
-      <Dialog open={!!openCalculator} onOpenChange={setOpenCalculator}>
-        <DialogContent className="max-w-2xl">
-          {openCalculator && (
-            <>
-              <DialogHeader>
-                <DialogTitle>{openCalculator} Calculator</DialogTitle>
-              </DialogHeader>
-              {calculatorComponentMap[openCalculator] || (
-                <div className="text-center text-red-500">Calculator not found.</div>
-              )}
-            </>
-          )}
-        </DialogContent>
-      </Dialog>
-
       <Tabs defaultValue="all" className="w-full space-y-6">
         <div className="overflow-auto scrollbar-hidden">
           <TabsList className="h-10 inline-flex min-w-max">
@@ -229,8 +231,13 @@ const Calculators = () => {
                       </CardHeader>
                       <CardContent className="pt-0">
                         <Button
-                           className="w-full bg-medical-primary hover:bg-medical-secondary"
-                           onClick={() => handleOpenCalculator(calculator.name)}
+                          className="w-full bg-medical-primary hover:bg-medical-secondary"
+                          onClick={() => {
+                            const route = calculatorRouteSegment[calculator.name];
+                            if (route) {
+                              navigate(`/calculators/${route}`);
+                            }
+                          }}
                         >
                           Open Calculator
                         </Button>
@@ -279,12 +286,17 @@ const Calculators = () => {
                     <CardDescription>{calculator.description}</CardDescription>
                   </CardHeader>
                   <CardContent className="pt-0">
-                        <Button
-                           className="w-full bg-medical-primary hover:bg-medical-secondary"
-                           onClick={() => handleOpenCalculator(calculator.name)}
-                        >
-                          Open Calculator
-                        </Button>
+                    <Button
+                      className="w-full bg-medical-primary hover:bg-medical-secondary"
+                      onClick={() => {
+                        const route = calculatorRouteSegment[calculator.name];
+                        if (route) {
+                          navigate(`/calculators/${route}`);
+                        }
+                      }}
+                    >
+                      Open Calculator
+                    </Button>
                   </CardContent>
                 </Card>
               ))}

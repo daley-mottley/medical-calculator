@@ -161,3 +161,8 @@ This section will track errors encountered during development.
 ### Sidebar Label Update
 - **Issue**: The sidebar label at the top was 'Menu' and did not link to the dashboard.
 - **Resolution**: Changed the label to 'Dashboard' and made it a clickable link to '/calculators' (the dashboard page), as per project instructions.
+
+## 2025-06-12
+### Calculator Navigation Update
+- **Issue**: 'Open Calculator' buttons opened calculators in a modal. Requirement changed to navigate to dedicated calculator pages and auto-scroll to top on navigation.
+- **Resolution**: Updated all 'Open Calculator' buttons to use react-router navigation to the respective calculator page using a route segment map. Removed modal logic. Added useEffect to auto-scroll to top when navigating to a calculator page. Changes made on branch 'feature/calculator-navigation'.

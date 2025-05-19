@@ -3,6 +3,7 @@ import { ScrollArea } from "@/components/ui/scroll-area";
 import { NavLinks } from "./NavLinks";
 import { cn } from "@/lib/utils";
 import { Dispatch, SetStateAction } from "react";
+import { Link } from "react-router-dom";
 
 interface SidebarProps {
   isOpen: boolean;
@@ -37,7 +38,7 @@ export const Sidebar = ({ isOpen, setIsOpen }: SidebarProps) => {
       >
         <div className="flex h-16 items-center justify-between px-4 border-b border-border md:h-[65px] bg-card rounded-tr-2xl">
           <div className="flex items-center">
-            <a href="/calculators" className="text-lg font-semibold hover:text-medical-primary transition-colors">Dashboard</a>
+            <Link to="/calculators" className="text-lg font-semibold hover:text-medical-primary transition-colors">Dashboard</Link>
           </div>
           <button
             onClick={() => setIsOpen(false)}
