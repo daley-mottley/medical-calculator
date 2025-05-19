@@ -23,9 +23,9 @@ export const Navbar = ({ toggleSidebar }: NavbarProps) => {
             <span className="sr-only">Toggle menu</span>
           </button>
           <div className="flex items-center">
-            <span className="text-xl font-bold text-medical-primary">
+            <Link to="/calculators" className="text-xl font-bold text-medical-primary hover:underline focus:outline-none">
               MedicMind<span className="text-medical-secondary">Assist</span>
-            </span>
+            </Link>
           </div>
         </div>
         <div className="hidden md:flex w-full max-w-sm items-center space-x-2 mx-4">

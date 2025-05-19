@@ -25,6 +25,7 @@
 - [ ] Improve Saved Calculations page UI for better appeal and user-friendliness (feature/saved-calculations-ui-improvement, 2024-06-13)
 - [ ] Replace Suggestion Box widget icon with a more appropriate icon (BallotBox or Vote) (feature/suggestion-box-icon-update, 2025-06-12)
 - [ ] Remove the "Settings" and "Theme" section from the profile page. Add a profile image at the top with the option to change the profile image. Allow the user to change the user name as well. (in progress)
+- [x] Make the dashboard title on the Navbar navigate to the dashboard ('/calculators') (feature/navbar-dashboard-title-link, 2024-06-16)
 
 ### Priority 2 (High)
 - [ ] Implement unit tests for all calculator components (Some tests exist, need comprehensive coverag
@@ -42,3 +43,4 @@
 - [x] Remove notification bell from Navbar (feature/remove-notification-bell, 2024-06-14)
 - [x] Implement landing page matching the appeal app, with sign up button and menu login/sign up (feature/landing-page-auth-ui, 2024-06-15)
 - [x] Update 'Login as Guest' button to redirect to dashboard (feature/landing-page-auth-ui, 2024-06-15)
+- [x] Make the dashboard title on the Navbar navigate to the dashboard ('/calculators') (feature/navbar-dashboard-title-link, 2024-06-16)

@@ -203,3 +203,8 @@ This section will track errors encountered during development.
 ### Fixed 'Login as Guest' Button Redirect
 - **Issue**: 'Login as Guest' button did not redirect to the user dashboard after login.
 - **Resolution**: Updated guest login logic to redirect to `/calculators` (dashboard) after successful guest login.
+
+## 2024-06-16
+### Updated Navbar Dashboard Title Navigation
+- **Issue**: The dashboard title on the Navbar was not clickable and did not navigate to the dashboard as required by the project plan.
+- **Resolution**: Updated the Navbar component to wrap the MedicMindAssist title in a Link to '/calculators', matching the Sidebar behavior. Created branch 'feature/navbar-dashboard-title-link' for this update. Tested the app to ensure the title navigates correctly and the app runs as expected.

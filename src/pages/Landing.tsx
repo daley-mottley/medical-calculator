@@ -9,9 +9,8 @@ export default function Landing() {
           MedicMind<span className="text-medical-secondary">Assist</span>
         </span>
         <div className="flex gap-4">
-          <Link to="/login" className="text-sm font-medium hover:underline">Login</Link>
-          <Link to="/register">
-            <Button className="bg-medical-primary hover:bg-medical-secondary text-white">Sign Up</Button>
+          <Link to="/login">
+            <Button className="bg-medical-primary hover:bg-medical-secondary text-white">Login</Button>
           </Link>
         </div>
       </header>
@@ -25,7 +24,7 @@ export default function Landing() {
           </p>
           <Link to="/register">
             <Button size="lg" className="bg-medical-primary hover:bg-medical-secondary text-white px-8 py-4 text-lg font-semibold rounded-xl shadow-lg">
-              Sign Up Free
+              Sign Up for Free
             </Button>
           </Link>
         </section>
@@ -48,7 +47,8 @@ export default function Landing() {
         </section>
       </main>
       <footer className="w-full py-6 text-center text-muted-foreground text-sm bg-light-gray mt-12">
-        &copy; {new Date().getFullYear()} MedicMindAssist. All rights reserved.
+        &copy; {new Date().getFullYear()} MedicMindAssist. All rights reserved.<br />
+        <span className="block mt-2">This app is for demonstration purposes only.</span>
       </footer>
     </div>
   );
