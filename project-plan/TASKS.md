@@ -22,6 +22,7 @@
 - [ ] Implement A-a Gradient Calculator (in progress)
 - [ ] Implement Suggestion Box widget (in progress, see branch feature/suggestion-box-widget)
 - [ ] Improve Suggestion Box UI to be more user friendly (in progress, see branch feature/suggestion-box-ui-improvement)
+- [ ] Improve Saved Calculations page UI for better appeal and user-friendliness (feature/saved-calculations-ui-improvement, 2024-06-13)
 
 ### Priority 2 (High)
 - [ ] Implement unit tests for all calculator components (Some tests exist, need comprehensive coverag
@@ -36,3 +37,4 @@
 - [x] Improved calculator input field outlines and user-friendliness (2025-06-10) - Updated Input component for visible border and focus state using medical primary color for clarity and accessibility
 - [x] Change sidebar top label from Menu to Dashboard and link to dashboard ('/calculators') - 2025-06-11
 - [x] Implement real ASCVD Risk Calculator (feature/ascvd-risk-calculator, 2024-06-13)
+- [x] Remove notification bell from Navbar (feature/remove-notification-bell, 2024-06-14)

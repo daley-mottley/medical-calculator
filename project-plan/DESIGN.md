@@ -42,6 +42,14 @@
 - Clear iconography with labels
 - **Update 2024-06-09:** Sidebar now visually groups calculators by category, matching the main calculator page for consistency and usability.
 
+### Saved Calculations Page (2024-06-13)
+- Uses visually enhanced cards for each saved calculation
+- Calculator type shown as a badge and icon
+- Inputs and results are clearly formatted
+- Quick action buttons (view, delete) for each calculation
+- Improved empty state with icon and navigation button
+- Follows color palette and design principles for clarity and professionalism
+
 ## Design Principles
 
 1. **Clarity**: All information must be immediately understandable to busy medical professionals

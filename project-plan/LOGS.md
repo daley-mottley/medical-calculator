@@ -172,7 +172,15 @@ This section will track errors encountered during development.
 - **Issue**: The ASCVD calculator used a placeholder formula and did not provide real 10-year risk estimates.
 - **Resolution**: Created branch `feature/ascvd-risk-calculator`. Implemented the real 2013 ACC/AHA Pooled Cohort Equations in the ASCVD calculator component. Updated UI to show accurate 10-year risk. Updated project plan files as per instructions.
 
+### Started feature branch 'feature/saved-calculations-ui-improvement' to improve the Saved Calculations page UI.
+- Planned improvements: more visually appealing cards, use of icons and badges, clearer display of calculation type, inputs, and results, quick action buttons (view, delete), and improved empty state with navigation.
+
 ## 2025-05-19
 ### Completed BMI Save Calculation Functionality
 - **Issue**: Ensure users can save BMI calculation results and that the save button appears below the result only after calculation.
 - **Resolution**: Verified that the BMI calculator displays a 'Save Calculation' button after calculation, and saves results using the mock API client (localStorage). Added/expanded tests to confirm the button appears and save logic is triggered. Marked the task as complete in TASKS.md. Changes made on branch 'feature/bmi-save-calc-ui-test'.
+
+## 2024-06-14
+### Removed Notification Bell from Navbar
+- **Issue**: The notification bell in the Navbar was not required and needed to be removed for a cleaner UI.
+- **Resolution**: Removed the notification bell button and its icon import from the Navbar component. Updated project plan files. Changes made on branch 'feature/remove-notification-bell'.
