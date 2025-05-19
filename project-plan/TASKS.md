@@ -4,7 +4,7 @@
 
 ### Priority 1 (Critical)
 - [x] Update: Open Calculator buttons now navigate to the respective calculator page and auto-scroll to top (feature/calculator-navigation, 2025-06-12)
-- [ ] Implement Save Calculation Functionality for BMI Calculator (Frontend & mock backend complete)
+- [x] Implement Save Calculation Functionality for BMI Calculator (Frontend & mock backend complete) (feature/bmi-save-calc-ui-test, 2025-05-19)
 - [ ] Implement Save Calculation Functionality for other calculators (Backend needed)
 - [ ] Add remaining calculators (e.g., QTc Interval, HAS-BLED (in progress, see branch feature/has-bled-calculator), CHA₂DS₂-VASc, eGFR, Creatinine Clearance, etc.)
 - [ ] Refine existing calculators based on user feedback

@@ -171,3 +171,8 @@ This section will track errors encountered during development.
 ### Started and Completed Real ASCVD Risk Calculator Feature
 - **Issue**: The ASCVD calculator used a placeholder formula and did not provide real 10-year risk estimates.
 - **Resolution**: Created branch `feature/ascvd-risk-calculator`. Implemented the real 2013 ACC/AHA Pooled Cohort Equations in the ASCVD calculator component. Updated UI to show accurate 10-year risk. Updated project plan files as per instructions.
+
+## 2025-05-19
+### Completed BMI Save Calculation Functionality
+- **Issue**: Ensure users can save BMI calculation results and that the save button appears below the result only after calculation.
+- **Resolution**: Verified that the BMI calculator displays a 'Save Calculation' button after calculation, and saves results using the mock API client (localStorage). Added/expanded tests to confirm the button appears and save logic is triggered. Marked the task as complete in TASKS.md. Changes made on branch 'feature/bmi-save-calc-ui-test'.
