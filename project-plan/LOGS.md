@@ -213,3 +213,8 @@ This section will track errors encountered during development.
 ### Synced Profile Image with Dashboard Icon (Navbar)
 - **Issue**: When the profile image changes, the dashboard (Navbar) icon should also update to match.
 - **Resolution**: Updated the Navbar to use the Avatar, AvatarImage, and AvatarFallback components. The Navbar now displays the user's profile image if available, or their initials as a fallback. Changes made on branch 'feature/profile-image-navbar-sync'. Updated TASKS.md and LOGS.md accordingly.
+
+## 2024-06-18
+### Started Saved Calculations Page Redesign Feature
+- **Issue**: The Saved Calculations page needs to be more visually appealing and engaging for users.
+- **Resolution**: Created branch `feature/saved-calculations-redesign`. Planned improvements: animated card entrances, fun empty state, interactive feedback for actions, and enhanced use of the design system and color palette. Will use Tailwind's animation utilities for smooth, professional effects.

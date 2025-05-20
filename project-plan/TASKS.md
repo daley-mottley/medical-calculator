@@ -23,10 +23,12 @@
 - [ ] Implement Suggestion Box widget (in progress, see branch feature/suggestion-box-widget)
 - [ ] Improve Suggestion Box UI to be more user friendly (in progress, see branch feature/suggestion-box-ui-improvement)
 - [ ] Improve Saved Calculations page UI for better appeal and user-friendliness (feature/saved-calculations-ui-improvement, 2024-06-13)
+   - [In Progress 2024-06-18] Work started on feature/saved-calculations-ui-improvement: enhanced card layout, modal view, delete confirmation, scrollable grid, improved empty state, accessibility, and responsiveness.
 - [ ] Replace Suggestion Box widget icon with a more appropriate icon (BallotBox or Vote) (feature/suggestion-box-icon-update, 2025-06-12)
 - [ ] Remove the "Settings" and "Theme" section from the profile page. Add a profile image at the top with the option to change the profile image. Allow the user to change the user name as well. (in progress)
 - [x] Make the dashboard title on the Navbar navigate to the dashboard ('/calculators') (feature/navbar-dashboard-title-link, 2024-06-16)
 - [ ] [In Progress] Sync profile image with dashboard icon (feature/profile-image-navbar-sync, 2024-06-17) - Updated Navbar to use Avatar and show profile image if available, otherwise initials.
+- [ ] Redesign Saved Calculations page with improved visuals and fun animations (feature/saved-calculations-redesign, 2024-06-18)
 
 ### Priority 2 (High)
 - [ ] Implement unit tests for all calculator components (Some tests exist, need comprehensive coverag
