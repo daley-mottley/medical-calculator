@@ -106,12 +106,12 @@ export const SuggestionBox = () => {
           </span>
         </div>
         <button
-          className="group relative bg-[#9b87f5] hover:bg-[#7E69AB] text-white rounded-full shadow-xl p-5 transition-colors focus:outline-none focus:ring-2 focus:ring-[#8B5CF6] animate-bounce hover:animate-none"
+          className="group relative bg-[#9b87f5] hover:bg-[#7E69AB] text-white rounded-full shadow-xl p-4 transition-colors focus:outline-none focus:ring-2 focus:ring-[#8B5CF6] animate-bounce hover:animate-none"
           onClick={() => setOpen(true)}
           aria-label="Open suggestion box"
           tabIndex={0}
         >
-          <Vote className="w-10 h-10" />
+          <Vote className="w-7 h-7" />
         </button>
       </div>
       {/* Modal Dialog */}
@@ -119,7 +119,7 @@ export const SuggestionBox = () => {
         <DialogContent className="p-0 bg-white rounded-2xl shadow-2xl w-full max-w-md mx-auto border-0">
           <DialogHeader className="px-6 pt-6 pb-2 flex flex-row items-center justify-between border-b border-[#E5DEFF]">
             <div className="flex items-center gap-2">
-              <Vote className="text-[#9b87f5] w-9 h-9" />
+              <Vote className="text-[#9b87f5] w-6 h-6" />
               <DialogTitle className="text-[#6E59A5] text-lg font-bold">Suggestion Box</DialogTitle>
             </div>
             <DialogClose asChild>
@@ -131,7 +131,7 @@ export const SuggestionBox = () => {
           </DialogHeader>
           <form onSubmit={handleSubmit} className="px-6 pt-4 pb-6 flex flex-col gap-4">
             <DialogDescription className="flex items-center gap-2 text-[#7E69AB] mb-2">
-              <Info className="w-4 h-4" />
+              <Info className="w-8 h-8" />
               We value your feedback! Please share your suggestions to help us improve MedicMindAssist.
             </DialogDescription>
             <label htmlFor="suggestion-textarea" className="sr-only">Your suggestion</label>
