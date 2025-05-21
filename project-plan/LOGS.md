@@ -223,6 +223,10 @@ This section will track errors encountered during development.
 - **Issue**: The Saved Calculations card needed a more modern, visually appealing design for clarity and professionalism.
 - **Resolution**: Created branch 'feature/saved-calculation-card-redesign'. Updated the card to feature a prominent icon, bold calculation name, clear badge, improved timestamp, visually separated inputs/results, and enhanced quick action buttons. Increased whitespace, used a larger icon, and improved the card's shadow and rounded corners for a more modern, scannable appearance.
 
+### Suggestion Box UI Polish
+- **Issue**: The Suggestion Box icon was too small and there were duplicate close buttons in the modal, reducing usability and visual appeal.
+- **Resolution**: Increased the size of the Suggestion Box icon in both the floating button and modal header. Removed a duplicate close button for a cleaner, more user-friendly UI. Changes made on branch 'feature/suggestion-box-ui-polish'.
+
 ## [feature/remove-testimonials] - Removed Testimonials Section from Landing Page
 - Removed the entire testimonials section and the TestimonialCard component from `src/pages/Landing.tsx`.
 - Reason: Per project instructions, testimonials will be added at a later date. This keeps the landing page clean and focused.
