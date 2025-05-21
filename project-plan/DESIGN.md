@@ -86,3 +86,11 @@ Wireframes and high-fidelity mockups will be included as they are developed.
 - Submissions are sent to the admin email (daley.mottley@hotmail.com).
 - Should match the app's modern, professional medical UI.
 - The widget icon should use a ballot box or vote icon (not a chat bubble) to clearly represent suggestions/feedback.
+
+## Landing Page Redesign (2024-06-18)
+- The landing page will feature a visually striking hero section with a clear value proposition and medical illustration.
+- Prominent, repeated call-to-action (CTA) buttons for sign up and getting started.
+- Strong social proof, including testimonials, trust badges, and security/compliance highlights.
+- Modern, professional medical design using the project's color palette and typography.
+- Layout optimized for conversion, with clear information hierarchy and minimal distractions.
+- The redesign will be tested and iterated for conversion and visual appeal.

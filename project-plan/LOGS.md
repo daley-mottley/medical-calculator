@@ -222,3 +222,7 @@ This section will track errors encountered during development.
 ### Started Saved Calculations Card Redesign
 - **Issue**: The Saved Calculations card needed a more modern, visually appealing design for clarity and professionalism.
 - **Resolution**: Created branch 'feature/saved-calculation-card-redesign'. Updated the card to feature a prominent icon, bold calculation name, clear badge, improved timestamp, visually separated inputs/results, and enhanced quick action buttons. Increased whitespace, used a larger icon, and improved the card's shadow and rounded corners for a more modern, scannable appearance.
+
+### Started Landing Page Redesign
+- **Issue**: The current landing page is functional but lacks advanced visual appeal and conversion elements.
+- **Resolution**: Began redesigning the landing page with a visually striking hero section, clear and repeated CTA, strong social proof (testimonials, trust badges), and a modern, professional medical design. The redesign will be tested and iterated for conversion and appeal.

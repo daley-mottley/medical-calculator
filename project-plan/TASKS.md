@@ -28,6 +28,8 @@
 - [ ] Remove the "Settings" and "Theme" section from the profile page. Add a profile image at the top with the option to change the profile image. Allow the user to change the user name as well. (in progress)
 - [x] Make the dashboard title on the Navbar navigate to the dashboard ('/calculators') (feature/navbar-dashboard-title-link, 2024-06-16)
 - [ ] [In Progress] Sync profile image with dashboard icon (feature/profile-image-navbar-sync, 2024-06-17) - Updated Navbar to use Avatar and show profile image if available, otherwise initials.
+- [ ] [In Progress] Redesign the landing page for higher conversion and visual appeal (feature/landing-page-redesign, 2024-06-18)
+    - Approach: Focus on a visually striking hero section, clear and repeated CTA, strong social proof (testimonials, trust badges), and a modern, professional medical design. The redesign will be tested and iterated for conversion and appeal.
 
 ### Priority 2 (High)
 - [ ] Implement unit tests for all calculator components (Some tests exist, need comprehensive coverag
