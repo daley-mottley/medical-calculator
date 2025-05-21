@@ -122,12 +122,6 @@ export const SuggestionBox = () => {
               <Vote className="text-[#9b87f5] w-6 h-6" />
               <DialogTitle className="text-[#6E59A5] text-lg font-bold">Suggestion Box</DialogTitle>
             </div>
-            <DialogClose asChild>
-              <Button variant="ghost" size="icon" aria-label="Close suggestion box">
-                <span className="sr-only">Close</span>
-                <svg width="20" height="20" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><path d="M18 6L6 18M6 6l12 12"/></svg>
-              </Button>
-            </DialogClose>
           </DialogHeader>
           <form onSubmit={handleSubmit} className="px-6 pt-4 pb-6 flex flex-col gap-4">
             <DialogDescription className="flex items-center gap-2 text-[#7E69AB] mb-2">
@@ -187,12 +181,6 @@ export const SuggestionBox = () => {
               <Star className="text-[#8B5CF6] w-6 h-6" fill="#8B5CF6" />
               Rate MedicMindAssist
             </DialogTitle>
-            <DialogClose asChild>
-              <Button variant="ghost" size="icon" aria-label="Close rating modal">
-                <span className="sr-only">Close</span>
-                <svg width="20" height="20" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><path d="M18 6L6 18M6 6l12 12"/></svg>
-              </Button>
-            </DialogClose>
           </DialogHeader>
           <form onSubmit={handleRatingSubmit} className="px-6 pt-4 pb-6 flex flex-col gap-4">
             <div className="flex flex-col items-center gap-2">
