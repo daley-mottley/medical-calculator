@@ -4,7 +4,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from '@/components/ui/badge';
 import { QuickActionButton } from '@/components/ui/QuickActionButton';
 import { Button } from '@/components/ui/button';
-import { Save, Calculator, Trash2, Eye, Heart, Brain, Droplets } from 'lucide-react';
+import { Save, Calculator, Trash2, Eye, Heart, Brain, Droplets, Clipboard } from 'lucide-react';
 import { apiClient } from '@/lib/apiClient';
 import { useNavigate } from 'react-router-dom';
 
@@ -58,6 +58,16 @@ const SavedCalculationsPage = () => {
     setSavedCalculations(filtered);
     // TODO: Call backend to delete
     // await apiClient.delete(`/api/saved-calculations/${id}`);
+  };
+
+  const handleCopy = (calculation: SavedCalculation) => {
+    const summary = `Calculation: ${calculation.name || calculation.calculatorType}\n` +
+      `Type: ${calculation.calculatorType}\n` +
+      `Saved on: ${new Date(calculation.timestamp).toLocaleString()}\n` +
+      `Inputs: ${JSON.stringify(calculation.inputs, null, 2)}\n` +
+      `Results: ${JSON.stringify(calculation.results, null, 2)}`;
+    navigator.clipboard.writeText(summary);
+    alert('Calculation copied to clipboard!'); // Replace with toast if available
   };
 
   const renderInputs = (inputs: any) => {
@@ -129,37 +139,47 @@ const SavedCalculationsPage = () => {
       ) : (
         <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
           {savedCalculations.map((calculation) => (
-            <Card key={calculation.id} className="relative group shadow-lg border-medical-primary/20 hover:border-medical-primary transition-all">
-              <CardHeader className="pb-2 flex flex-row items-center gap-3">
-                <div className="flex items-center justify-center h-10 w-10 rounded-full bg-medical-primary/10">
-                  {calculatorTypeIcons[calculation.calculatorType] || <Calculator className="text-medical-primary" />}
+            <Card key={calculation.id} className="relative group shadow-xl border-0 rounded-2xl bg-white hover:shadow-2xl transition-all p-0 overflow-hidden">
+              <div className="flex flex-col h-full">
+                {/* Top section: Icon and header */}
+                <div className="flex items-center gap-4 px-6 pt-6 pb-2">
+                  <div className="flex items-center justify-center h-14 w-14 rounded-full bg-medical-primary/20 shadow-inner">
+                    {calculatorTypeIcons[calculation.calculatorType] || <Calculator className="text-medical-primary w-8 h-8" />}
                 </div>
-                <div className="flex-1">
-                  <CardTitle className="text-base font-semibold flex items-center gap-2">
-                    {calculation.name || `${calculation.calculatorType} Calculation`}
-                    <Badge variant="secondary" className="ml-2">
+                  <div className="flex-1 min-w-0">
+                    <div className="flex items-center gap-2 flex-wrap">
+                      <span className="text-lg font-bold truncate">{calculation.name || `${calculation.calculatorType} Calculation`}</span>
+                      <Badge variant="secondary" className="ml-1 text-xs px-2 py-0.5 rounded-full bg-medical-primary/10 text-medical-primary font-semibold">
                       {calculation.calculatorType}
                     </Badge>
-                  </CardTitle>
-                  <p className="text-xs text-muted-foreground mt-1">
-                    Saved on: {new Date(calculation.timestamp).toLocaleString()}
-                  </p>
+                    </div>
+                    <span className="block text-xs text-muted-foreground mt-1">{new Date(calculation.timestamp).toLocaleString()}</span>
+                  </div>
                 </div>
-              </CardHeader>
-              <CardContent className="pt-0 pb-4">
-                <div className="mb-2">
+                {/* Divider */}
+                <div className="border-t border-light-gray my-2 mx-6" />
+                {/* Inputs and Results */}
+                <div className="flex-1 px-6 pb-2">
+                  <div className="mb-3">
                   <span className="block text-xs font-semibold text-muted-foreground mb-1">Inputs</span>
+                    <div className="bg-light-gray/60 rounded-lg px-3 py-2">
                   {renderInputs(calculation.inputs)}
                 </div>
-                <div className="mb-2">
+                  </div>
+                  <div>
                   <span className="block text-xs font-semibold text-medical-primary mb-1">Results</span>
+                    <div className="bg-medical-primary/10 rounded-lg px-3 py-2">
                   {renderResults(calculation.results)}
+                    </div>
+                  </div>
                 </div>
-                <div className="flex gap-2 mt-4">
-                  <QuickActionButton icon={Eye} label="View" onClick={() => handleView(calculation)} />
-                  <QuickActionButton icon={Trash2} label="Delete" onClick={() => handleDelete(calculation.id)} variant="outline" />
+                {/* Quick actions */}
+                <div className="flex gap-3 px-6 pb-5 pt-2 mt-auto border-t border-light-gray bg-light-gray/40">
+                  <QuickActionButton icon={Eye} label="View" onClick={() => handleView(calculation)} className="flex-1 hover:bg-medical-primary/10 transition" />
+                  <QuickActionButton icon={Clipboard} label="Copy" onClick={() => handleCopy(calculation)} className="flex-1 hover:bg-medical-primary/10 transition" />
+                  <QuickActionButton icon={Trash2} label="Delete" onClick={() => handleDelete(calculation.id)} variant="outline" className="flex-1 hover:bg-alert-red/10 transition" />
                 </div>
-              </CardContent>
+              </div>
             </Card>
           ))}
         </div>

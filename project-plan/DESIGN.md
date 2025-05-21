@@ -49,6 +49,7 @@
 - Quick action buttons (view, delete) for each calculation
 - Improved empty state with icon and navigation button
 - Follows color palette and design principles for clarity and professionalism
+- **2024-06-18 Update:** Saved Calculations card redesigned for modern appeal: large icon in colored circle, bold calculation name, clear badge, subtle timestamp, visually separated inputs/results, improved quick action buttons, more whitespace, and a modern card appearance with shadow and rounded corners.
 
 ## Profile Page Redesign (2024-06-13)
 - The Settings and Theme section has been removed from the profile page.

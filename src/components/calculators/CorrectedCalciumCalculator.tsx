@@ -3,11 +3,15 @@ import { Card, CardContent, CardHeader, CardTitle } from '../ui/card';
 import { Input } from '../ui/input';
 import { Label } from '../ui/label';
 import { Button } from '../ui/button';
+import { useToast } from '@/components/ui/use-toast';
+import { apiClient } from '@/lib/apiClient';
 
 const CorrectedCalciumCalculator: React.FC = () => {
   const [serumCalcium, setSerumCalcium] = useState<string>('');
   const [albumin, setAlbumin] = useState<string>('');
   const [correctedCalcium, setCorrectedCalcium] = useState<number | null>(null);
+  const { toast } = useToast();
+  const [saving, setSaving] = useState(false);
 
   const calculateCorrectedCalcium = () => {
     const Ca = parseFloat(serumCalcium);
@@ -26,6 +30,25 @@ const CorrectedCalciumCalculator: React.FC = () => {
     setSerumCalcium('');
     setAlbumin('');
     setCorrectedCalcium(null);
+  };
+
+  const handleSaveCalculation = async () => {
+    if (correctedCalcium === null) return;
+    setSaving(true);
+    const calculationData = {
+      type: 'Corrected Calcium',
+      inputs: { serumCalcium, albumin },
+      result: { correctedCalcium },
+      timestamp: Date.now(),
+    };
+    try {
+      await apiClient.post('/api/saved-calculations', calculationData);
+      if (toast) toast({ title: 'Calculation Saved', description: 'Your Corrected Calcium calculation was saved.' });
+    } catch (err) {
+      if (toast) toast({ title: 'Error', description: 'Failed to save calculation.', variant: 'destructive' });
+    } finally {
+      setSaving(false);
+    }
   };
 
   return (
@@ -63,6 +86,7 @@ const CorrectedCalciumCalculator: React.FC = () => {
             <div className="grid gap-2">
               <Label>Corrected Calcium</Label>
               <div className="text-2xl font-bold">{correctedCalcium.toFixed(2)} mg/dL</div>
+              <Button onClick={handleSaveCalculation} className="w-full mt-3" disabled={saving}>Save Calculation</Button>
             </div>
           )}
         </div>

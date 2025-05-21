@@ -213,3 +213,12 @@ This section will track errors encountered during development.
 ### Synced Profile Image with Dashboard Icon (Navbar)
 - **Issue**: When the profile image changes, the dashboard (Navbar) icon should also update to match.
 - **Resolution**: Updated the Navbar to use the Avatar, AvatarImage, and AvatarFallback components. The Navbar now displays the user's profile image if available, or their initials as a fallback. Changes made on branch 'feature/profile-image-navbar-sync'. Updated TASKS.md and LOGS.md accordingly.
+
+### Added Copy to Clipboard for Saved Calculations
+- **Issue**: Users requested an easy way to copy saved calculation details for use in notes or other systems.
+- **Resolution**: Added a 'Copy' quick action button (Clipboard icon) to each saved calculation card on the Saved Calculations page. Clicking the button copies a formatted summary (type, inputs, results, timestamp) to the clipboard and shows an alert for feedback. Implemented on branch 'feature/copy-saved-calculation'. Updated TASKS.md and LOGS.md accordingly.
+
+## 2024-06-18
+### Started Saved Calculations Card Redesign
+- **Issue**: The Saved Calculations card needed a more modern, visually appealing design for clarity and professionalism.
+- **Resolution**: Created branch 'feature/saved-calculation-card-redesign'. Updated the card to feature a prominent icon, bold calculation name, clear badge, improved timestamp, visually separated inputs/results, and enhanced quick action buttons. Increased whitespace, used a larger icon, and improved the card's shadow and rounded corners for a more modern, scannable appearance.

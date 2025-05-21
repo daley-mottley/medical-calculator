@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { Card, CardHeader, CardTitle, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
+import { useToast } from '@/components/ui/use-toast';
+import { apiClient } from '@/lib/apiClient';
 
 function calculateFENa({
   urineNa,
@@ -30,6 +32,8 @@ export const FractionalExcretionSodiumCalculator: React.FC = () => {
   const [plasmaCr, setPlasmaCr] = useState('');
   const [result, setResult] = useState<{ fena: number; interpretation: string } | null>(null);
   const [error, setError] = useState('');
+  const { toast } = useToast();
+  const [saving, setSaving] = useState(false);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -45,6 +49,25 @@ export const FractionalExcretionSodiumCalculator: React.FC = () => {
     }
     const fena = calculateFENa({ urineNa: uNa, plasmaNa: pNa, urineCr: uCr, plasmaCr: pCr });
     setResult({ fena, interpretation: getInterpretation(fena) });
+  };
+
+  const handleSaveCalculation = async () => {
+    if (!result) return;
+    setSaving(true);
+    const calculationData = {
+      type: 'FENa',
+      inputs: { urineNa, plasmaNa, urineCr, plasmaCr },
+      result,
+      timestamp: Date.now(),
+    };
+    try {
+      await apiClient.post('/api/saved-calculations', calculationData);
+      if (toast) toast({ title: 'Calculation Saved', description: 'Your FENa calculation was saved.' });
+    } catch (err) {
+      if (toast) toast({ title: 'Error', description: 'Failed to save calculation.', variant: 'destructive' });
+    } finally {
+      setSaving(false);
+    }
   };
 
   return (
@@ -113,6 +136,7 @@ export const FractionalExcretionSodiumCalculator: React.FC = () => {
             <div className="font-medium">Results:</div>
             <div>FENa: <span className="font-mono">{result.fena.toFixed(2)}%</span></div>
             <div>Interpretation: <span className="font-mono">{result.interpretation}</span></div>
+            <Button onClick={handleSaveCalculation} className="w-full mt-3" disabled={saving}>Save Calculation</Button>
           </div>
         )}
       </CardContent>

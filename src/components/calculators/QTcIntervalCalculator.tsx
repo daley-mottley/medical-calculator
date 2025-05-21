@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { Card, CardHeader, CardTitle, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
+import { useToast } from '@/components/ui/use-toast';
+import { apiClient } from '@/lib/apiClient';
 
 function calculateQTcBazett(qt: number, hr: number): number {
   // Bazett's formula: QTc = QT / sqrt(RR)
@@ -22,6 +24,8 @@ export const QTcIntervalCalculator: React.FC = () => {
   const [hr, setHR] = useState('');
   const [result, setResult] = useState<{ bazett: number; fridericia: number } | null>(null);
   const [error, setError] = useState('');
+  const { toast } = useToast();
+  const [saving, setSaving] = useState(false);
 
   const handleCalculate = (e: React.FormEvent) => {
     e.preventDefault();
@@ -37,6 +41,25 @@ export const QTcIntervalCalculator: React.FC = () => {
       bazett: calculateQTcBazett(qtNum, hrNum),
       fridericia: calculateQTcFridericia(qtNum, hrNum),
     });
+  };
+
+  const handleSaveCalculation = async () => {
+    if (!result) return;
+    setSaving(true);
+    const calculationData = {
+      type: 'QTc Interval',
+      inputs: { qt, hr },
+      result,
+      timestamp: Date.now(),
+    };
+    try {
+      await apiClient.post('/api/saved-calculations', calculationData);
+      if (toast) toast({ title: 'Calculation Saved', description: 'Your QTc calculation was saved.' });
+    } catch (err) {
+      if (toast) toast({ title: 'Error', description: 'Failed to save calculation.', variant: 'destructive' });
+    } finally {
+      setSaving(false);
+    }
   };
 
   return (
@@ -81,6 +104,7 @@ export const QTcIntervalCalculator: React.FC = () => {
             <div className="font-medium">Results:</div>
             <div>Bazett: <span className="font-mono">{result.bazett.toFixed(1)} ms</span></div>
             <div>Fridericia: <span className="font-mono">{result.fridericia.toFixed(1)} ms</span></div>
+            <Button onClick={handleSaveCalculation} className="w-full mt-3" disabled={saving}>Save Calculation</Button>
           </div>
         )}
       </CardContent>

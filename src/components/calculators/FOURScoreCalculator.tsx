@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { Card, CardHeader, CardTitle, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
+import { useToast } from '@/components/ui/use-toast';
+import { apiClient } from '@/lib/apiClient';
 
 const options = [
   { key: 'eye', label: 'Eye Response', max: 4 },
@@ -20,6 +22,8 @@ function getInterpretation(score: number): string {
 export const FOURScoreCalculator: React.FC = () => {
   const [scores, setScores] = useState<Record<string, number>>({ eye: 4, motor: 4, brainstem: 4, respiration: 4 });
   const [result, setResult] = useState<{ total: number; interpretation: string } | null>(null);
+  const { toast } = useToast();
+  const [saving, setSaving] = useState(false);
 
   const handleChange = (key: string, value: number) => {
     setScores(prev => ({ ...prev, [key]: value }));
@@ -29,6 +33,25 @@ export const FOURScoreCalculator: React.FC = () => {
     e.preventDefault();
     const total = options.reduce((sum, opt) => sum + (scores[opt.key] || 0), 0);
     setResult({ total, interpretation: getInterpretation(total) });
+  };
+
+  const handleSaveCalculation = async () => {
+    if (!result) return;
+    setSaving(true);
+    const calculationData = {
+      type: 'FOUR Score',
+      inputs: { ...scores },
+      result,
+      timestamp: Date.now(),
+    };
+    try {
+      await apiClient.post('/api/saved-calculations', calculationData);
+      if (toast) toast({ title: 'Calculation Saved', description: 'Your FOUR Score calculation was saved.' });
+    } catch (err) {
+      if (toast) toast({ title: 'Error', description: 'Failed to save calculation.', variant: 'destructive' });
+    } finally {
+      setSaving(false);
+    }
   };
 
   return (
@@ -62,6 +85,7 @@ export const FOURScoreCalculator: React.FC = () => {
             <div className="font-medium">Results:</div>
             <div>Total Score: <span className="font-mono">{result.total}</span></div>
             <div>Interpretation: <span className="font-mono">{result.interpretation}</span></div>
+            <Button onClick={handleSaveCalculation} className="w-full mt-3" disabled={saving}>Save Calculation</Button>
           </div>
         )}
       </CardContent>

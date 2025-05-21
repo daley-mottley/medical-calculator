@@ -3,11 +3,15 @@ import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/com
 import { Label } from '@/components/ui/label';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
+import { useToast } from '@/components/ui/use-toast';
+import { apiClient } from '@/lib/apiClient';
 
 export const BSACalculator: React.FC = () => {
   const [height, setHeight] = useState('');
   const [weight, setWeight] = useState('');
   const [bsa, setBsa] = useState<string | null>(null);
+  const { toast } = useToast();
+  const [saving, setSaving] = useState(false);
 
   const calculateBSA = () => {
     // Placeholder for BSA calculation logic
@@ -24,6 +28,25 @@ export const BSACalculator: React.FC = () => {
     // Assuming height is in cm and weight is in kg
     const calculatedBsa = Math.sqrt((h * w) / 3600);
     setBsa(calculatedBsa.toFixed(2) + ' m²');
+  };
+
+  const handleSaveCalculation = async () => {
+    if (!bsa || bsa === 'Invalid input') return;
+    setSaving(true);
+    const calculationData = {
+      type: 'BSA',
+      inputs: { height, weight },
+      result: { bsa },
+      timestamp: Date.now(),
+    };
+    try {
+      await apiClient.post('/api/saved-calculations', calculationData);
+      if (toast) toast({ title: 'Calculation Saved', description: 'Your BSA calculation was saved.' });
+    } catch (err) {
+      if (toast) toast({ title: 'Error', description: 'Failed to save calculation.', variant: 'destructive' });
+    } finally {
+      setSaving(false);
+    }
   };
 
   return (
@@ -58,6 +81,7 @@ export const BSACalculator: React.FC = () => {
           <div className="mt-4 p-4 border rounded">
             <h4 className="font-medium text-sm mb-2">Result</h4>
             <p>{bsa}</p>
+            <Button onClick={handleSaveCalculation} className="w-full mt-3" disabled={saving}>Save Calculation</Button>
           </div>
         )}
       </CardContent>

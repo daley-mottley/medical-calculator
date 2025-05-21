@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { Card, CardHeader, CardTitle, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
+import { useToast } from '@/components/ui/use-toast';
+import { apiClient } from '@/lib/apiClient';
 
 const items = [
   { key: '1a', label: '1a. Level of Consciousness', max: 3 },
@@ -30,6 +32,8 @@ function getInterpretation(score: number): string {
 export const NIHStrokeScaleCalculator: React.FC = () => {
   const [scores, setScores] = useState<Record<string, number>>({});
   const [result, setResult] = useState<{ total: number; interpretation: string } | null>(null);
+  const { toast } = useToast();
+  const [saving, setSaving] = useState(false);
 
   const handleChange = (key: string, value: number) => {
     setScores(prev => ({ ...prev, [key]: value }));
@@ -42,6 +46,25 @@ export const NIHStrokeScaleCalculator: React.FC = () => {
       total += scores[item.key] || 0;
     });
     setResult({ total, interpretation: getInterpretation(total) });
+  };
+
+  const handleSaveCalculation = async () => {
+    if (!result) return;
+    setSaving(true);
+    const calculationData = {
+      type: 'NIH Stroke Scale',
+      inputs: { ...scores },
+      result,
+      timestamp: Date.now(),
+    };
+    try {
+      await apiClient.post('/api/saved-calculations', calculationData);
+      if (toast) toast({ title: 'Calculation Saved', description: 'Your NIHSS calculation was saved.' });
+    } catch (err) {
+      if (toast) toast({ title: 'Error', description: 'Failed to save calculation.', variant: 'destructive' });
+    } finally {
+      setSaving(false);
+    }
   };
 
   return (
@@ -75,6 +98,7 @@ export const NIHStrokeScaleCalculator: React.FC = () => {
             <div className="font-medium">Results:</div>
             <div>Total Score: <span className="font-mono">{result.total}</span></div>
             <div>Interpretation: <span className="font-mono">{result.interpretation}</span></div>
+            <Button onClick={handleSaveCalculation} className="w-full mt-3" disabled={saving}>Save Calculation</Button>
           </div>
         )}
       </CardContent>
