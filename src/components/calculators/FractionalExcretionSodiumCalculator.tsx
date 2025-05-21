@@ -3,6 +3,7 @@ import { Card, CardHeader, CardTitle, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { useToast } from '@/components/ui/use-toast';
 import { apiClient } from '@/lib/apiClient';
+import { Input } from '@/components/ui/input';
 
 function calculateFENa({
   urineNa,
@@ -82,9 +83,8 @@ export const FractionalExcretionSodiumCalculator: React.FC = () => {
         <form onSubmit={handleSubmit} className="space-y-4">
           <div>
             <label className="block font-medium mb-1">Urine Sodium (mEq/L)</label>
-            <input
+            <Input
               type="number"
-              className="input input-bordered w-full"
               value={urineNa}
               onChange={e => setUrineNa(e.target.value)}
               min="0"
@@ -94,9 +94,8 @@ export const FractionalExcretionSodiumCalculator: React.FC = () => {
           </div>
           <div>
             <label className="block font-medium mb-1">Plasma Sodium (mEq/L)</label>
-            <input
+            <Input
               type="number"
-              className="input input-bordered w-full"
               value={plasmaNa}
               onChange={e => setPlasmaNa(e.target.value)}
               min="0"
@@ -106,9 +105,8 @@ export const FractionalExcretionSodiumCalculator: React.FC = () => {
           </div>
           <div>
             <label className="block font-medium mb-1">Urine Creatinine (mg/dL)</label>
-            <input
+            <Input
               type="number"
-              className="input input-bordered w-full"
               value={urineCr}
               onChange={e => setUrineCr(e.target.value)}
               min="0"
@@ -118,9 +116,8 @@ export const FractionalExcretionSodiumCalculator: React.FC = () => {
           </div>
           <div>
             <label className="block font-medium mb-1">Plasma Creatinine (mg/dL)</label>
-            <input
+            <Input
               type="number"
-              className="input input-bordered w-full"
               value={plasmaCr}
               onChange={e => setPlasmaCr(e.target.value)}
               min="0"

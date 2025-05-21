@@ -3,6 +3,7 @@ import { Card, CardHeader, CardTitle, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { apiClient } from '@/lib/apiClient';
 import { useToast } from '@/components/ui/use-toast';
+import { Input } from '@/components/ui/input';
 
 function calculateEGFR({
   creatinine,
@@ -85,9 +86,8 @@ export const EGFRCreatinineCalculator: React.FC = () => {
         <form onSubmit={handleSubmit} className="space-y-4">
           <div>
             <label className="block font-medium mb-1">Serum Creatinine (mg/dL)</label>
-            <input
+            <Input
               type="number"
-              className="input input-bordered w-full"
               value={creatinine}
               onChange={e => setCreatinine(e.target.value)}
               min="0"
@@ -97,9 +97,8 @@ export const EGFRCreatinineCalculator: React.FC = () => {
           </div>
           <div>
             <label className="block font-medium mb-1">Age (years)</label>
-            <input
+            <Input
               type="number"
-              className="input input-bordered w-full"
               value={age}
               onChange={e => setAge(e.target.value)}
               min="0"
@@ -116,6 +115,7 @@ export const EGFRCreatinineCalculator: React.FC = () => {
                 value="male"
                 checked={sex === 'male'}
                 onChange={() => setSex('male')}
+                className="accent-medical-primary"
               />
               Male
             </label>
@@ -126,6 +126,7 @@ export const EGFRCreatinineCalculator: React.FC = () => {
                 value="female"
                 checked={sex === 'female'}
                 onChange={() => setSex('female')}
+                className="accent-medical-primary"
               />
               Female
             </label>
@@ -136,7 +137,7 @@ export const EGFRCreatinineCalculator: React.FC = () => {
               id="isBlack"
               checked={isBlack}
               onChange={() => setIsBlack(v => !v)}
-              className="checkbox"
+              className="checkbox accent-medical-primary"
             />
             <label htmlFor="isBlack" className="font-medium cursor-pointer">Black race</label>
           </div>

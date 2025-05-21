@@ -3,6 +3,7 @@ import { Card, CardHeader, CardTitle, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { useToast } from '@/components/ui/use-toast';
 import { apiClient } from '@/lib/apiClient';
+import { Input } from '@/components/ui/input';
 
 function calculateQTcBazett(qt: number, hr: number): number {
   // Bazett's formula: QTc = QT / sqrt(RR)
@@ -74,9 +75,8 @@ export const QTcIntervalCalculator: React.FC = () => {
         <form onSubmit={handleCalculate} className="space-y-4">
           <div>
             <label className="block font-medium mb-1">QT Interval (ms)</label>
-            <input
+            <Input
               type="number"
-              className="input input-bordered w-full"
               value={qt}
               onChange={e => setQT(e.target.value)}
               min="0"
@@ -86,9 +86,8 @@ export const QTcIntervalCalculator: React.FC = () => {
           </div>
           <div>
             <label className="block font-medium mb-1">Heart Rate (bpm)</label>
-            <input
+            <Input
               type="number"
-              className="input input-bordered w-full"
               value={hr}
               onChange={e => setHR(e.target.value)}
               min="0"

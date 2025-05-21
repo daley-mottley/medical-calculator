@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Card, CardHeader, CardTitle, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
 
 function calculateAaGradient({
   fio2,
@@ -68,9 +69,8 @@ export const AaGradientCalculator: React.FC = () => {
         <form onSubmit={handleSubmit} className="space-y-4">
           <div>
             <label className="block font-medium mb-1">FiO₂ (fraction, e.g. 0.21 for room air)</label>
-            <input
+            <Input
               type="number"
-              className="input input-bordered w-full"
               value={fio2}
               onChange={e => setFio2(e.target.value)}
               min="0"
@@ -81,9 +81,8 @@ export const AaGradientCalculator: React.FC = () => {
           </div>
           <div>
             <label className="block font-medium mb-1">PaO₂ (mmHg)</label>
-            <input
+            <Input
               type="number"
-              className="input input-bordered w-full"
               value={pao2}
               onChange={e => setPao2(e.target.value)}
               min="0"
@@ -93,9 +92,8 @@ export const AaGradientCalculator: React.FC = () => {
           </div>
           <div>
             <label className="block font-medium mb-1">PaCO₂ (mmHg)</label>
-            <input
+            <Input
               type="number"
-              className="input input-bordered w-full"
               value={paco2}
               onChange={e => setPaco2(e.target.value)}
               min="0"
@@ -105,9 +103,8 @@ export const AaGradientCalculator: React.FC = () => {
           </div>
           <div>
             <label className="block font-medium mb-1">Age (years)</label>
-            <input
+            <Input
               type="number"
-              className="input input-bordered w-full"
               value={age}
               onChange={e => setAge(e.target.value)}
               min="0"
@@ -117,9 +114,8 @@ export const AaGradientCalculator: React.FC = () => {
           </div>
           <div>
             <label className="block font-medium mb-1">Barometric Pressure (mmHg, default 760)</label>
-            <input
+            <Input
               type="number"
-              className="input input-bordered w-full"
               value={pb}
               onChange={e => setPb(e.target.value)}
               min="0"
@@ -128,9 +124,8 @@ export const AaGradientCalculator: React.FC = () => {
           </div>
           <div>
             <label className="block font-medium mb-1">Respiratory Quotient (default 0.8)</label>
-            <input
+            <Input
               type="number"
-              className="input input-bordered w-full"
               value={rq}
               onChange={e => setRq(e.target.value)}
               min="0.1"
