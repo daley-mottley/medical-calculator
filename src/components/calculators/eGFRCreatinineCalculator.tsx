@@ -3,7 +3,6 @@ import { Card, CardHeader, CardTitle, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { apiClient } from '@/lib/apiClient';
 import { useToast } from '@/components/ui/use-toast';
-import { Input } from '@/components/ui/input';
 
 function calculateEGFR({
   creatinine,
