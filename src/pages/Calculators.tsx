@@ -23,6 +23,8 @@ import CURB65Calculator from '@/components/calculators/CURB65Calculator';
 import WellsScoreCalculator from '@/components/calculators/WellsScoreCalculator';
 import AaGradientCalculator from '@/components/calculators/AaGradientCalculator';
 import { useParams, useNavigate } from 'react-router-dom';
+import { FavoriteButton } from '@/components/ui/FavoriteButton';
+import { useFavorites } from '@/hooks/use-favorites';
 
 const calculatorCategories = [
   {
@@ -156,6 +158,7 @@ const calculatorComponentMap: Record<string, JSX.Element> = {
 const Calculators = () => {
   const { calculatorId } = useParams<{ calculatorId?: string }>();
   const navigate = useNavigate();
+  const { favorites, addFavorite, removeFavorite, isFavorite } = useFavorites();
 
   // Scroll to top when navigating to a calculator page
   useEffect(() => {
@@ -170,7 +173,17 @@ const Calculators = () => {
       return (
         <AppLayout>
           <div className="mb-6 flex items-center justify-between">
-            <h1 className="text-2xl font-bold tracking-tight">{calcName} Calculator</h1>
+            <div className="flex items-center gap-3">
+              <h1 className="text-2xl font-bold tracking-tight">{calcName} Calculator</h1>
+              <FavoriteButton
+                favorited={isFavorite(calcName)}
+                onClick={() =>
+                  isFavorite(calcName)
+                    ? removeFavorite(calcName)
+                    : addFavorite(calcName)
+                }
+              />
+            </div>
             <Button variant="outline" onClick={() => navigate('/calculators')}>Back to Calculators</Button>
           </div>
           {calculatorComponentMap[calcName]}
@@ -224,7 +237,17 @@ const Calculators = () => {
                 </div>
                 <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
                   {category.calculators.map((calculator, i) => (
-                    <Card key={i} className="overflow-hidden">
+                    <Card key={i} className="overflow-hidden relative">
+                      <div className="absolute top-3 right-3 z-10">
+                        <FavoriteButton
+                          favorited={isFavorite(calculator.name)}
+                          onClick={() =>
+                            isFavorite(calculator.name)
+                              ? removeFavorite(calculator.name)
+                              : addFavorite(calculator.name)
+                          }
+                        />
+                      </div>
                       <CardHeader className="pb-2">
                         <CardTitle className="text-lg">{calculator.name}</CardTitle>
                         <CardDescription>{calculator.description}</CardDescription>
@@ -264,16 +287,54 @@ const Calculators = () => {
         </TabsContent>
 
         <TabsContent value="favorites">
-          <Card>
-            <CardContent className="p-6 text-center">
-              <Calculator className="mx-auto h-12 w-12 text-muted-foreground mb-3" />
-              <h3 className="text-xl font-medium">No favorite calculators</h3>
-              <p className="text-muted-foreground my-3">
-                Add calculators to your favorites for quick access
-              </p>
-              <Button variant="outline">Browse All Calculators</Button>
-            </CardContent>
-          </Card>
+          {favorites.length === 0 ? (
+            <Card>
+              <CardContent className="p-6 text-center">
+                <Calculator className="mx-auto h-12 w-12 text-muted-foreground mb-3" />
+                <h3 className="text-xl font-medium">No favorite calculators</h3>
+                <p className="text-muted-foreground my-3">
+                  Add calculators to your favorites for quick access
+                </p>
+                <Button variant="outline" onClick={() => navigate('/calculators')}>Browse All Calculators</Button>
+              </CardContent>
+            </Card>
+          ) : (
+            <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+              {calculatorCategories.flatMap(category =>
+                category.calculators.filter(calculator => favorites.includes(calculator.name)).map((calculator, i) => (
+                  <Card key={category.id + '-' + calculator.name} className="overflow-hidden relative">
+                    <div className="absolute top-3 right-3 z-10">
+                      <FavoriteButton
+                        favorited={isFavorite(calculator.name)}
+                        onClick={() =>
+                          isFavorite(calculator.name)
+                            ? removeFavorite(calculator.name)
+                            : addFavorite(calculator.name)
+                        }
+                      />
+                    </div>
+                    <CardHeader className="pb-2">
+                      <CardTitle className="text-lg">{calculator.name}</CardTitle>
+                      <CardDescription>{calculator.description}</CardDescription>
+                    </CardHeader>
+                    <CardContent className="pt-0">
+                      <Button
+                        className="w-full bg-medical-primary hover:bg-medical-secondary"
+                        onClick={() => {
+                          const route = calculatorRouteSegment[calculator.name];
+                          if (route) {
+                            navigate(`/calculators/${route}`);
+                          }
+                        }}
+                      >
+                        Open Calculator
+                      </Button>
+                    </CardContent>
+                  </Card>
+                ))
+              )}
+            </div>
+          )}
         </TabsContent>
 
         {calculatorCategories.map((category) => (

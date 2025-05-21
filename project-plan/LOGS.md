@@ -231,3 +231,12 @@ This section will track errors encountered during development.
 - Removed the entire testimonials section and the TestimonialCard component from `src/pages/Landing.tsx`.
 - Reason: Per project instructions, testimonials will be added at a later date. This keeps the landing page clean and focused.
 - Verified that the app builds and runs successfully after the update.
+
+## 2024-06-19
+### Started Favorite Calculators Feature
+- **Issue**: Users need to quickly access their most-used calculators by marking them as favorites.
+- **Resolution**: Created branch `feature/favorite-calculators`. Added `useFavorites` hook for localStorage persistence, `FavoriteButton` UI component, and integrated favorite/unfavorite logic into the calculators page. Updated the Favorites tab to show only favorited calculators.
+
+### Added Favorite Button Next to Calculator Title on Calculator Page
+- **Issue**: Users should be able to favorite/unfavorite calculators directly from the calculator page, not just from the calculator list.
+- **Resolution**: Added a Favorite (heart icon) button next to the calculator title on the individual calculator page (branch: feature/favorite-calculator-title-button). The button uses the same favorite logic as the calculator list, providing a consistent and intuitive experience. Updated TASKS.md and LOGS.md to reflect this improvement.

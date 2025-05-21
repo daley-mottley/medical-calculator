@@ -28,6 +28,8 @@
 - [ ] Remove the "Settings" and "Theme" section from the profile page. Add a profile image at the top with the option to change the profile image. Allow the user to change the user name as well. (in progress)
 - [x] Make the dashboard title on the Navbar navigate to the dashboard ('/calculators') (feature/navbar-dashboard-title-link, 2024-06-16)
 - [ ] [In Progress] Sync profile image with dashboard icon (feature/profile-image-navbar-sync, 2024-06-17) - Updated Navbar to use Avatar and show profile image if available, otherwise initials.
+- [x] Implement Favorite Calculators feature: allow users to mark calculators as favorites, view favorites in a dedicated tab, and persist favorites in localStorage. (feature/favorite-calculators, 2024-06-19)
+   - [x] Add Favorite (heart icon) button next to calculator title on calculator page (feature/favorite-calculator-title-button, 2024-06-19)
 
 ### Priority 2 (High)
 - [ ] Implement unit tests for all calculator components (Some tests exist, need comprehensive coverag
