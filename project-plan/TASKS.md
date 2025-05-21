@@ -23,6 +23,7 @@
 - [ ] Implement Suggestion Box widget (in progress, see branch feature/suggestion-box-widget)
 - [ ] Improve Suggestion Box UI to be more user friendly (in progress, see branch feature/suggestion-box-ui-improvement)
 - [ ] Improve Saved Calculations page UI for better appeal and user-friendliness (feature/saved-calculations-ui-improvement, 2024-06-13)
+- [ ] [In Progress] Redesign Saved Calculations card for modern, visually appealing look, with improved layout, icon, badge, and quick actions (feature/saved-calculation-card-redesign, 2024-06-18)
 - [ ] Replace Suggestion Box widget icon with a more appropriate icon (BallotBox or Vote) (feature/suggestion-box-icon-update, 2025-06-12)
 - [ ] Remove the "Settings" and "Theme" section from the profile page. Add a profile image at the top with the option to change the profile image. Allow the user to change the user name as well. (in progress)
 - [x] Make the dashboard title on the Navbar navigate to the dashboard ('/calculators') (feature/navbar-dashboard-title-link, 2024-06-16)
@@ -45,3 +46,4 @@
 - [x] Implement landing page matching the appeal app, with sign up button and menu login/sign up (feature/landing-page-auth-ui, 2024-06-15)
 - [x] Update 'Login as Guest' button to redirect to dashboard (feature/landing-page-auth-ui, 2024-06-15)
 - [x] Make the dashboard title on the Navbar navigate to the dashboard ('/calculators') (feature/navbar-dashboard-title-link, 2024-06-16)
+- [x] Allow user to copy saved calculation to clipboard from Saved Calculations page (feature/copy-saved-calculation, 2024-06-17) - Added a 'Copy' quick action button to each saved calculation card, which copies a formatted summary to the clipboard.

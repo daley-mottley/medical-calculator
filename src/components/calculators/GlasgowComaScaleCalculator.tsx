@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { Card, CardHeader, CardTitle, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
+import { useToast } from '@/components/ui/use-toast';
+import { apiClient } from '@/lib/apiClient';
 
 const eyeOptions = [
   { value: 4, label: 'Spontaneous' },
@@ -35,11 +37,32 @@ export const GlasgowComaScaleCalculator: React.FC = () => {
   const [verbal, setVerbal] = useState(5);
   const [motor, setMotor] = useState(6);
   const [result, setResult] = useState<{ total: number; interpretation: string } | null>(null);
+  const { toast } = useToast();
+  const [saving, setSaving] = useState(false);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     const total = eye + verbal + motor;
     setResult({ total, interpretation: getInterpretation(total) });
+  };
+
+  const handleSaveCalculation = async () => {
+    if (!result) return;
+    setSaving(true);
+    const calculationData = {
+      type: 'Glasgow Coma Scale',
+      inputs: { eye, verbal, motor },
+      result,
+      timestamp: Date.now(),
+    };
+    try {
+      await apiClient.post('/api/saved-calculations', calculationData);
+      if (toast) toast({ title: 'Calculation Saved', description: 'Your GCS calculation was saved.' });
+    } catch (err) {
+      if (toast) toast({ title: 'Error', description: 'Failed to save calculation.', variant: 'destructive' });
+    } finally {
+      setSaving(false);
+    }
   };
 
   return (
@@ -95,6 +118,7 @@ export const GlasgowComaScaleCalculator: React.FC = () => {
             <div className="font-medium">Results:</div>
             <div>Total Score: <span className="font-mono">{result.total}</span></div>
             <div>Interpretation: <span className="font-mono">{result.interpretation}</span></div>
+            <Button onClick={handleSaveCalculation} className="w-full mt-3" disabled={saving}>Save Calculation</Button>
           </div>
         )}
       </CardContent>

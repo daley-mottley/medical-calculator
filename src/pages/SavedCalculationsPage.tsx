@@ -4,7 +4,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from '@/components/ui/badge';
 import { QuickActionButton } from '@/components/ui/QuickActionButton';
 import { Button } from '@/components/ui/button';
-import { Save, Calculator, Trash2, Eye, Heart, Brain, Droplets } from 'lucide-react';
+import { Save, Calculator, Trash2, Eye, Heart, Brain, Droplets, Clipboard } from 'lucide-react';
 import { apiClient } from '@/lib/apiClient';
 import { useNavigate } from 'react-router-dom';
 
@@ -69,19 +69,35 @@ const SavedCalculationsPage = () => {
     }
   };
 
-  const renderStructuredData = (data: any, type: 'inputs' | 'results') => {
-    if (!data || typeof data !== 'object' || Object.keys(data).length === 0) {
-      return <p className="text-xs text-muted-foreground">No {type} data available.</p>;
-    }
+  const handleCopy = (calculation: SavedCalculation) => {
+    const summary = `Calculation: ${calculation.name || calculation.calculatorType}\n` +
+      `Type: ${calculation.calculatorType}\n` +
+      `Saved on: ${new Date(calculation.timestamp).toLocaleString()}\n` +
+      `Inputs: ${JSON.stringify(calculation.inputs, null, 2)}\n` +
+      `Results: ${JSON.stringify(calculation.results, null, 2)}`;
+    navigator.clipboard.writeText(summary);
+    alert('Calculation copied to clipboard!'); // Replace with toast if available
+  };
+
+  const renderInputs = (inputs: any) => {
+    if (!inputs || typeof inputs !== 'object') return null;
     return (
-      <dl className="text-xs space-y-1">
-        {Object.entries(data).map(([key, value]) => (
-          <div key={key} className="flex">
-            <dt className="font-medium capitalize text-muted-foreground w-2/5 truncate pr-1">{key.replace(/([A-Z])/g, ' $1').trim()}:</dt>
-            <dd className={`w-3/5 ${type === 'results' ? 'text-medical-primary font-semibold' : 'text-foreground'}`}>{String(value)}</dd>
-          </div>
+      <ul className="text-xs text-muted-foreground space-y-1">
+        {Object.entries(inputs).map(([key, value]) => (
+          <li key={key}><span className="font-medium capitalize">{key.replace(/([A-Z])/g, ' $1')}</span>: {String(value)}</li>
         ))}
-      </dl>
+      </ul>
+    );
+  };
+
+  const renderResults = (results: any) => {
+    if (!results || typeof results !== 'object') return null;
+    return (
+      <ul className="text-xs text-medical-primary space-y-1">
+        {Object.entries(results).map(([key, value]) => (
+          <li key={key}><span className="font-medium capitalize">{key.replace(/([A-Z])/g, ' $1')}</span>: {String(value)}</li>
+        ))}
+      </ul>
     );
   };
 
@@ -134,53 +150,49 @@ const SavedCalculationsPage = () => {
           </CardContent>
         </Card>
       ) : (
-        <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 animate-fade-in">
-          {savedCalculations.map((calculation, index) => (
-            <Card 
-              key={calculation.id} 
-              className="relative group shadow-lg border border-medical-primary/20 hover:border-medical-accent hover:shadow-xl transform hover:-translate-y-1 transition-all duration-300 ease-in-out bg-card animate-fade-in"
-              style={{ animationDelay: `${index * 100}ms` }} // Staggered animation
-            >
-              <CardHeader className="pb-3 flex flex-row items-start gap-3">
-                <div className="flex items-center justify-center h-12 w-12 rounded-lg bg-medical-primary/10 shrink-0 mt-1">
-                  {calculatorTypeIcons[calculation.calculatorType] || <Calculator className="text-medical-primary h-6 w-6" />}
+        <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+          {savedCalculations.map((calculation) => (
+            <Card key={calculation.id} className="relative group shadow-xl border-0 rounded-2xl bg-white hover:shadow-2xl transition-all p-0 overflow-hidden">
+              <div className="flex flex-col h-full">
+                {/* Top section: Icon and header */}
+                <div className="flex items-center gap-4 px-6 pt-6 pb-2">
+                  <div className="flex items-center justify-center h-14 w-14 rounded-full bg-medical-primary/20 shadow-inner">
+                    {calculatorTypeIcons[calculation.calculatorType] || <Calculator className="text-medical-primary w-8 h-8" />}
                 </div>
-                <div className="flex-1">
-                  <CardTitle className="text-lg font-semibold flex items-center justify-between">
-                    <span className="truncate pr-2">{calculation.name || `${calculation.calculatorType} Calculation`}</span>
-                    <Badge variant="secondary" className="text-xs whitespace-nowrap shrink-0">
+                  <div className="flex-1 min-w-0">
+                    <div className="flex items-center gap-2 flex-wrap">
+                      <span className="text-lg font-bold truncate">{calculation.name || `${calculation.calculatorType} Calculation`}</span>
+                      <Badge variant="secondary" className="ml-1 text-xs px-2 py-0.5 rounded-full bg-medical-primary/10 text-medical-primary font-semibold">
                       {calculation.calculatorType}
                     </Badge>
-                  </CardTitle>
-                  <p className="text-xs text-muted-foreground mt-1">
-                    Saved: {new Date(calculation.timestamp).toLocaleDateString()} ({new Date(calculation.timestamp).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })})
-                  </p>
-                </div>
-              </CardHeader>
-              <CardContent className="pt-0 pb-4 space-y-3">
-                <div>
-                  <h4 className="text-xs font-semibold text-muted-foreground mb-1.5 tracking-wider uppercase">Inputs</h4>
-                  <div className="bg-slate-50 dark:bg-slate-800/50 p-2.5 rounded-md shadow-inner">
-                    {renderStructuredData(calculation.inputs, 'inputs')}
+                    </div>
+                    <span className="block text-xs text-muted-foreground mt-1">{new Date(calculation.timestamp).toLocaleString()}</span>
                   </div>
                 </div>
-                <div>
-                  <h4 className="text-xs font-semibold text-medical-primary mb-1.5 tracking-wider uppercase">Results</h4>
-                  <div className="bg-medical-soft/20 dark:bg-medical-primary/10 p-2.5 rounded-md shadow-inner">
-                    {renderStructuredData(calculation.results, 'results')}
+                {/* Divider */}
+                <div className="border-t border-light-gray my-2 mx-6" />
+                {/* Inputs and Results */}
+                <div className="flex-1 px-6 pb-2">
+                  <div className="mb-3">
+                  <span className="block text-xs font-semibold text-muted-foreground mb-1">Inputs</span>
+                    <div className="bg-light-gray/60 rounded-lg px-3 py-2">
+                  {renderInputs(calculation.inputs)}
+                </div>
+                  </div>
+                  <div>
+                  <span className="block text-xs font-semibold text-medical-primary mb-1">Results</span>
+                    <div className="bg-medical-primary/10 rounded-lg px-3 py-2">
+                  {renderResults(calculation.results)}
+                    </div>
                   </div>
                 </div>
-                <div className="flex gap-2 pt-2 justify-end">
-                  <QuickActionButton icon={Eye} label="View" onClick={() => handleView(calculation)} className="text-xs" />
-                  <QuickActionButton 
-                    icon={Trash2} 
-                    label="Delete" 
-                    onClick={() => handleDelete(calculation.id)} 
-                    variant="outline"
-                    className="text-xs border-red-400/50 text-red-600 dark:text-red-500 dark:border-red-600/50 hover:bg-red-50 dark:hover:bg-red-900/30 hover:text-red-700 dark:hover:text-red-400 hover:border-red-500 dark:hover:border-red-500"
-                  />
+                {/* Quick actions */}
+                <div className="flex gap-3 px-6 pb-5 pt-2 mt-auto border-t border-light-gray bg-light-gray/40">
+                  <QuickActionButton icon={Eye} label="View" onClick={() => handleView(calculation)} className="flex-1 hover:bg-medical-primary/10 transition" />
+                  <QuickActionButton icon={Clipboard} label="Copy" onClick={() => handleCopy(calculation)} className="flex-1 hover:bg-medical-primary/10 transition" />
+                  <QuickActionButton icon={Trash2} label="Delete" onClick={() => handleDelete(calculation.id)} variant="outline" className="flex-1 hover:bg-alert-red/10 transition" />
                 </div>
-              </CardContent>
+              </div>
             </Card>
           ))}
         </div>

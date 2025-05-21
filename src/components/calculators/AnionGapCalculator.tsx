@@ -3,12 +3,16 @@ import { Card, CardContent, CardHeader, CardTitle } from '../ui/card';
 import { Input } from '../ui/input';
 import { Label } from '../ui/label';
 import { Button } from '../ui/button';
+import { useToast } from '@/components/ui/use-toast';
+import { apiClient } from '@/lib/apiClient';
 
 const AnionGapCalculator: React.FC = () => {
   const [sodium, setSodium] = useState<string>('');
   const [chloride, setChloride] = useState<string>('');
   const [bicarbonate, setBicarbonate] = useState<string>('');
   const [anionGap, setAnionGap] = useState<number | null>(null);
+  const { toast } = useToast();
+  const [saving, setSaving] = useState(false);
 
   const calculateAnionGap = () => {
     const Na = parseFloat(sodium);
@@ -28,6 +32,25 @@ const AnionGapCalculator: React.FC = () => {
     setChloride('');
     setBicarbonate('');
     setAnionGap(null);
+  };
+
+  const handleSaveCalculation = async () => {
+    if (anionGap === null) return;
+    setSaving(true);
+    const calculationData = {
+      type: 'Anion Gap',
+      inputs: { sodium, chloride, bicarbonate },
+      result: { anionGap },
+      timestamp: Date.now(),
+    };
+    try {
+      await apiClient.post('/api/saved-calculations', calculationData);
+      if (toast) toast({ title: 'Calculation Saved', description: 'Your Anion Gap calculation was saved.' });
+    } catch (err) {
+      if (toast) toast({ title: 'Error', description: 'Failed to save calculation.', variant: 'destructive' });
+    } finally {
+      setSaving(false);
+    }
   };
 
   return (
@@ -75,6 +98,7 @@ const AnionGapCalculator: React.FC = () => {
             <div className="grid gap-2">
               <Label>Anion Gap</Label>
               <div className="text-2xl font-bold">{anionGap.toFixed(2)} mEq/L</div>
+              <Button onClick={handleSaveCalculation} className="w-full mt-3" disabled={saving}>Save Calculation</Button>
             </div>
           )}
         </div>
