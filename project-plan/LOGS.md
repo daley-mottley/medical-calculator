@@ -222,3 +222,8 @@ This section will track errors encountered during development.
 ### Started Saved Calculations Card Redesign
 - **Issue**: The Saved Calculations card needed a more modern, visually appealing design for clarity and professionalism.
 - **Resolution**: Created branch 'feature/saved-calculation-card-redesign'. Updated the card to feature a prominent icon, bold calculation name, clear badge, improved timestamp, visually separated inputs/results, and enhanced quick action buttons. Increased whitespace, used a larger icon, and improved the card's shadow and rounded corners for a more modern, scannable appearance.
+
+## [feature/remove-testimonials] - Removed Testimonials Section from Landing Page
+- Removed the entire testimonials section and the TestimonialCard component from `src/pages/Landing.tsx`.
+- Reason: Per project instructions, testimonials will be added at a later date. This keeps the landing page clean and focused.
+- Verified that the app builds and runs successfully after the update.

@@ -47,3 +47,4 @@
 - [x] Update 'Login as Guest' button to redirect to dashboard (feature/landing-page-auth-ui, 2024-06-15)
 - [x] Make the dashboard title on the Navbar navigate to the dashboard ('/calculators') (feature/navbar-dashboard-title-link, 2024-06-16)
 - [x] Allow user to copy saved calculation to clipboard from Saved Calculations page (feature/copy-saved-calculation, 2024-06-17) - Added a 'Copy' quick action button to each saved calculation card, which copies a formatted summary to the clipboard.
+- [x] Remove testimonials section from the landing page (`feature/remove-testimonials`). See LOGS.md for details.

@@ -1,4 +1,3 @@
-
 import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { Shield, Zap, Settings, Users, LayoutDashboard, Activity, Star, ChevronRight } from 'lucide-react';
@@ -25,20 +24,6 @@ const HowItWorksStep = ({ icon: Icon, title, description, stepNumber }: { icon: 
     </div>
     <h4 className="text-lg font-semibold text-medical-tertiary mb-1">{title}</h4>
     <p className="text-muted-foreground text-sm max-w-xs">{description}</p>
-  </div>
-);
-
-// Helper component for Testimonial cards (placeholder)
-const TestimonialCard = ({ quote, author, role, stars }: { quote: string, author: string, role: string, stars: number }) => (
-  <div className="bg-white rounded-xl shadow-lg p-8 animate-fade-in w-full max-w-md mx-auto">
-    <div className="flex mb-3">
-      {Array.from({ length: 5 }).map((_, i) => (
-        <Star key={i} className={`w-5 h-5 ${i < stars ? 'text-yellow-400 fill-yellow-400' : 'text-gray-300'}`} />
-      ))}
-    </div>
-    <p className="text-muted-foreground italic mb-4">"{quote}"</p>
-    <p className="font-semibold text-medical-tertiary">{author}</p>
-    <p className="text-sm text-medical-secondary/80">{role}</p>
   </div>
 );
 
@@ -136,34 +121,6 @@ export default function Landing() {
           </div>
         </section>
         
-        {/* Testimonials Section (Placeholder) */}
-        <section className="py-16 md:py-20 bg-white">
-          <div className="container mx-auto px-4">
-            <h2 className="text-3xl md:text-4xl font-bold text-center mb-12 text-medical-tertiary">Trusted by Professionals</h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {/* Placeholder Testimonials - replace with real ones */}
-              <TestimonialCard 
-                quote="MedicMindAssist has revolutionized how I approach calculations in my daily practice. It's a lifesaver!"
-                author="Dr. Emily Carter"
-                role="General Practitioner"
-                stars={5}
-              />
-              <TestimonialCard 
-                quote="The range of tools is impressive, and the platform is incredibly user-friendly. Highly recommended."
-                author="Dr. Ben Adams"
-                role="Cardiologist"
-                stars={5}
-              />
-               <TestimonialCard 
-                quote="Finally, a tool that understands the needs of busy clinicians. Fast, reliable, and secure."
-                author="Sarah Chen, NP"
-                role="Nurse Practitioner"
-                stars={4}
-              />
-            </div>
-          </div>
-        </section>
-
         {/* Final CTA Section */}
         <section className="py-16 md:py-24 bg-medical-primary/90 text-white">
           <div className="container mx-auto px-4 text-center animate-fade-in">
