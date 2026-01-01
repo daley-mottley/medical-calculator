@@ -99,12 +99,7 @@ export const SuggestionBox = () => {
   return (
     <>
       {/* Floating Button with Tooltip and Animation */}
-      <div className="fixed z-50 bottom-6 right-6 flex flex-col items-end">
-        <div className="mb-2">
-          <span className="bg-[#9b87f5] text-white text-xs px-3 py-1 rounded-full shadow-md opacity-0 group-hover:opacity-100 transition-opacity duration-200 group-focus-within:opacity-100 pointer-events-none select-none">
-            Suggestion Box
-          </span>
-        </div>
+      <div className="fixed z-50 bottom-6 right-6">
         <button
           className="group relative bg-[#9b87f5] hover:bg-[#7E69AB] text-white rounded-full shadow-xl p-4 transition-colors focus:outline-none focus:ring-2 focus:ring-[#8B5CF6] animate-bounce hover:animate-none"
           onClick={() => setOpen(true)}
@@ -112,6 +107,9 @@ export const SuggestionBox = () => {
           tabIndex={0}
         >
           <Vote className="w-7 h-7" />
+          <span className="absolute bottom-full mb-2 w-max bg-[#9b87f5] text-white text-xs px-3 py-1 rounded-full shadow-md opacity-0 group-hover:opacity-100 group-focus:opacity-100 transition-opacity duration-200 pointer-events-none select-none">
+            Suggestion Box
+          </span>
         </button>
       </div>
       {/* Modal Dialog */}
