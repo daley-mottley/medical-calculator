@@ -1,7 +1,9 @@
 /* @vitest-environment jsdom */
 import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
+import { MemoryRouter } from "react-router-dom";
 import SavedCalculationsPage from "./SavedCalculationsPage";
+import { AuthProvider } from "@/context/AuthContext";
 import React from "react";
 import { vi, describe, it, expect } from "vitest";
 import '@testing-library/jest-dom';
@@ -30,7 +32,13 @@ vi.mock("@/lib/apiClient", () => ({
 
 describe("SavedCalculationsPage", () => {
   it("copies calculation summary to clipboard when Copy button is clicked", async () => {
-    render(<SavedCalculationsPage />);
+    render(
+      <MemoryRouter>
+        <AuthProvider>
+          <SavedCalculationsPage />
+        </AuthProvider>
+      </MemoryRouter>
+    );
     // Wait for the calculation card to appear
     const copyButton = await screen.findByRole("button", { name: /copy/i });
     expect(copyButton).toBeInTheDocument();
