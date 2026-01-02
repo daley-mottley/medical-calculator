@@ -1,11 +1,10 @@
-import { useState, useRef, useEffect } from "react";
+import { useState, useEffect } from "react";
 import {
   Dialog,
   DialogContent,
   DialogHeader,
   DialogTitle,
   DialogDescription,
-  DialogClose,
 } from "./dialog";
 import { Button } from "./button";
 import { Textarea } from "./textarea";
@@ -18,7 +17,6 @@ export const SuggestionBox = () => {
   const [suggestion, setSuggestion] = useState("");
   const [loading, setLoading] = useState(false);
   const [charCount, setCharCount] = useState(0);
-  const textareaRef = useRef<HTMLTextAreaElement>(null);
   const MAX_CHARS = 500;
 
   // Restore rating modal state and handler
@@ -30,12 +28,6 @@ export const SuggestionBox = () => {
   useEffect(() => {
     setCharCount(suggestion.length);
   }, [suggestion]);
-
-  useEffect(() => {
-    if (open && textareaRef.current) {
-      textareaRef.current.focus();
-    }
-  }, [open]);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -129,7 +121,7 @@ export const SuggestionBox = () => {
             <label htmlFor="suggestion-textarea" className="sr-only">Your suggestion</label>
             <Textarea
               id="suggestion-textarea"
-              ref={textareaRef}
+              autoFocus
               value={suggestion}
               onChange={e => {
                 if (e.target.value.length <= MAX_CHARS) setSuggestion(e.target.value);
