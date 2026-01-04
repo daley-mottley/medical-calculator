@@ -123,6 +123,7 @@ export const NavLinks = ({ setIsOpen }: { setIsOpen?: (open: boolean) => void })
           <h4
             className="flex items-center gap-2 px-2 py-1 text-sm font-semibold uppercase text-medical-primary tracking-wider mb-2 hover:bg-medical-primary/10 rounded-lg cursor-pointer transition-colors duration-200"
             tabIndex={0}
+            onClick={() => setIsOpen && setIsOpen(false)}
           >
             <cat.icon className="h-5 w-5 text-medical-primary" />
             <span className="text-base font-bold">{cat.name}</span>
