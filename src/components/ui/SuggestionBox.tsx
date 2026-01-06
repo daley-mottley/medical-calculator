@@ -10,7 +10,7 @@ import { Button } from "./button";
 import { Textarea } from "./textarea";
 import { toast } from "./use-toast";
 import { apiClient } from "@/lib/apiClient";
-import { Info, Send, Vote, Star, X } from "lucide-react";
+import { Info, Send, Vote, Star } from "lucide-react";
 
 export const SuggestionBox = () => {
   const [open, setOpen] = useState(false);
@@ -135,20 +135,7 @@ export const SuggestionBox = () => {
               maxLength={MAX_CHARS}
             />
             <div className="flex justify-between items-center text-xs text-muted-foreground mb-2">
-              <span>
-                {charCount} / {MAX_CHARS} characters
-              </span>
-              {suggestion && (
-                <button
-                  type="button"
-                  onClick={() => setSuggestion("")}
-                  className="flex items-center gap-1 text-red-500 hover:text-red-700 focus:outline-none"
-                  aria-label="Clear suggestion text"
-                >
-                  <X className="w-4 h-4" />
-                  Clear
-                </button>
-              )}
+              <span>{charCount} / {MAX_CHARS} characters</span>
             </div>
             <div className="flex justify-end gap-2 mt-2">
               <Button type="submit" disabled={loading || !suggestion.trim()} className="flex items-center gap-2">
