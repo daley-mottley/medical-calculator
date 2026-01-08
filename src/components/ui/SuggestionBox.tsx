@@ -10,7 +10,7 @@ import { Button } from "./button";
 import { Textarea } from "./textarea";
 import { toast } from "./use-toast";
 import { apiClient } from "@/lib/apiClient";
-import { Info, Send, Vote, Star } from "lucide-react";
+import { Info, Vote, Star, Send } from "lucide-react";
 
 export const SuggestionBox = () => {
   const [open, setOpen] = useState(false);
@@ -201,7 +201,7 @@ export const SuggestionBox = () => {
                     Submitting...
                   </span>
                 ) : (
-                  <>Submit</>
+                  <><Send className="w-4 h-4" /> Submit</>
                 )}
               </Button>
             </div>
