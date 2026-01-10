@@ -72,16 +72,20 @@ const Input = React.forwardRef<HTMLInputElement, React.ComponentProps<"input">>(
           onChange={handleChange}
           {...props}
         />
-        {hasValue && isTextLike && (
-          <button
-            type="button"
-            aria-label="Clear input"
-            onClick={handleClear}
-            className="absolute right-0 mr-3 p-1 text-muted-foreground hover:text-foreground"
-          >
-            <X className="h-4 w-4" />
-          </button>
-        )}
+        <button
+          type="button"
+          aria-label="Clear input"
+          onClick={handleClear}
+          className={cn(
+            "absolute right-0 mr-3 p-1 text-muted-foreground transition-all duration-200 ease-in-out hover:text-foreground",
+            "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 rounded-full",
+            hasValue && isTextLike
+              ? "opacity-100 scale-100 pointer-events-auto"
+              : "opacity-0 scale-75 pointer-events-none"
+          )}
+        >
+          <X className="h-4 w-4" />
+        </button>
       </div>
     )
   }
