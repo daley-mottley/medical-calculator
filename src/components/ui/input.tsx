@@ -77,7 +77,7 @@ const Input = React.forwardRef<HTMLInputElement, React.ComponentProps<"input">>(
             type="button"
             aria-label="Clear input"
             onClick={handleClear}
-            className="absolute right-0 mr-3 p-1 text-muted-foreground hover:text-foreground"
+            className="absolute right-0 mr-3 rounded-full p-1 text-muted-foreground transition-colors hover:bg-muted hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
           >
             <X className="h-4 w-4" />
           </button>
