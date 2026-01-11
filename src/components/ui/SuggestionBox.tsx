@@ -93,7 +93,7 @@ export const SuggestionBox = () => {
       {/* Floating Button with Tooltip and Animation */}
       <div className="fixed z-50 bottom-6 right-6">
         <button
-          className="group relative bg-[#9b87f5] hover:bg-[#7E69AB] text-white rounded-full shadow-xl p-4 transition-colors focus:outline-none focus:ring-2 focus:ring-[#8B5CF6] animate-bounce hover:animate-none"
+          className="group relative bg-[#9b87f5] hover:bg-[#7E69AB] text-white rounded-full shadow-xl p-4 transition-colors focus:outline-none focus:ring-2 focus:ring-[#8B5CF6] hover:animate-none"
           onClick={() => setOpen(true)}
           aria-label="Open suggestion box"
           tabIndex={0}
