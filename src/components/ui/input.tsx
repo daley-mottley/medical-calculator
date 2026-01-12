@@ -14,13 +14,14 @@ const TEXT_LIKE_INPUTS = [
 ]
 
 const Input = React.forwardRef<HTMLInputElement, React.ComponentProps<"input">>(
-  ({ className, type, value, onChange, ...props }, ref) => {
+  ({ className, type, value, onChange, onFocus, onBlur, ...props }, ref) => {
     const inputRef = React.useRef<HTMLInputElement>(null)
     React.useImperativeHandle(ref, () => inputRef.current!)
 
     const [hasValue, setHasValue] = React.useState(
       Boolean(value || props.defaultValue)
     )
+    const [isFocused, setIsFocused] = React.useState(false)
 
     React.useEffect(() => {
       if (value !== undefined) {
@@ -32,6 +33,20 @@ const Input = React.forwardRef<HTMLInputElement, React.ComponentProps<"input">>(
       setHasValue(Boolean(e.target.value))
       if (onChange) {
         onChange(e)
+      }
+    }
+
+    const handleFocus = (e: React.FocusEvent<HTMLInputElement>) => {
+      setIsFocused(true)
+      if (onFocus) {
+        onFocus(e)
+      }
+    }
+
+    const handleBlur = (e: React.FocusEvent<HTMLInputElement>) => {
+      setIsFocused(false)
+      if (onBlur) {
+        onBlur(e)
       }
     }
 
@@ -57,6 +72,7 @@ const Input = React.forwardRef<HTMLInputElement, React.ComponentProps<"input">>(
     }
 
     const isTextLike = type ? TEXT_LIKE_INPUTS.includes(type) : true
+    const showClearButton = isFocused && hasValue && isTextLike
 
     return (
       <div className="relative flex w-full items-center">
@@ -64,15 +80,17 @@ const Input = React.forwardRef<HTMLInputElement, React.ComponentProps<"input">>(
           type={type}
           className={cn(
             "flex h-10 w-full rounded-md border border-medical-primary bg-background px-3 py-2 text-base ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium file:text-foreground placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-medical-primary focus-visible:ring-offset-2 focus:border-medical-primary transition-colors duration-200 disabled:cursor-not-allowed disabled:opacity-50 md:text-sm",
-            hasValue && isTextLike && "pr-10",
+            showClearButton && "pr-10",
             className
           )}
           ref={inputRef}
           value={value}
           onChange={handleChange}
+          onFocus={handleFocus}
+          onBlur={handleBlur}
           {...props}
         />
-        {hasValue && isTextLike && (
+        {showClearButton && (
           <button
             type="button"
             aria-label="Clear input"
