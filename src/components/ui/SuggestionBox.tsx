@@ -138,15 +138,13 @@ export const SuggestionBox = () => {
               <span>{charCount} / {MAX_CHARS} characters</span>
             </div>
             <div className="flex justify-end gap-2 mt-2">
-              <Button type="submit" disabled={loading || !suggestion.trim()} className="flex items-center gap-2">
-                {loading ? (
-                  <span className="flex items-center gap-1">
-                    <svg className="animate-spin h-4 w-4 mr-1 text-white" viewBox="0 0 24 24"><circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" fill="none" /><path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v4a4 4 0 00-4 4H4z" /></svg>
-                    Sending...
-                  </span>
-                ) : (
-                  <><Send className="w-4 h-4" /> Send</>
-                )}
+              <Button
+                type="submit"
+                disabled={!suggestion.trim()}
+                loading={loading}
+                className="flex items-center gap-2"
+              >
+                <Send className="w-4 h-4" /> Send
               </Button>
             </div>
           </form>
@@ -194,15 +192,13 @@ export const SuggestionBox = () => {
               </div>
             </div>
             <div className="flex justify-end gap-2 mt-2">
-              <Button type="submit" disabled={ratingLoading || rating === 0} className="flex items-center gap-2 bg-[#8B5CF6] hover:bg-[#9b87f5] text-white">
-                {ratingLoading ? (
-                  <span className="flex items-center gap-1">
-                    <svg className="animate-spin h-4 w-4 mr-1 text-white" viewBox="0 0 24 24"><circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" fill="none" /><path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v4a4 4 0 00-4 4H4z" /></svg>
-                    Submitting...
-                  </span>
-                ) : (
-                  <>Submit</>
-                )}
+              <Button
+                type="submit"
+                disabled={rating === 0}
+                loading={ratingLoading}
+                className="flex items-center gap-2 bg-[#8B5CF6] hover:bg-[#9b87f5] text-white"
+              >
+                Submit
               </Button>
             </div>
           </form>
