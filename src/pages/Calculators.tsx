@@ -159,6 +159,7 @@ const Calculators = () => {
   const { calculatorId } = useParams<{ calculatorId?: string }>();
   const navigate = useNavigate();
   const { favorites, addFavorite, removeFavorite, isFavorite } = useFavorites();
+  const [activeTab, setActiveTab] = useState("all");
 
   // Scroll to top when navigating to a calculator page
   useEffect(() => {
@@ -211,7 +212,7 @@ const Calculators = () => {
         </p>
       </div>
 
-      <Tabs defaultValue="all" className="w-full space-y-6">
+      <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full space-y-6">
         <div className="overflow-auto scrollbar-hidden">
           <TabsList className="h-10 inline-flex min-w-max">
             <TabsTrigger value="all" className="rounded-lg">All Calculators</TabsTrigger>
@@ -281,7 +282,7 @@ const Calculators = () => {
               <p className="text-muted-foreground my-3">
                 Calculators you use will appear here for quick access
               </p>
-              <Button variant="outline">Browse All Calculators</Button>
+              <Button variant="outline" onClick={() => setActiveTab('all')}>Browse All Calculators</Button>
             </CardContent>
           </Card>
         </TabsContent>
