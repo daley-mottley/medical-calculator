@@ -179,8 +179,8 @@ const Calculators = () => {
                 favorited={isFavorite(calcName)}
                 onClick={() =>
                   isFavorite(calcName)
-                    ? removeFavorite(calcName)
-                    : addFavorite(calcName)
+                    ? removeFavorite(calcName, calcName)
+                    : addFavorite(calcName, calcName)
                 }
               />
             </div>
@@ -243,8 +243,8 @@ const Calculators = () => {
                           favorited={isFavorite(calculator.name)}
                           onClick={() =>
                             isFavorite(calculator.name)
-                              ? removeFavorite(calculator.name)
-                              : addFavorite(calculator.name)
+                              ? removeFavorite(calculator.name, calculator.name)
+                              : addFavorite(calculator.name, calculator.name)
                           }
                         />
                       </div>
@@ -308,8 +308,8 @@ const Calculators = () => {
                         favorited={isFavorite(calculator.name)}
                         onClick={() =>
                           isFavorite(calculator.name)
-                            ? removeFavorite(calculator.name)
-                            : addFavorite(calculator.name)
+                            ? removeFavorite(calculator.name, calculator.name)
+                            : addFavorite(calculator.name, calculator.name)
                         }
                       />
                     </div>
